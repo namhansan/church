@@ -8,6 +8,7 @@
   "sns_instagram": "https://www.instagram.com",
   "phone": "02-1234-5678",
   "tagline": "함께 빛을 향해 걷습니다",
+  "youtube_channel_id": "https://www.youtube.com/channel/UCHfsu0gSIJZXh0tiTBlMlow",
   "history": "여러 가정이 모여 시작된 작은 개척교회가 오늘의 남한산성교회로 자라왔습니다. 지난 세월 동안 지역사회와 함께 울고 웃으며, 다음세대를 세우고 이웃을 섬기는 교회로 걸어왔습니다.",
   "offering_account": "123-456-789012",
   "address": "경기도 광주시 남한산성면 남한산성로 752",
@@ -49,6 +50,6 @@
     }
   ],
   "address_detail": "남한산성 도립공원 인근에 위치해 있습니다",
-  "sns_youtube": "https://www.youtube.com",
+  "sns_youtube": "https://www.youtube.com/@남한산성교회",
   "email": "info@church.example"
 }
