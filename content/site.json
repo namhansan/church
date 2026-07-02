@@ -1,0 +1,30 @@
+{
+  "org_name": "기독교대한성결교회",
+  "church_name": "남한산성교회",
+  "tagline": "함께 빛을 향해 걷습니다",
+  "logo": "",
+  "church_photo": "images/uploads/namhansanseong-church.jpg",
+  "pastor_name": "김은혜 담임목사",
+  "greeting": "남한산성교회 홈페이지를 찾아주셔서 감사합니다. 저희 교회는 예배와 말씀, 그리고 이웃과의 나눔을 통해 하나님의 사랑을 전하는 공동체입니다. 처음 오시는 분도, 오랫동안 함께해오신 성도님도 언제나 환영합니다.",
+  "history": "여러 가정이 모여 시작된 작은 개척교회가 오늘의 남한산성교회로 자라왔습니다. 지난 세월 동안 지역사회와 함께 울고 웃으며, 다음세대를 세우고 이웃을 섬기는 교회로 걸어왔습니다.",
+  "vision": "말씀 위에 굳게 서고, 기도로 하나되며, 이웃을 향해 열린 교회",
+  "address": "경기도 광주시 남한산성면 남한산성로 752",
+  "address_detail": "남한산성 도립공원 인근에 위치해 있습니다",
+  "phone": "02-1234-5678",
+  "email": "info@church.example",
+  "map_lat": "37.4783",
+  "map_lng": "127.1780",
+  "offering_bank": "은혜은행",
+  "offering_account": "123-456-789012",
+  "offering_holder": "은혜교회",
+  "sns_youtube": "https://www.youtube.com",
+  "sns_instagram": "https://www.instagram.com",
+  "service_times": [
+    { "name": "주일 1부 예배", "time": "오전 8:00", "place": "본당" },
+    { "name": "주일 2부 예배", "time": "오전 10:00", "place": "본당" },
+    { "name": "주일 3부 예배 (청년)", "time": "오전 12:00", "place": "본당" },
+    { "name": "주일학교 예배", "time": "오전 10:00", "place": "교육관" },
+    { "name": "수요 기도회", "time": "오후 7:30", "place": "본당" },
+    { "name": "새벽 기도회", "time": "오전 5:30 (매일)", "place": "본당" }
+  ]
+}

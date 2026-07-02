@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>은혜교회</title>
+<meta name="description" content="은혜교회 홈페이지 — 예배 안내, 설교, 공지사항, 오시는 길">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="mark"></span>
+      <div class="brand-lines">
+        <span class="org-line" data-field="org_name">기독교대한성결교회</span>
+        <span class="church-line" data-field="church_name">남한산성교회</span>
+      </div>
+    </div>
+    <nav class="menu">
+      <a href="#intro">교회소개</a>
+      <a href="#worship">예배안내</a>
+      <a href="#sermons">설교</a>
+      <a href="#notices">공지사항</a>
+      <a href="#departments">부서소개</a>
+      <a href="#location">오시는길</a>
+      <a href="#offering">헌금안내</a>
+    </nav>
+    <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="rays"></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow-light">WELCOME</div>
+    <h1>
+      <span class="org-line" data-field="org_name">기독교대한성결교회</span>
+      <span class="church-line" data-field="church_name">남한산성교회</span>
+    </h1>
+    <p class="tagline" data-field="tagline">함께 빛을 향해 걷습니다</p>
+    <div class="hero-actions">
+      <a href="#worship" class="btn btn-gold">예배 시간 보기</a>
+      <a href="#location" class="btn btn-outline">오시는 길</a>
+    </div>
+  </div>
+</section>
+
+<section class="photo-band">
+  <img id="church-photo" src="" alt="교회 전경">
+  <div class="caption" data-field="address">주소</div>
+</section>
+
+<section id="intro">
+  <div class="wrap">
+    <div class="eyebrow">인사 · GREETING</div>
+    <h2 class="section-title">교회 소개</h2>
+    <div class="intro-grid">
+      <div>
+        <p data-field="greeting">인사말이 이곳에 표시됩니다.</p>
+        <p data-field="history">교회 연혁이 이곳에 표시됩니다.</p>
+      </div>
+      <div class="pastor-card">
+        <div class="name" data-field="pastor_name">담임목사</div>
+        <div class="vision" data-field="vision">교회 비전이 이곳에 표시됩니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="worship">
+  <div class="wrap">
+    <div class="eyebrow">예배 · WORSHIP</div>
+    <h2 class="section-title">예배 안내</h2>
+    <div class="service-grid" id="service-grid">
+      <p class="empty-state">불러오는 중...</p>
+    </div>
+  </div>
+</section>
+
+<section id="sermons">
+  <div class="wrap">
+    <div class="eyebrow">말씀 · SERMONS</div>
+    <h2 class="section-title">최근 설교</h2>
+    <div class="sermon-list" id="sermon-list">
+      <p class="empty-state">불러오는 중...</p>
+    </div>
+  </div>
+</section>
+
+<section id="notices">
+  <div class="wrap">
+    <div class="eyebrow">소식 · NOTICES</div>
+    <h2 class="section-title">공지사항</h2>
+    <div class="notice-list" id="notice-list">
+      <p class="empty-state">불러오는 중...</p>
+    </div>
+  </div>
+</section>
+
+<section id="departments">
+  <div class="wrap">
+    <div class="eyebrow">만남 · DEPARTMENTS</div>
+    <h2 class="section-title">부서 소개</h2>
+    <div class="dept-grid" id="dept-grid">
+      <p class="empty-state">불러오는 중...</p>
+    </div>
+  </div>
+</section>
+
+<section id="location">
+  <div class="wrap">
+    <div class="eyebrow">오시는 길 · LOCATION</div>
+    <h2 class="section-title">찾아오시는 길</h2>
+    <div class="two-col">
+      <div>
+        <div class="info-line"><span class="label">주소</span><span data-field="address">주소</span></div>
+        <div class="info-line"><span class="label">안내</span><span data-field="address_detail">교통 안내</span></div>
+        <div class="info-line"><span class="label">전화</span><a data-field="phone_link" href="#"><span data-field="phone">전화번호</span></a></div>
+        <div class="info-line"><span class="label">이메일</span><a data-field="email_link" href="#"><span data-field="email">이메일</span></a></div>
+      </div>
+      <iframe class="map-embed" id="map-embed" loading="lazy" title="교회 위치 지도"></iframe>
+    </div>
+  </div>
+</section>
+
+<section id="offering">
+  <div class="wrap">
+    <div class="eyebrow">섬김 · OFFERING</div>
+    <h2 class="section-title">헌금 안내</h2>
+    <div class="offering-box">
+      <p style="margin-top:0; color:var(--ink-soft);">온라인 헌금은 아래 계좌를 이용해 주세요. 예배 중 헌금 시간에도 참여하실 수 있습니다.</p>
+      <div class="account"><span data-field="offering_bank">은행</span> <span data-field="offering_account">계좌번호</span></div>
+      <p style="color:var(--ink-soft); font-size:14px;">예금주: <span data-field="offering_holder">예금주</span></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-footer">
+      <div class="org-line" data-field="org_name">기독교대한성결교회</div>
+      <div class="church-line" data-field="church_name">남한산성교회</div>
+    </div>
+    <div data-field="address">주소</div>
+    <div>
+      <a data-field="phone_link" href="#"><span data-field="phone">전화번호</span></a>
+      &nbsp;·&nbsp;
+      <a data-field="email_link" href="#"><span data-field="email">이메일</span></a>
+    </div>
+    <div class="sns">
+      <a data-field="sns_youtube" href="#" target="_blank" rel="noopener">YouTube</a>
+      <a data-field="sns_instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div>&copy; <span id="year"></span> <span data-field="church_name">은혜교회</span>. All rights reserved.</div>
+    <div class="admin-link"><a href="/admin/">관리자 로그인</a></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

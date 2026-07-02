@@ -1,0 +1,93 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "site"
+    label: "교회 기본 정보"
+    files:
+      - name: "settings"
+        label: "기본 정보 수정"
+        file: "content/site.json"
+        fields:
+          - { label: "교단명 (작은 글씨, 예: 기독교대한성결교회)", name: "org_name", widget: "string", required: false }
+          - { label: "교회 이름 (큰 글씨)", name: "church_name", widget: "string" }
+          - { label: "슬로건 (한 줄 소개)", name: "tagline", widget: "string" }
+          - { label: "로고 이미지", name: "logo", widget: "image", required: false, hint: "정사각형 이미지를 권장합니다." }
+          - { label: "교회 전경 사진", name: "church_photo", widget: "image", required: false, hint: "메인 화면 상단에 크게 표시됩니다." }
+          - { label: "담임목사 이름", name: "pastor_name", widget: "string" }
+          - { label: "인사말", name: "greeting", widget: "text" }
+          - { label: "교회 연혁", name: "history", widget: "text" }
+          - { label: "비전", name: "vision", widget: "string" }
+          - { label: "주소", name: "address", widget: "string" }
+          - { label: "교통 안내", name: "address_detail", widget: "string" }
+          - { label: "전화번호", name: "phone", widget: "string" }
+          - { label: "이메일", name: "email", widget: "string" }
+          - { label: "지도 위도 (latitude)", name: "map_lat", widget: "string" }
+          - { label: "지도 경도 (longitude)", name: "map_lng", widget: "string" }
+          - { label: "헌금 은행", name: "offering_bank", widget: "string" }
+          - { label: "헌금 계좌번호", name: "offering_account", widget: "string" }
+          - { label: "예금주", name: "offering_holder", widget: "string" }
+          - { label: "유튜브 채널 링크", name: "sns_youtube", widget: "string", required: false }
+          - { label: "인스타그램 링크", name: "sns_instagram", widget: "string", required: false }
+          - label: "예배 시간표"
+            name: "service_times"
+            widget: "list"
+            summary: "{{name}} — {{time}}"
+            fields:
+              - { label: "예배 이름", name: "name", widget: "string" }
+              - { label: "시간", name: "time", widget: "string" }
+              - { label: "장소", name: "place", widget: "string" }
+
+  - name: "notices"
+    label: "공지사항"
+    files:
+      - name: "notices"
+        label: "공지사항 목록 수정"
+        file: "content/notices.json"
+        fields:
+          - label: "공지사항"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "내용", name: "body", widget: "text" }
+
+  - name: "sermons"
+    label: "설교"
+    files:
+      - name: "sermons"
+        label: "설교 목록 수정"
+        file: "content/sermons.json"
+        fields:
+          - label: "설교"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "설교자", name: "preacher", widget: "string" }
+              - { label: "본문 말씀", name: "scripture", widget: "string" }
+              - { label: "유튜브 링크", name: "youtube_url", widget: "string" }
+
+  - name: "departments"
+    label: "부서 소개"
+    files:
+      - name: "departments"
+        label: "부서 목록 수정"
+        file: "content/departments.json"
+        fields:
+          - label: "부서"
+            name: "departments"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "부서 이름", name: "name", widget: "string" }
+              - { label: "소개", name: "summary", widget: "text" }
+              - { label: "담당자", name: "leader", widget: "string" }
