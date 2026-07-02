@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "name": "은혜의땅 선교회",
+      "region": "국내",
+      "photo": "images/uploads/namhansanseong-church.jpg",
+      "description": "미자립 교회를 개척하고 세우는 사역을 감당하는 국내 선교 단체입니다.",
+      "link": ""
+    },
+    {
+      "name": "필리핀 세부 선교센터",
+      "region": "해외",
+      "photo": "images/uploads/namhansanseong-church.jpg",
+      "description": "현지 아이들을 위한 공부방과 의료 봉사를 섬기는 해외 선교지입니다.",
+      "link": ""
+    }
+  ]
+}

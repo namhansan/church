@@ -33,6 +33,7 @@ collections:
           - { label: "예금주", name: "offering_holder", widget: "string" }
           - { label: "유튜브 채널 링크", name: "sns_youtube", widget: "string", required: false }
           - { label: "인스타그램 링크", name: "sns_instagram", widget: "string", required: false }
+          - { label: "유튜브 채널 ID (실시간 예배용)", name: "youtube_channel_id", widget: "string", required: false, hint: "유튜브 채널 → 정보 → '채널 ID'에서 확인 (UC로 시작하는 문자열). 비워두면 실시간 예배 섹션에 준비중 메시지가 표시됩니다." }
           - label: "예배 시간표"
             name: "service_times"
             widget: "list"
@@ -91,3 +92,57 @@ collections:
               - { label: "부서 이름", name: "name", widget: "string" }
               - { label: "소개", name: "summary", widget: "text" }
               - { label: "담당자", name: "leader", widget: "string" }
+
+  - name: "events"
+    label: "행사 사진"
+    files:
+      - name: "events"
+        label: "행사 앨범 수정"
+        file: "content/events.json"
+        fields:
+          - label: "앨범"
+            name: "albums"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "행사 이름", name: "title", widget: "string" }
+              - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "대표 사진 (목록에 표시)", name: "cover", widget: "image" }
+              - label: "사진들"
+                name: "photos"
+                widget: "list"
+                field: { label: "사진", name: "photo", widget: "image" }
+
+  - name: "bulletins"
+    label: "주보"
+    files:
+      - name: "bulletins"
+        label: "주보 목록 수정"
+        file: "content/bulletins.json"
+        fields:
+          - label: "주보"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "주보 파일 (PDF)", name: "file", widget: "file", required: false, hint: "PDF 파일을 올려주세요." }
+
+  - name: "partners"
+    label: "후원 단체"
+    files:
+      - name: "partners"
+        label: "후원 단체 목록 수정"
+        file: "content/partners.json"
+        fields:
+          - label: "후원 단체"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "단체/교회 이름", name: "name", widget: "string" }
+              - { label: "구분 (예: 국내, 해외)", name: "region", widget: "string", required: false }
+              - { label: "사진", name: "photo", widget: "image", required: false }
+              - { label: "소개", name: "description", widget: "text" }
+              - { label: "링크 (홈페이지 등, 선택)", name: "link", widget: "string", required: false }

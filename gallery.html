@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>행사 사진 갤러리</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="mark"></span>
+      <div class="brand-lines">
+        <span class="org-line" data-field="org_name">기독교대한성결교회</span>
+        <span class="church-line" data-field="church_name">남한산성교회</span>
+      </div>
+    </div>
+    <nav class="menu">
+      <a href="index.html#intro">교회소개</a>
+      <a href="index.html#worship">예배안내</a>
+      <a href="index.html#sermons">설교</a>
+      <a href="index.html#notices">공지사항</a>
+      <a href="gallery.html">행사사진</a>
+      <a href="bulletins.html">주보</a>
+      <a href="partners.html">후원단체</a>
+      <a href="index.html#location">오시는길</a>
+    </nav>
+    <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
+  </div>
+</header>
+
+<section class="subhero">
+  <div class="wrap">
+    <div class="eyebrow-light" style="color:var(--gold-300); letter-spacing:0.28em; font-size:12.5px; font-weight:700;">GALLERY</div>
+    <h1>행사 사진</h1>
+    <p>교회의 크고 작은 행사와 모임의 순간들을 나눕니다</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+
+    <div id="album-list-view">
+      <div class="album-grid" id="album-grid">
+        <p class="empty-state">불러오는 중...</p>
+      </div>
+    </div>
+
+    <div id="album-detail-view" class="album-detail">
+      <span class="album-back" id="album-back-btn">← 목록으로</span>
+      <div class="eyebrow"><span id="album-detail-date">날짜</span></div>
+      <h2 class="section-title" id="album-detail-title">앨범 제목</h2>
+      <div class="photo-lightbox-grid" id="album-photo-grid"></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button class="lightbox-close" aria-label="닫기">&times;</button>
+  <img src="" alt="확대 사진">
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-footer">
+      <div class="org-line" data-field="org_name">기독교대한성결교회</div>
+      <div class="church-line" data-field="church_name">남한산성교회</div>
+    </div>
+    <div data-field="address">주소</div>
+    <div>
+      <a data-field="phone_link" href="#"><span data-field="phone">전화번호</span></a>
+      &nbsp;·&nbsp;
+      <a data-field="email_link" href="#"><span data-field="email">이메일</span></a>
+    </div>
+    <div class="sns">
+      <a data-field="sns_youtube" href="#" target="_blank" rel="noopener">YouTube</a>
+      <a data-field="sns_instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div>&copy; <span id="year"></span> <span data-field="church_name">남한산성교회</span>. All rights reserved.</div>
+    <div class="admin-link"><a href="/admin/">관리자 로그인</a></div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/extra.js"></script>
+</body>
+</html>

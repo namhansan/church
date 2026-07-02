@@ -1,0 +1,173 @@
+// 은혜교회 홈페이지 — 추가 기능(갤러리/주보/후원단체/실시간 예배)
+// main.js가 먼저 로드된 뒤 이 파일이 이어서 실행됩니다.
+
+(function () {
+  const CACHE_BUST = `?v=${Date.now()}`;
+
+  async function loadJSON(path) {
+    try {
+      const res = await fetch(path + CACHE_BUST);
+      if (!res.ok) throw new Error(`${path} 불러오기 실패`);
+      return await res.json();
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  }
+
+  function esc(str) {
+    const div = document.createElement('div');
+    div.textContent = str ?? '';
+    return div.innerHTML;
+  }
+
+  function formatDate(dateStr) {
+    if (!dateStr) return '';
+    const d = new Date(dateStr);
+    if (isNaN(d)) return dateStr;
+    return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
+  }
+
+  // -------------------- 실시간 예배 --------------------
+  async function renderLive() {
+    const slot = document.getElementById('live-slot');
+    if (!slot) return;
+    const site = await loadJSON('content/site.json');
+    const channelId = site && site.youtube_channel_id;
+    if (channelId) {
+      slot.innerHTML = `
+        <div class="live-embed-wrap">
+          <iframe src="https://www.youtube.com/embed/live_stream?channel=${encodeURIComponent(channelId)}"
+            title="실시간 예배" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
+        </div>`;
+    } else {
+      slot.innerHTML = `
+        <div class="live-offline">
+          <div class="badge">LIVE 준비중</div>
+          <p style="margin:0;">실시간 예배 연결이 아직 설정되지 않았습니다.<br>관리자 페이지의 "교회 기본 정보"에서 유튜브 채널 ID를 등록해 주세요.</p>
+        </div>`;
+    }
+  }
+
+  // -------------------- 행사 사진 갤러리 --------------------
+  async function renderGallery() {
+    const grid = document.getElementById('album-grid');
+    if (!grid) return;
+    const data = await loadJSON('content/events.json');
+    const albums = (data && data.albums) || [];
+    if (!albums.length) {
+      grid.innerHTML = `<p class="empty-state">등록된 행사 사진이 없습니다.</p>`;
+      return;
+    }
+    const sorted = albums
+      .map((a, i) => ({ ...a, _idx: i }))
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    grid.innerHTML = sorted.map(a => `
+      <div class="album-card" data-idx="${a._idx}">
+        <img class="cover" src="${esc(a.cover || (a.photos && a.photos[0]) || '')}" alt="${esc(a.title)}" loading="lazy">
+        <div class="meta">
+          <div class="title">${esc(a.title)}</div>
+          <div class="date">${formatDate(a.date)}</div>
+          <div class="count">사진 ${(a.photos || []).length}장</div>
+        </div>
+      </div>
+    `).join('');
+
+    grid.querySelectorAll('.album-card').forEach(card => {
+      card.addEventListener('click', () => openAlbum(albums[Number(card.dataset.idx)]));
+    });
+  }
+
+  function openAlbum(album) {
+    const listView = document.getElementById('album-list-view');
+    const detailView = document.getElementById('album-detail-view');
+    if (!listView || !detailView) return;
+    listView.classList.add('hidden');
+    detailView.classList.add('open');
+    document.getElementById('album-detail-title').textContent = album.title || '';
+    document.getElementById('album-detail-date').textContent = formatDate(album.date);
+    const photoGrid = document.getElementById('album-photo-grid');
+    const photos = album.photos || [];
+    photoGrid.innerHTML = photos.length
+      ? photos.map(p => `<img src="${esc(p)}" alt="${esc(album.title)}" loading="lazy">`).join('')
+      : `<p class="empty-state">이 앨범에는 아직 사진이 등록되지 않았습니다.</p>`;
+    photoGrid.querySelectorAll('img').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src));
+    });
+  }
+
+  function closeAlbum() {
+    document.getElementById('album-list-view').classList.remove('hidden');
+    document.getElementById('album-detail-view').classList.remove('open');
+  }
+
+  function openLightbox(src) {
+    const overlay = document.getElementById('lightbox-overlay');
+    if (!overlay) return;
+    overlay.querySelector('img').src = src;
+    overlay.classList.add('open');
+  }
+
+  function initGalleryInteractions() {
+    const backBtn = document.getElementById('album-back-btn');
+    if (backBtn) backBtn.addEventListener('click', closeAlbum);
+    const overlay = document.getElementById('lightbox-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', () => overlay.classList.remove('open'));
+    }
+  }
+
+  // -------------------- 주보 --------------------
+  async function renderBulletins() {
+    const list = document.getElementById('bulletin-list');
+    if (!list) return;
+    const data = await loadJSON('content/bulletins.json');
+    const items = (data && data.items) || [];
+    if (!items.length) {
+      list.innerHTML = `<p class="empty-state">등록된 주보가 없습니다.</p>`;
+      return;
+    }
+    const sorted = [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
+    list.innerHTML = sorted.map(b => `
+      <div class="bulletin-item">
+        <div class="info">
+          <div class="date">${formatDate(b.date)}</div>
+          <div class="title">${esc(b.title)}</div>
+        </div>
+        ${b.file ? `<a class="dl" href="${esc(b.file)}" target="_blank" rel="noopener">PDF 보기</a>` : `<span class="dl" style="opacity:0.4; cursor:default;">파일 없음</span>`}
+      </div>
+    `).join('');
+  }
+
+  // -------------------- 후원 단체 --------------------
+  async function renderPartners() {
+    const grid = document.getElementById('partner-grid');
+    if (!grid) return;
+    const data = await loadJSON('content/partners.json');
+    const items = (data && data.items) || [];
+    if (!items.length) {
+      grid.innerHTML = `<p class="empty-state">등록된 후원 단체가 없습니다.</p>`;
+      return;
+    }
+    grid.innerHTML = items.map(p => `
+      <div class="partner-card">
+        ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">` : ''}
+        <div class="body">
+          ${p.region ? `<span class="region">${esc(p.region)}</span>` : ''}
+          <div class="name">${esc(p.name)}</div>
+          <div class="desc">${esc(p.description)}</div>
+          ${p.link ? `<a class="link" href="${esc(p.link)}" target="_blank" rel="noopener">자세히 보기 →</a>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initGalleryInteractions();
+    renderLive();
+    renderGallery();
+    renderBulletins();
+    renderPartners();
+  });
+})();

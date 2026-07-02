@@ -6,6 +6,7 @@
 <title>남한산성교회</title>
 <meta name="description" content="남한산성교회 홈페이지 — 예배 안내, 설교, 공지사항, 오시는 길">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/extra.css">
 <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
@@ -24,9 +25,10 @@
       <a href="#worship">예배안내</a>
       <a href="#sermons">설교</a>
       <a href="#notices">공지사항</a>
-      <a href="#departments">부서소개</a>
+      <a href="gallery.html">행사사진</a>
+      <a href="bulletins.html">주보</a>
+      <a href="partners.html">후원단체</a>
       <a href="#location">오시는길</a>
-      <a href="#offering">헌금안내</a>
     </nav>
     <button class="menu-toggle" aria-label="메뉴 열기">☰</button>
   </div>
@@ -75,6 +77,16 @@
     <div class="eyebrow">예배 · WORSHIP</div>
     <h2 class="section-title">예배 안내</h2>
     <div class="service-grid" id="service-grid">
+      <p class="empty-state">불러오는 중...</p>
+    </div>
+  </div>
+</section>
+
+<section id="live">
+  <div class="wrap">
+    <div class="eyebrow">실시간 · LIVE</div>
+    <h2 class="section-title">실시간 예배</h2>
+    <div id="live-slot">
       <p class="empty-state">불러오는 중...</p>
     </div>
   </div>
@@ -154,11 +166,12 @@
       <a data-field="sns_youtube" href="#" target="_blank" rel="noopener">YouTube</a>
       <a data-field="sns_instagram" href="#" target="_blank" rel="noopener">Instagram</a>
     </div>
-    <div>&copy; <span id="year"></span> <span data-field="church_name">은혜교회</span>. All rights reserved.</div>
+    <div>&copy; <span id="year"></span> <span data-field="church_name">남한산성교회</span>. All rights reserved.</div>
     <div class="admin-link"><a href="/admin/">관리자 로그인</a></div>
   </div>
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/extra.js"></script>
 </body>
 </html>
