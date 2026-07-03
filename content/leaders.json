@@ -1,0 +1,25 @@
+{
+  "pastor": {
+    "name": "김은혜 담임목사",
+    "photo": "images/uploads/namhansanseong-church.jpg",
+    "bio": "말씀과 기도로 성도를 섬기며, 다음세대와 지역사회를 향한 하나님의 부르심을 따라 목회하고 있습니다."
+  },
+  "clergy_intro": "담임목사님과 함께 각 사역 영역을 섬기는 전임 목회자들입니다.",
+  "clergy": [
+    { "name": "박믿음 전도사", "role": "유년부·초등부 담당" },
+    { "name": "이소망 전도사", "role": "청소년부 담당" },
+    { "name": "최사랑 전도사", "role": "청년부 담당" }
+  ],
+  "elders_intro": "교회의 행정과 살림을 함께 결정하고 섬기는 장로님들입니다.",
+  "elders_acting": [
+    { "name": "정섬김 장로" },
+    { "name": "한충성 장로" }
+  ],
+  "elders_emeritus": [
+    { "name": "오헌신 원로장로" }
+  ],
+  "elders_honorary": [
+    { "name": "윤은총 명예장로" }
+  ],
+  "congregation_note": "남한산성교회는 다양한 세대와 삶의 자리에 계신 성도님들이 함께 예배하고 교제하는 공동체입니다. 처음 오시는 분들도 부담 없이 함께해 주세요."
+}

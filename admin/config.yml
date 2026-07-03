@@ -93,6 +93,64 @@ collections:
               - { label: "소개", name: "summary", widget: "text" }
               - { label: "담당자", name: "leader", widget: "string" }
 
+  - name: "leaders"
+    label: "섬기는 사람"
+    files:
+      - name: "leaders"
+        label: "섬기는 사람 수정"
+        file: "content/leaders.json"
+        fields:
+          - label: "담임목사"
+            name: "pastor"
+            widget: "object"
+            fields:
+              - { label: "이름", name: "name", widget: "string" }
+              - { label: "사진", name: "photo", widget: "image", required: false }
+              - { label: "소개글", name: "bio", widget: "text" }
+          - { label: "교역자 소개 문구", name: "clergy_intro", widget: "text", required: false }
+          - label: "교역자 (전임 목회자)"
+            name: "clergy"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "이름", name: "name", widget: "string" }
+              - { label: "직분/담당", name: "role", widget: "string" }
+          - { label: "장로 소개 문구", name: "elders_intro", widget: "text", required: false }
+          - label: "시무장로"
+            name: "elders_acting"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "이름", name: "name", widget: "string" }
+          - label: "원로장로"
+            name: "elders_emeritus"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "이름", name: "name", widget: "string" }
+          - label: "명예장로"
+            name: "elders_honorary"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "이름", name: "name", widget: "string" }
+          - { label: "성도 소개 문구", name: "congregation_note", widget: "text" }
+
+  - name: "ministries"
+    label: "사역 안내"
+    files:
+      - name: "ministries"
+        label: "사역 목록 수정"
+        file: "content/ministries.json"
+        fields:
+          - label: "사역"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "사역 이름", name: "name", widget: "string" }
+              - { label: "설명", name: "description", widget: "text" }
+
   - name: "events"
     label: "행사 사진"
     files:

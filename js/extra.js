@@ -163,11 +163,81 @@
     `).join('');
   }
 
+  // -------------------- 섬기는 사람 --------------------
+  async function renderLeaders() {
+    const root = document.getElementById('leaders-root');
+    if (!root) return;
+    const data = await loadJSON('content/leaders.json');
+    if (!data) return;
+
+    // 담임목사
+    const pastorImg = document.getElementById('pastor-photo');
+    const pastorName = document.getElementById('pastor-name');
+    const pastorBio = document.getElementById('pastor-bio');
+    if (data.pastor) {
+      if (pastorImg && data.pastor.photo) pastorImg.src = data.pastor.photo;
+      if (pastorName) pastorName.textContent = data.pastor.name || '';
+      if (pastorBio) pastorBio.textContent = data.pastor.bio || '';
+    }
+
+    // 교역자 (전임 목회자)
+    const clergyIntro = document.getElementById('clergy-intro');
+    if (clergyIntro) clergyIntro.textContent = data.clergy_intro || '';
+    const clergyGrid = document.getElementById('clergy-grid');
+    if (clergyGrid) {
+      const list = data.clergy || [];
+      clergyGrid.innerHTML = list.length
+        ? list.map(p => `
+          <div class="people-card">
+            <div class="name">${esc(p.name)}</div>
+            <div class="role">${esc(p.role)}</div>
+          </div>`).join('')
+        : `<p class="empty-state">등록된 교역자가 없습니다.</p>`;
+    }
+
+    // 장로 (시무 / 원로 / 명예)
+    const eldersIntro = document.getElementById('elders-intro');
+    if (eldersIntro) eldersIntro.textContent = data.elders_intro || '';
+    renderElderGroup('elder-acting-grid', data.elders_acting);
+    renderElderGroup('elder-emeritus-grid', data.elders_emeritus);
+    renderElderGroup('elder-honorary-grid', data.elders_honorary);
+
+    // 성도
+    const note = document.getElementById('congregation-note');
+    if (note) note.textContent = data.congregation_note || '';
+  }
+
+  function renderElderGroup(elId, list) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    const items = list || [];
+    el.innerHTML = items.length
+      ? items.map(p => `<div class="people-card"><div class="name">${esc(p.name)}</div></div>`).join('')
+      : `<p class="empty-state">등록된 분이 없습니다.</p>`;
+  }
+
+  // -------------------- 사역 안내 --------------------
+  async function renderMinistries() {
+    const grid = document.getElementById('ministry-grid');
+    if (!grid) return;
+    const data = await loadJSON('content/ministries.json');
+    const items = (data && data.items) || [];
+    grid.innerHTML = items.length
+      ? items.map(m => `
+        <div class="ministry-card">
+          <div class="name">${esc(m.name)}</div>
+          <div class="desc">${esc(m.description)}</div>
+        </div>`).join('')
+      : `<p class="empty-state">등록된 사역이 없습니다.</p>`;
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initGalleryInteractions();
     renderLive();
     renderGallery();
     renderBulletins();
     renderPartners();
+    renderLeaders();
+    renderMinistries();
   });
 })();

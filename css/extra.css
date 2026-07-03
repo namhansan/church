@@ -3,6 +3,126 @@
    (style.css의 색상/타이포 변수를 그대로 사용합니다)
    ========================================================================== */
 
+/* -------------------- 드롭다운 메뉴 (교회소개) -------------------- */
+.nav-dropdown { position: relative; }
+.nav-dropdown > a { display: inline-flex; align-items: center; gap: 4px; }
+.nav-dropdown > a::after { content: "▾"; font-size: 10px; opacity: 0.7; }
+.dropdown-panel {
+  position: absolute;
+  top: 100%; left: 0;
+  min-width: 180px;
+  background: var(--navy-900);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 0;
+  display: none;
+  z-index: 60;
+}
+.nav-dropdown:hover .dropdown-panel { display: block; }
+.dropdown-panel a {
+  display: block;
+  padding: 10px 18px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+  text-decoration: none;
+}
+.dropdown-panel a:hover { color: var(--gold-300); background: rgba(255,255,255,0.04); }
+
+@media (max-width: 780px) {
+  .dropdown-panel {
+    position: static;
+    display: block;
+    background: rgba(0,0,0,0.15);
+    border: none;
+  }
+  .nav-dropdown > a::after { display: none; }
+}
+
+/* -------------------- 페이지 내 탭(핑크빛 필) 네비게이션 -------------------- */
+.pill-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.pill-nav a {
+  padding: 9px 20px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--navy-800);
+  text-decoration: none;
+  background: var(--white);
+}
+.pill-nav a:hover { border-color: var(--gold-500); color: var(--gold-500); }
+
+/* -------------------- 담임목사 소개 -------------------- */
+.pastor-profile {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+@media (max-width: 600px) { .pastor-profile { grid-template-columns: 1fr; } }
+.pastor-profile img {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+}
+.pastor-profile .name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--navy-900); margin-bottom: 10px; }
+.pastor-profile .bio { color: var(--ink-soft); font-size: 15px; }
+
+/* -------------------- 교역자 / 장로 목록 -------------------- */
+.people-intro { color: var(--ink-soft); font-size: 14.5px; margin-bottom: 18px; }
+.people-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 40px;
+}
+.people-card {
+  background: var(--paper-2);
+  border-left: 3px solid var(--gold-500);
+  padding: 16px 18px;
+}
+.people-card .name { font-weight: 700; color: var(--navy-900); font-size: 15px; }
+.people-card .role { color: var(--ink-soft); font-size: 13px; margin-top: 3px; }
+
+.elder-group { margin-bottom: 30px; }
+.elder-group h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--navy-800);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.elder-group .people-grid { margin-bottom: 0; }
+
+.congregation-note {
+  background: var(--paper-2);
+  border-left: 3px solid var(--sage);
+  padding: 24px 26px;
+  color: var(--ink-soft);
+  font-size: 15px;
+}
+
+/* -------------------- 사역 안내 -------------------- */
+.ministry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+.ministry-card {
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--navy-800);
+  padding: 24px 24px;
+}
+.ministry-card .name { font-family: var(--font-display); font-weight: 700; color: var(--navy-900); font-size: 17px; margin-bottom: 8px; }
+.ministry-card .desc { color: var(--ink-soft); font-size: 14px; }
+
 /* -------------------- Sub page hero (갤러리/주보/후원단체 상단) -------------------- */
 .subhero {
   background: var(--navy-900);
