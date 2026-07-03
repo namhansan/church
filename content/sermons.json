@@ -1,24 +1,31 @@
 {
   "items": [
     {
-      "title": "세상의 빛",
-      "date": "2026-07-01",
+      "title": "인생이란 무엇인가",
+      "date": "2026-06-28",
       "preacher": "최영준 담임목사",
-      "scripture": "마태복음 5장 14-16절",
+      "scripture": "이사야 40장 6-11절",
       "youtube_url": "https://www.youtube.com"
     },
     {
-      "title": "선한 목자 되신 주님",
-      "date": "2026-06-22",
+      "title": "사랑이 주는 유익",
+      "date": "2026-06-21",
       "preacher": "최영준 담임목사",
-      "scripture": "요한복음 10장 11-15절",
+      "scripture": "요한일서 4장 7-11절",
       "youtube_url": "https://www.youtube.com"
     },
     {
-      "title": "은혜와 진리",
-      "date": "2026-06-15",
+      "title": "나는 누구인가",
+      "date": "2026-06-14",
       "preacher": "최영준 담임목사",
-      "scripture": "요한복음 1장 14-17절",
+      "scripture": "고린도전서 15장 9-11절",
+      "youtube_url": "https://www.youtube.com"
+    },
+    {
+      "title": "하나님께로 더 가까이",
+      "date": "2026-06-07",
+      "preacher": "최영준 담임목사",
+      "scripture": "시편 71편 1~3절",
       "youtube_url": "https://www.youtube.com"
     }
   ]
