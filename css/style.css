@@ -94,7 +94,7 @@ header.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: 18px 24px;
   max-width: var(--max-w);
   margin: 0 auto;
 }
@@ -125,7 +125,7 @@ header.site-header {
 .brand-lines .church-line {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 19px;
+  font-size: 25px;
   letter-spacing: 0.01em;
 }
 nav.menu { display: flex; gap: 28px; }
@@ -160,19 +160,41 @@ nav.menu a:hover { color: var(--gold-300); }
 .hero {
   position: relative;
   overflow: hidden;
-  background: radial-gradient(ellipse at 50% -10%, var(--navy-700) 0%, var(--navy-900) 62%);
+  background: var(--navy-900);
   color: var(--white);
-  padding: 120px 0 100px;
-  text-align: center;
+  padding: 130px 0 110px;
+  text-align: left;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+}
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 30% center;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(100deg,
+    rgba(20,27,51,0.28) 0%,
+    rgba(20,27,51,0.55) 32%,
+    rgba(20,27,51,0.88) 52%,
+    var(--navy-900) 68%
+  );
 }
 .hero .rays {
   position: absolute;
-  top: -20%; left: 50%;
-  width: 1400px; height: 1400px;
-  transform: translateX(-50%);
+  top: -20%; right: -10%;
+  width: 1100px; height: 1100px;
+  z-index: 1;
   background: repeating-conic-gradient(
     from 0deg,
-    rgba(201,162,39,0.14) 0deg 3deg,
+    rgba(201,162,39,0.16) 0deg 3deg,
     transparent 3deg 12deg
   );
   mask-image: radial-gradient(circle at center, black 0%, transparent 62%);
@@ -182,9 +204,26 @@ nav.menu a:hover { color: var(--gold-300); }
 @media (prefers-reduced-motion: no-preference) {
   .hero .rays { animation: spin 120s linear infinite; }
 }
-@keyframes spin { to { transform: translateX(-50%) rotate(360deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-.hero-content { position: relative; z-index: 1; }
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin-left: auto;
+  max-width: 560px;
+  text-align: left;
+}
+@media (max-width: 780px) {
+  .hero { text-align: center; min-height: 480px; padding: 100px 0 70px; }
+  .hero-content { margin: 0 auto; text-align: center; }
+  .hero-overlay {
+    background: linear-gradient(180deg,
+      rgba(20,27,51,0.35) 0%,
+      rgba(20,27,51,0.75) 55%,
+      var(--navy-900) 85%
+    );
+  }
+}
 .hero .eyebrow-light {
   color: var(--gold-300);
   letter-spacing: 0.32em;
@@ -216,9 +255,15 @@ nav.menu a:hover { color: var(--gold-300); }
   font-size: 18px;
   color: rgba(255,255,255,0.82);
   max-width: 560px;
-  margin: 0 auto 36px;
+  margin: 0 0 36px;
 }
-.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+@media (max-width: 780px) {
+  .hero p.tagline { margin: 0 auto 36px; }
+}
+.hero-actions { display: flex; gap: 14px; justify-content: flex-start; flex-wrap: wrap; }
+@media (max-width: 780px) {
+  .hero-actions { justify-content: center; }
+}
 
 .btn {
   display: inline-block;

@@ -201,6 +201,15 @@ collections:
             fields:
               - { label: "단체/교회 이름", name: "name", widget: "string" }
               - { label: "구분 (예: 국내, 해외)", name: "region", widget: "string", required: false }
-              - { label: "사진", name: "photo", widget: "image", required: false }
+              - { label: "대표 사진 (목록에 표시)", name: "cover", widget: "image", required: false }
               - { label: "소개", name: "description", widget: "text" }
-              - { label: "링크 (홈페이지 등, 선택)", name: "link", widget: "string", required: false }
+              - { label: "외부 홈페이지 링크 (있는 경우만)", name: "link", widget: "string", required: false, hint: "이 단체의 자체 홈페이지 주소가 있을 때만 입력하세요. 없으면 비워두세요." }
+              - label: "소식 (수시로 추가)"
+                name: "updates"
+                widget: "list"
+                summary: "{{fields.date}} — {{fields.title}}"
+                fields:
+                  - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+                  - { label: "제목", name: "title", widget: "string" }
+                  - { label: "내용", name: "content", widget: "text" }
+                  - { label: "사진", name: "photo", widget: "image", required: false }

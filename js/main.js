@@ -1,4 +1,4 @@
-// 남한산성교회 홈페이지 — content/*.json 파일을 불러와 화면에 그립니다.
+// 은혜교회 홈페이지 — content/*.json 파일을 불러와 화면에 그립니다.
 // 관리자 페이지(/admin)에서 내용을 수정하면 이 파일들이 자동으로 바뀝니다.
 
 const CACHE_BUST = `?v=${Date.now()}`;
@@ -75,14 +75,14 @@ function renderSite(site) {
     mapFrame.src = `https://maps.google.com/maps?q=${site.map_lat},${site.map_lng}&z=16&output=embed`;
   }
 
-  // 교회 전경 사진
-  const photo = document.getElementById('church-photo');
-  const photoBand = photo ? photo.closest('.photo-band') : null;
+  // 교회 전경 사진 (히어로 배경)
+  const photo = document.getElementById('hero-photo');
   if (photo && site.church_photo) {
     photo.src = site.church_photo;
     photo.alt = `${site.church_name || ''} 전경`;
-  } else if (photoBand) {
-    photoBand.style.display = 'none';
+    photo.style.display = '';
+  } else if (photo) {
+    photo.style.display = 'none';
   }
 
   // 로고 (등록되어 있으면 배지 대신 표시)

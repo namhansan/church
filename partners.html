@@ -50,11 +50,39 @@
 
 <section>
   <div class="wrap">
-    <div class="partner-grid" id="partner-grid">
-      <p class="empty-state">불러오는 중...</p>
+
+    <div id="partner-list-view">
+      <div class="partner-grid" id="partner-grid">
+        <p class="empty-state">불러오는 중...</p>
+      </div>
     </div>
+
+    <div id="partner-detail-view" class="partner-detail">
+      <span class="album-back" id="partner-back-btn">← 목록으로</span>
+      <div class="partner-detail-head">
+        <img id="partner-detail-cover" src="" alt="">
+        <div>
+          <span class="region" id="partner-detail-region"></span>
+          <h2 class="section-title" id="partner-detail-name" style="margin-bottom:10px;">단체 이름</h2>
+          <p class="desc" id="partner-detail-desc" style="color:var(--ink-soft); font-size:15px;"></p>
+          <a id="partner-detail-link" class="btn btn-navy" href="#" target="_blank" rel="noopener" style="display:none; margin-top:10px;">홈페이지 방문 →</a>
+        </div>
+      </div>
+
+      <div class="eyebrow" style="margin-top:50px;">소식 · UPDATES</div>
+      <h3 class="section-title" style="font-size:24px;">이 단체의 소식</h3>
+      <div id="partner-updates-list">
+        <p class="empty-state">등록된 소식이 없습니다.</p>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button class="lightbox-close" aria-label="닫기">&times;</button>
+  <img src="" alt="확대 사진">
+</div>
 
 <footer>
   <div class="wrap">

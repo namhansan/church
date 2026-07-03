@@ -112,6 +112,8 @@
   function initGalleryInteractions() {
     const backBtn = document.getElementById('album-back-btn');
     if (backBtn) backBtn.addEventListener('click', closeAlbum);
+    const partnerBackBtn = document.getElementById('partner-back-btn');
+    if (partnerBackBtn) partnerBackBtn.addEventListener('click', closePartnerDetail);
     const overlay = document.getElementById('lightbox-overlay');
     if (overlay) {
       overlay.addEventListener('click', () => overlay.classList.remove('open'));
@@ -141,26 +143,77 @@
   }
 
   // -------------------- 후원 단체 --------------------
+  let partnersData = [];
+
   async function renderPartners() {
     const grid = document.getElementById('partner-grid');
     if (!grid) return;
     const data = await loadJSON('content/partners.json');
-    const items = (data && data.items) || [];
-    if (!items.length) {
+    partnersData = (data && data.items) || [];
+    if (!partnersData.length) {
       grid.innerHTML = `<p class="empty-state">등록된 후원 단체가 없습니다.</p>`;
       return;
     }
-    grid.innerHTML = items.map(p => `
-      <div class="partner-card">
-        ${p.photo ? `<img src="${esc(p.photo)}" alt="${esc(p.name)}" loading="lazy">` : ''}
+    grid.innerHTML = partnersData.map((p, i) => `
+      <div class="partner-card" data-idx="${i}">
+        ${p.cover ? `<img src="${esc(p.cover)}" alt="${esc(p.name)}" loading="lazy">` : ''}
         <div class="body">
           ${p.region ? `<span class="region">${esc(p.region)}</span>` : ''}
           <div class="name">${esc(p.name)}</div>
           <div class="desc">${esc(p.description)}</div>
-          ${p.link ? `<a class="link" href="${esc(p.link)}" target="_blank" rel="noopener">자세히 보기 →</a>` : ''}
+          <span class="link">소식 보기 →</span>
         </div>
       </div>
     `).join('');
+    grid.querySelectorAll('.partner-card').forEach(card => {
+      card.addEventListener('click', () => openPartnerDetail(partnersData[Number(card.dataset.idx)]));
+    });
+  }
+
+  function openPartnerDetail(partner) {
+    const listView = document.getElementById('partner-list-view');
+    const detailView = document.getElementById('partner-detail-view');
+    if (!listView || !detailView) return;
+    listView.classList.add('hidden');
+    detailView.classList.add('open');
+
+    document.getElementById('partner-detail-cover').src = partner.cover || '';
+    document.getElementById('partner-detail-region').textContent = partner.region || '';
+    document.getElementById('partner-detail-name').textContent = partner.name || '';
+    document.getElementById('partner-detail-desc').textContent = partner.description || '';
+
+    const linkBtn = document.getElementById('partner-detail-link');
+    if (partner.link) {
+      linkBtn.href = partner.link;
+      linkBtn.style.display = 'inline-block';
+    } else {
+      linkBtn.style.display = 'none';
+    }
+
+    const updatesList = document.getElementById('partner-updates-list');
+    const updates = (partner.updates || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+    updatesList.innerHTML = updates.length
+      ? updates.map(u => `
+        <div class="update-item">
+          ${u.photo ? `<img src="${esc(u.photo)}" alt="${esc(u.title)}" loading="lazy" class="update-photo">` : ''}
+          <div class="update-body">
+            <div class="update-date">${formatDate(u.date)}</div>
+            <div class="update-title">${esc(u.title)}</div>
+            <div class="update-content">${esc(u.content)}</div>
+          </div>
+        </div>`).join('')
+      : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
+
+    updatesList.querySelectorAll('.update-photo').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src));
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closePartnerDetail() {
+    document.getElementById('partner-list-view').classList.remove('hidden');
+    document.getElementById('partner-detail-view').classList.remove('open');
   }
 
   // -------------------- 섬기는 사람 --------------------

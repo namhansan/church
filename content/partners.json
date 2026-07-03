@@ -1,18 +1,27 @@
 {
   "items": [
     {
-      "name": "은혜동산",
+      "name": "은혜의땅 선교회",
       "region": "국내",
-      "photo": "",
-      "description": "복지시설 후원",
-      "link": ""
+      "cover": "images/uploads/namhansanseong-church.jpg",
+      "description": "미자립 교회를 개척하고 세우는 사역을 감당하는 국내 선교 단체입니다. 남한산성교회는 2020년부터 매월 정기 후원을 이어오고 있습니다.",
+      "link": "",
+      "updates": [
+        {
+          "date": "2026-06-20",
+          "title": "6월 사역 소식",
+          "content": "이번 달에는 두 곳의 개척교회 예배당 리모델링을 지원했습니다. 함께해 주신 성도님들께 감사드립니다.",
+          "photo": "images/uploads/namhansanseong-church.jpg"
+        }
+      ]
     },
     {
-      "name": "베트남 바꿈남교회",
+      "name": "필리핀 세부 선교센터",
       "region": "해외",
-      "photo": "/images/uploads/sheep.jpeg",
+      "cover": "images/uploads/namhansanseong-church.jpg",
       "description": "현지 아이들을 위한 공부방과 의료 봉사를 섬기는 해외 선교지입니다.",
-      "link": ""
+      "link": "",
+      "updates": []
     }
   ]
 }
