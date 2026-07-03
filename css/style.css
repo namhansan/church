@@ -165,9 +165,10 @@ nav.menu a:hover { color: var(--gold-300); }
   text-align: left;
   min-height: 84vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  padding-top: 9vh;
 }
-.hero > .wrap { width: 100%; }
+.hero > .wrap { width: 100%; padding-right: 8px; }
 .hero-photo {
   position: absolute;
   inset: 0;
@@ -186,13 +187,14 @@ nav.menu a:hover { color: var(--gold-300); }
   position: relative;
   z-index: 2;
   margin-left: auto;
+  margin-right: -8px;
   width: fit-content;
-  max-width: 460px;
+  max-width: 600px;
   text-align: left;
   background: rgba(15,20,38,0.34);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
-  padding: 40px 38px;
+  padding: 40px 44px;
   box-shadow: 0 10px 40px rgba(10,14,28,0.25);
 }
 .hero-content h1,
@@ -201,7 +203,7 @@ nav.menu a:hover { color: var(--gold-300); }
   text-shadow: 0 2px 12px rgba(0,0,0,0.45);
 }
 @media (max-width: 780px) {
-  .hero { text-align: center; min-height: 70vh; }
+  .hero { text-align: center; min-height: 70vh; align-items: center; padding-top: 0; }
   .hero-content {
     margin: 0 auto;
     width: auto;
