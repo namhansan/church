@@ -162,7 +162,7 @@ nav.menu a:hover { color: var(--gold-300); }
   overflow: hidden;
   background: var(--navy-900);
   color: var(--white);
-  padding: 130px 0 110px;
+  padding: 90px 0;
   text-align: left;
   min-height: 560px;
   display: flex;
@@ -173,56 +173,37 @@ nav.menu a:hover { color: var(--gold-300); }
   inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  object-position: 30% center;
+  object-position: 38% center;
   z-index: 0;
 }
 .hero-overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(100deg,
-    rgba(20,27,51,0.28) 0%,
-    rgba(20,27,51,0.55) 32%,
-    rgba(20,27,51,0.88) 52%,
-    var(--navy-900) 68%
-  );
+  background: rgba(15,20,38,0.14);
 }
-.hero .rays {
-  position: absolute;
-  top: -20%; right: -10%;
-  width: 1100px; height: 1100px;
-  z-index: 1;
-  background: repeating-conic-gradient(
-    from 0deg,
-    rgba(201,162,39,0.16) 0deg 3deg,
-    transparent 3deg 12deg
-  );
-  mask-image: radial-gradient(circle at center, black 0%, transparent 62%);
-  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 62%);
-  pointer-events: none;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero .rays { animation: spin 120s linear infinite; }
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
 .hero-content {
   position: relative;
   z-index: 2;
   margin-left: auto;
-  max-width: 560px;
+  width: fit-content;
+  max-width: 480px;
   text-align: left;
+  background: rgba(18,25,48,0.86);
+  backdrop-filter: blur(3px);
+  padding: 44px 42px;
+  box-shadow: 0 20px 50px rgba(10,14,28,0.35);
 }
 @media (max-width: 780px) {
-  .hero { text-align: center; min-height: 480px; padding: 100px 0 70px; }
-  .hero-content { margin: 0 auto; text-align: center; }
-  .hero-overlay {
-    background: linear-gradient(180deg,
-      rgba(20,27,51,0.35) 0%,
-      rgba(20,27,51,0.75) 55%,
-      var(--navy-900) 85%
-    );
+  .hero { text-align: center; min-height: 480px; padding: 60px 0; }
+  .hero-content {
+    margin: 0 auto;
+    width: auto;
+    max-width: none;
+    text-align: center;
+    padding: 34px 26px;
   }
+  .hero-overlay { background: rgba(15,20,38,0.22); }
 }
 .hero .eyebrow-light {
   color: var(--gold-300);
@@ -283,28 +264,6 @@ nav.menu a:hover { color: var(--gold-300); }
 .btn-outline:hover { border-color: var(--gold-300); color: var(--gold-300); }
 .btn-navy { background: var(--navy-800); color: var(--white); }
 .btn-navy:hover { background: var(--navy-700); }
-
-/* -------------------- Photo band -------------------- */
-.photo-band {
-  position: relative;
-  height: min(56vw, 460px);
-  overflow: hidden;
-}
-.photo-band img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center 30%;
-}
-.photo-band .caption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  background: linear-gradient(to top, rgba(20,27,51,0.85), transparent);
-  color: var(--white);
-  padding: 32px 24px 22px;
-  text-align: center;
-  font-size: 14.5px;
-  letter-spacing: 0.02em;
-}
 
 /* -------------------- Intro / greeting -------------------- */
 .intro-grid {
