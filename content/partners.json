@@ -11,7 +11,11 @@
           "date": "2026-06-28",
           "title": "6월 28일 양이 늘었어요",
           "content": "기증해 주었던 양이 2마리에서 5마리로 늘었다는 소식입니다. \n 함께해 주신 성도님들께 감사드립니다.",
-          "photo": "/images/uploads/sheep2.jpeg"
+          "photo": "/images/uploads/sheep2.jpeg",
+          "photos": [
+            "/images/uploads/sheep.jpeg",
+            "/images/uploads/sheep2.jpeg"
+          ]
         }
       ]
     },
