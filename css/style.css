@@ -218,7 +218,7 @@ nav.menu a:hover { color: var(--gold-300); }
     text-align: center;
     padding: 32px 24px;
   }
-  .hero-overlay { background: rgba(15,20,38,0.20); }
+  .hero-overlay { background: rgba(15,20,38,0.08); }
 }
 .hero .eyebrow-light {
   color: var(--gold-300);
