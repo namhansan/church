@@ -187,6 +187,23 @@ collections:
               - { label: "제목", name: "title", widget: "string" }
               - { label: "주보 파일 (PDF)", name: "file", widget: "file", required: false, hint: "PDF 파일을 올려주세요." }
 
+  - name: "resources"
+    label: "자료실"
+    files:
+      - name: "resources"
+        label: "자료실 목록 수정"
+        file: "content/resources.json"
+        fields:
+          - label: "자료"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.date}} — {{fields.title}}"
+            fields:
+              - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+              - { label: "제목", name: "title", widget: "string" }
+              - { label: "설명 (선택)", name: "description", widget: "text", required: false }
+              - { label: "파일", name: "file", widget: "file", hint: "PDF, 한글, 워드, 엑셀 등 어떤 파일이든 올릴 수 있습니다." }
+
   - name: "partners"
     label: "후원 단체"
     files:

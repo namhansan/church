@@ -284,6 +284,29 @@
       : `<p class="empty-state">등록된 사역이 없습니다.</p>`;
   }
 
+  // -------------------- 자료실 --------------------
+  async function renderResources() {
+    const list = document.getElementById('resource-list');
+    if (!list) return;
+    const data = await loadJSON('content/resources.json');
+    const items = (data && data.items) || [];
+    if (!items.length) {
+      list.innerHTML = `<p class="empty-state">등록된 자료가 없습니다.</p>`;
+      return;
+    }
+    const sorted = [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
+    list.innerHTML = sorted.map(r => `
+      <div class="bulletin-item">
+        <div class="info">
+          <div class="date">${formatDate(r.date)}</div>
+          <div class="title">${esc(r.title)}</div>
+          ${r.description ? `<div class="update-content" style="margin-top:4px;">${esc(r.description)}</div>` : ''}
+        </div>
+        ${r.file ? `<a class="dl" href="${esc(r.file)}" target="_blank" rel="noopener">다운로드</a>` : `<span class="dl" style="opacity:0.4; cursor:default;">파일 없음</span>`}
+      </div>
+    `).join('');
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
     initGalleryInteractions();
     renderLive();
@@ -292,5 +315,6 @@
     renderPartners();
     renderLeaders();
     renderMinistries();
+    renderResources();
   });
 })();

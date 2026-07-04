@@ -8,7 +8,7 @@
    ========================================================================== */
 
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Gowun+Batang:wght@400;700&display=swap');
 
 :root {
   --navy-900: #141B33;
@@ -25,6 +25,7 @@
   --white: #FFFDF8;
 
   --font-display: 'Noto Serif KR', serif;
+  --font-brand: 'Gowun Batang', serif;
   --font-body: 'Pretendard', -apple-system, sans-serif;
 
   --max-w: 1100px;
@@ -126,14 +127,15 @@ header.site-header {
   letter-spacing: 0.04em;
 }
 .brand-lines .church-line {
-  font-family: var(--font-display);
+  font-family: var(--font-brand);
   font-weight: 700;
-  font-size: 25px;
+  font-size: 26px;
   letter-spacing: 0.01em;
 }
-nav.menu { display: flex; gap: 28px; }
+nav.menu { display: flex; gap: 26px; }
 nav.menu a {
-  font-size: 14.5px;
+  font-size: 16.5px;
+  font-weight: 500;
   text-decoration: none;
   color: rgba(255,255,255,0.85);
   transition: color 0.2s;
@@ -239,8 +241,8 @@ nav.menu a:hover { color: var(--gold-300); }
 }
 .hero h1 .church-line {
   display: block;
-  font-family: var(--font-display);
-  font-weight: 900;
+  font-family: var(--font-brand);
+  font-weight: 700;
   font-size: clamp(38px, 7vw, 68px);
 }
 .hero p.tagline {
@@ -414,7 +416,7 @@ footer .brand-footer .org-line {
   margin-bottom: 2px;
 }
 footer .brand-footer .church-line {
-  font-family: var(--font-display);
+  font-family: var(--font-brand);
   font-size: 18px;
   font-weight: 700;
 }
