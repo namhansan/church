@@ -208,7 +208,11 @@ collections:
                   - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
                   - { label: "제목", name: "title", widget: "string" }
                   - { label: "내용", name: "content", widget: "text", required: false }
-                  - { label: "사진", name: "photo", widget: "image", required: false }
+                  - label: "사진 (여러 장 가능)"
+                    name: "photos"
+                    widget: "list"
+                    required: false
+                    field: { label: "사진", name: "photo", widget: "image" }
                   - { label: "찬양 악보 파일 (PDF/이미지, 찬양 항목용)", name: "sheet_music", widget: "file", required: false }
                   - { label: "음원/영상 링크 (유튜브 등, 찬양 항목용)", name: "audio_link", widget: "string", required: false }
 
@@ -254,4 +258,8 @@ collections:
                   - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
                   - { label: "제목", name: "title", widget: "string" }
                   - { label: "내용", name: "content", widget: "text" }
-                  - { label: "사진", name: "photo", widget: "image", required: false }
+                  - label: "사진 (여러 장 가능)"
+                    name: "photos"
+                    widget: "list"
+                    required: false
+                    field: { label: "사진", name: "photo", widget: "image" }

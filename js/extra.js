@@ -144,6 +144,21 @@
     `).join('');
   }
 
+  function getUpdatePhotos(u) {
+    if (Array.isArray(u.photos) && u.photos.length) {
+      return u.photos.map(p => (typeof p === 'string' ? p : p.photo)).filter(Boolean);
+    }
+    if (u.photo) return [u.photo];
+    return [];
+  }
+
+  function renderUpdatePhotosHtml(photos, title) {
+    if (!photos.length) return '';
+    return `<div class="update-photo-grid">${photos.map(src =>
+      `<img src="${esc(src)}" alt="${esc(title)}" loading="lazy" class="update-photo">`
+    ).join('')}</div>`;
+  }
+
   // -------------------- 예배안내 (예배별 소식) --------------------
   let worshipData = [];
 
@@ -193,7 +208,7 @@
     updatesList.innerHTML = updates.length
       ? updates.map(u => `
         <div class="update-item">
-          ${u.photo ? `<img src="${esc(u.photo)}" alt="${esc(u.title)}" loading="lazy" class="update-photo">` : ''}
+          ${renderUpdatePhotosHtml(getUpdatePhotos(u), u.title)}
           <div class="update-body">
             <div class="update-date">${formatDate(u.date)}</div>
             <div class="update-title">${esc(u.title)}</div>
@@ -313,7 +328,7 @@
     updatesList.innerHTML = updates.length
       ? updates.map(u => `
         <div class="update-item">
-          ${u.photo ? `<img src="${esc(u.photo)}" alt="${esc(u.title)}" loading="lazy" class="update-photo">` : ''}
+          ${renderUpdatePhotosHtml(getUpdatePhotos(u), u.title)}
           <div class="update-body">
             <div class="update-date">${formatDate(u.date)}</div>
             <div class="update-title">${esc(u.title)}</div>
