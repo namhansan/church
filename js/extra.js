@@ -114,6 +114,8 @@
     if (backBtn) backBtn.addEventListener('click', closeAlbum);
     const partnerBackBtn = document.getElementById('partner-back-btn');
     if (partnerBackBtn) partnerBackBtn.addEventListener('click', closePartnerDetail);
+    const worshipBackBtn = document.getElementById('worship-back-btn');
+    if (worshipBackBtn) worshipBackBtn.addEventListener('click', closeWorshipDetail);
     const overlay = document.getElementById('lightbox-overlay');
     if (overlay) {
       overlay.addEventListener('click', () => overlay.classList.remove('open'));
@@ -142,7 +144,80 @@
     `).join('');
   }
 
-  // -------------------- 후원 단체 --------------------
+  // -------------------- 예배안내 (예배별 소식) --------------------
+  let worshipData = [];
+
+  async function renderWorship() {
+    const grid = document.getElementById('worship-grid');
+    if (!grid) return;
+    const data = await loadJSON('content/worship.json');
+    worshipData = (data && data.items) || [];
+    if (!worshipData.length) {
+      grid.innerHTML = `<p class="empty-state">등록된 예배 항목이 없습니다.</p>`;
+      return;
+    }
+    grid.innerHTML = worshipData.map((w, i) => `
+      <div class="worship-card" data-idx="${i}">
+        <div class="name">${esc(w.name)}</div>
+        <span class="link">소식 보기 →</span>
+      </div>
+    `).join('');
+    grid.querySelectorAll('.worship-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const idx = Number(card.dataset.idx);
+        openWorshipDetail(idx);
+        history.replaceState(null, '', `#w${idx}`);
+      });
+    });
+
+    // 해시로 바로 특정 예배 소식으로 진입 (예: worship.html#w3)
+    const hashMatch = location.hash.match(/^#w(\d+)$/);
+    if (hashMatch) {
+      const idx = Number(hashMatch[1]);
+      if (worshipData[idx]) openWorshipDetail(idx);
+    }
+  }
+
+  function openWorshipDetail(idx) {
+    const item = worshipData[idx];
+    if (!item) return;
+    const listView = document.getElementById('worship-list-view');
+    const detailView = document.getElementById('worship-detail-view');
+    if (!listView || !detailView) return;
+    listView.classList.add('hidden');
+    detailView.classList.add('open');
+    document.getElementById('worship-detail-name').textContent = item.name || '';
+
+    const updatesList = document.getElementById('worship-updates-list');
+    const updates = (item.updates || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+    updatesList.innerHTML = updates.length
+      ? updates.map(u => `
+        <div class="update-item">
+          ${u.photo ? `<img src="${esc(u.photo)}" alt="${esc(u.title)}" loading="lazy" class="update-photo">` : ''}
+          <div class="update-body">
+            <div class="update-date">${formatDate(u.date)}</div>
+            <div class="update-title">${esc(u.title)}</div>
+            ${u.content ? `<div class="update-content">${esc(u.content)}</div>` : ''}
+            <div class="update-links">
+              ${u.audio_link ? `<a href="${esc(u.audio_link)}" target="_blank" rel="noopener" class="update-link">▶ 음원/영상 듣기</a>` : ''}
+              ${u.sheet_music ? `<a href="${esc(u.sheet_music)}" target="_blank" rel="noopener" class="update-link">📄 악보 보기</a>` : ''}
+            </div>
+          </div>
+        </div>`).join('')
+      : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
+
+    updatesList.querySelectorAll('.update-photo').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src));
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeWorshipDetail() {
+    document.getElementById('worship-list-view').classList.remove('hidden');
+    document.getElementById('worship-detail-view').classList.remove('open');
+    history.replaceState(null, '', location.pathname);
+  }
   let partnersData = [];
 
   async function renderPartners() {
@@ -316,5 +391,6 @@
     renderLeaders();
     renderMinistries();
     renderResources();
+    renderWorship();
   });
 })();

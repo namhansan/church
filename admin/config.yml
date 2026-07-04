@@ -187,6 +187,31 @@ collections:
               - { label: "제목", name: "title", widget: "string" }
               - { label: "주보 파일 (PDF)", name: "file", widget: "file", required: false, hint: "PDF 파일을 올려주세요." }
 
+  - name: "worship"
+    label: "예배안내 (예배별 소식)"
+    files:
+      - name: "worship"
+        label: "예배별 소식 수정"
+        file: "content/worship.json"
+        fields:
+          - label: "예배 항목 (순서를 바꾸지 마세요 — 메뉴 연결이 순서를 기준으로 합니다)"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "예배 이름", name: "name", widget: "string" }
+              - label: "소식 (수시로 추가)"
+                name: "updates"
+                widget: "list"
+                summary: "{{fields.date}} — {{fields.title}}"
+                fields:
+                  - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+                  - { label: "제목", name: "title", widget: "string" }
+                  - { label: "내용", name: "content", widget: "text", required: false }
+                  - { label: "사진", name: "photo", widget: "image", required: false }
+                  - { label: "찬양 악보 파일 (PDF/이미지, 찬양 항목용)", name: "sheet_music", widget: "file", required: false }
+                  - { label: "음원/영상 링크 (유튜브 등, 찬양 항목용)", name: "audio_link", widget: "string", required: false }
+
   - name: "resources"
     label: "자료실"
     files:
