@@ -219,6 +219,7 @@
     history.replaceState(null, '', location.pathname);
   }
   let partnersData = [];
+  let partnerActiveFilter = '전체';
 
   async function renderPartners() {
     const grid = document.getElementById('partner-grid');
@@ -226,11 +227,53 @@
     const data = await loadJSON('content/partners.json');
     partnersData = (data && data.items) || [];
     if (!partnersData.length) {
-      grid.innerHTML = `<p class="empty-state">등록된 후원 단체가 없습니다.</p>`;
+      grid.innerHTML = `<p class="empty-state">등록된 선교 단체가 없습니다.</p>`;
       return;
     }
-    grid.innerHTML = partnersData.map((p, i) => `
-      <div class="partner-card" data-idx="${i}">
+
+    // 이미 입력된 "구분" 값들을 그대로 모아서 탭을 자동으로 만듭니다
+    const regions = [];
+    partnersData.forEach(p => {
+      const r = (p.region || '').trim();
+      if (r && !regions.includes(r)) regions.push(r);
+    });
+
+    const tabsEl = document.getElementById('partner-filter-tabs');
+    if (tabsEl) {
+      const tabs = ['전체', ...regions];
+      tabsEl.innerHTML = tabs.map(t =>
+        `<a href="#" data-filter="${esc(t)}" class="${t === partnerActiveFilter ? 'active' : ''}">${esc(t)}</a>`
+      ).join('');
+      tabsEl.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', (e) => {
+          e.preventDefault();
+          partnerActiveFilter = a.dataset.filter;
+          tabsEl.querySelectorAll('a').forEach(x => x.classList.remove('active'));
+          a.classList.add('active');
+          drawPartnerGrid();
+        });
+      });
+    }
+
+    drawPartnerGrid();
+  }
+
+  function drawPartnerGrid() {
+    const grid = document.getElementById('partner-grid');
+    if (!grid) return;
+    const filtered = partnerActiveFilter === '전체'
+      ? partnersData
+      : partnersData.filter(p => (p.region || '').trim() === partnerActiveFilter);
+
+    if (!filtered.length) {
+      grid.innerHTML = `<p class="empty-state">해당 구분의 단체가 없습니다.</p>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map((p) => {
+      const realIdx = partnersData.indexOf(p);
+      return `
+      <div class="partner-card" data-idx="${realIdx}">
         ${p.cover ? `<img src="${esc(p.cover)}" alt="${esc(p.name)}" loading="lazy">` : ''}
         <div class="body">
           ${p.region ? `<span class="region">${esc(p.region)}</span>` : ''}
@@ -238,8 +281,8 @@
           <div class="desc">${esc(p.description)}</div>
           <span class="link">소식 보기 →</span>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
     grid.querySelectorAll('.partner-card').forEach(card => {
       card.addEventListener('click', () => openPartnerDetail(partnersData[Number(card.dataset.idx)]));
     });

@@ -55,6 +55,11 @@
   background: var(--white);
 }
 .pill-nav a:hover { border-color: var(--gold-500); color: var(--gold-500); }
+.pill-nav a.active {
+  background: var(--navy-900);
+  border-color: var(--navy-900);
+  color: var(--white);
+}
 
 /* -------------------- 담임목사 소개 -------------------- */
 .pastor-profile {
