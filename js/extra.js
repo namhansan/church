@@ -28,6 +28,60 @@
     return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
   }
 
+  // -------------------- 팝업 공지 --------------------
+  async function renderPopup() {
+    const overlay = document.getElementById('popup-overlay');
+    if (!overlay) return;
+
+    const hideUntil = localStorage.getItem('popupHideUntil');
+    if (hideUntil && Date.now() < Number(hideUntil)) return;
+
+    const data = await loadJSON('content/popup.json');
+    if (!data || !data.enabled) return;
+
+    const now = new Date();
+    if (data.start_date && now < new Date(data.start_date)) return;
+    if (data.end_date) {
+      const end = new Date(data.end_date);
+      end.setHours(23, 59, 59, 999);
+      if (now > end) return;
+    }
+
+    document.getElementById('popup-title').textContent = data.title || '';
+    document.getElementById('popup-content').textContent = data.content || '';
+
+    const imgEl = document.getElementById('popup-image');
+    if (data.image) {
+      imgEl.src = data.image;
+      imgEl.alt = data.title || '';
+      imgEl.style.display = '';
+    }
+
+    const linkEl = document.getElementById('popup-link');
+    if (data.link) {
+      linkEl.href = data.link;
+      linkEl.textContent = data.link_text || '자세히 보기';
+      linkEl.style.display = 'inline-block';
+    }
+
+    overlay.classList.add('open');
+
+    document.getElementById('popup-close').addEventListener('click', () => {
+      overlay.classList.remove('open');
+    });
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) overlay.classList.remove('open');
+    });
+    document.getElementById('popup-hide-today').addEventListener('change', (e) => {
+      if (e.target.checked) {
+        const tomorrow = Date.now() + 24 * 60 * 60 * 1000;
+        localStorage.setItem('popupHideUntil', String(tomorrow));
+      } else {
+        localStorage.removeItem('popupHideUntil');
+      }
+    });
+  }
+
   // -------------------- 실시간 예배 --------------------
   async function renderLive() {
     const slot = document.getElementById('live-slot');
@@ -442,6 +496,7 @@
 
   document.addEventListener('DOMContentLoaded', () => {
     initGalleryInteractions();
+    renderPopup();
     renderLive();
     renderGallery();
     renderBulletins();
