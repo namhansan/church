@@ -514,7 +514,7 @@
           <div class="name">${esc(d.name)}</div>
           <div class="summary">${esc(d.summary)}</div>
           <div class="leader">${esc(d.leader)}</div>
-          <span class="link" style="color:var(--gold-300); font-size:13px;">소식 보기 →</span>
+          <span class="link" style="color:var(--gold-300); font-size:14px;">소식 보기 →</span>
         </div>`).join('')
       : `<p class="empty-state">등록된 부서가 없습니다.</p>`;
     grid.querySelectorAll('.dept-card').forEach(card => {

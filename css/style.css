@@ -405,7 +405,7 @@ section.anniversary-section {
 .dept-card {
   cursor: pointer;
   transition: transform 0.15s;
-  background: var(--navy-900);
+  background: var(--navy-800);
   color: var(--white);
   padding: 28px 26px;
   position: relative;
@@ -421,9 +421,9 @@ section.anniversary-section {
   opacity: 0.15;
   transform: rotate(45deg);
 }
-.dept-card .name { font-family: var(--font-display); font-weight: 700; font-size: 19px; margin-bottom: 10px; }
-.dept-card .summary { font-size: 14.5px; color: rgba(255,255,255,0.78); margin-bottom: 14px; }
-.dept-card .leader { font-size: 13px; color: var(--gold-300); }
+.dept-card .name { font-family: var(--font-display); font-weight: 700; font-size: 21px; margin-bottom: 10px; }
+.dept-card .summary { font-size: 15.5px; color: rgba(255,255,255,0.82); margin-bottom: 14px; }
+.dept-card .leader { font-size: 14px; color: var(--gold-300); }
 
 /* -------------------- Location / offering -------------------- */
 .two-col {
