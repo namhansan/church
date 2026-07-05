@@ -248,12 +248,17 @@
     window.addEventListener('hashchange', applyWorshipHash);
   }
 
+  function normalizeName(s) {
+    return (s || '').replace(/\s+/g, '').trim();
+  }
+
   function findWorshipIndexByHash() {
     if (!location.hash || location.hash.length < 2) return -1;
     const raw = location.hash.slice(1);
     let decoded;
     try { decoded = decodeURIComponent(raw); } catch (e) { decoded = raw; }
-    return worshipData.findIndex(w => (w.name || '').trim() === decoded.trim());
+    const target = normalizeName(decoded);
+    return worshipData.findIndex(w => normalizeName(w.name) === target);
   }
 
   function applyWorshipHash() {
