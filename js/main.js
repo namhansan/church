@@ -69,11 +69,11 @@ function renderSite(site) {
     const times = site.service_times || [];
     serviceGrid.innerHTML = times.length
       ? times.map(s => `
-        <div class="service-card">
+        <a href="worship.html" class="service-card">
           <div class="name">${esc(s.name)}</div>
           <div class="time">${esc(s.time)}</div>
           <div class="place">${esc(s.place)}</div>
-        </div>`).join('')
+        </a>`).join('')
       : `<p class="empty-state">등록된 예배 시간이 없습니다.</p>`;
   }
 
@@ -163,20 +163,6 @@ function renderSermons(data) {
   `).join('');
 }
 
-function renderDepartments(data) {
-  const grid = document.getElementById('dept-grid');
-  if (!grid) return;
-  const items = (data && data.departments) || [];
-  grid.innerHTML = items.length
-    ? items.map(d => `
-      <div class="dept-card">
-        <div class="name">${esc(d.name)}</div>
-        <div class="summary">${esc(d.summary)}</div>
-        <div class="leader">${esc(d.leader)}</div>
-      </div>`).join('')
-    : `<p class="empty-state">등록된 부서가 없습니다.</p>`;
-}
-
 function initScrollTop() {
   const btn = document.getElementById('scroll-top-btn');
   if (!btn) return;
@@ -200,16 +186,14 @@ function initNav() {
 async function init() {
   initNav();
   initScrollTop();
-  const [site, notices, sermons, departments] = await Promise.all([
+  const [site, notices, sermons] = await Promise.all([
     loadJSON('content/site.json'),
     loadJSON('content/notices.json'),
     loadJSON('content/sermons.json'),
-    loadJSON('content/departments.json'),
   ]);
   renderSite(site);
   renderNotices(notices);
   renderSermons(sermons);
-  renderDepartments(departments);
   document.getElementById('year').textContent = new Date().getFullYear();
 }
 

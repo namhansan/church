@@ -170,6 +170,10 @@
     if (partnerBackBtn) partnerBackBtn.addEventListener('click', closePartnerDetail);
     const worshipBackBtn = document.getElementById('worship-back-btn');
     if (worshipBackBtn) worshipBackBtn.addEventListener('click', closeWorshipDetail);
+    const ministryBackBtn = document.getElementById('ministry-back-btn');
+    if (ministryBackBtn) ministryBackBtn.addEventListener('click', closeMinistryDetail);
+    const deptBackBtn = document.getElementById('dept-back-btn');
+    if (deptBackBtn) deptBackBtn.addEventListener('click', closeDeptDetail);
     const overlay = document.getElementById('lightbox-overlay');
     if (overlay) {
       overlay.addEventListener('click', () => overlay.classList.remove('open'));
@@ -457,18 +461,105 @@
   }
 
   // -------------------- 사역 안내 --------------------
+  let ministriesData = [];
+
   async function renderMinistries() {
     const grid = document.getElementById('ministry-grid');
     if (!grid) return;
     const data = await loadJSON('content/ministries.json');
-    const items = (data && data.items) || [];
-    grid.innerHTML = items.length
-      ? items.map(m => `
-        <div class="ministry-card">
+    ministriesData = (data && data.items) || [];
+    grid.innerHTML = ministriesData.length
+      ? ministriesData.map((m, i) => `
+        <div class="ministry-card" data-idx="${i}">
           <div class="name">${esc(m.name)}</div>
           <div class="desc">${esc(m.description)}</div>
+          <span class="link">소식 보기 →</span>
         </div>`).join('')
       : `<p class="empty-state">등록된 사역이 없습니다.</p>`;
+    grid.querySelectorAll('.ministry-card').forEach(card => {
+      card.addEventListener('click', () => openMinistryDetail(Number(card.dataset.idx)));
+    });
+  }
+
+  function openMinistryDetail(idx) {
+    const item = ministriesData[idx];
+    if (!item) return;
+    const listView = document.getElementById('ministry-list-view');
+    const detailView = document.getElementById('ministry-detail-view');
+    if (!listView || !detailView) return;
+    listView.classList.add('hidden');
+    detailView.classList.add('open');
+    document.getElementById('ministry-detail-name').textContent = item.name || '';
+    document.getElementById('ministry-detail-desc').textContent = item.description || '';
+    renderUpdatesFeed(document.getElementById('ministry-updates-list'), item.updates || []);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeMinistryDetail() {
+    document.getElementById('ministry-list-view').classList.remove('hidden');
+    document.getElementById('ministry-detail-view').classList.remove('open');
+  }
+
+  // -------------------- 부서 소개 --------------------
+  let departmentsData = [];
+
+  async function renderDepartmentsPage() {
+    const grid = document.getElementById('dept-grid');
+    if (!grid) return;
+    const data = await loadJSON('content/departments.json');
+    departmentsData = (data && data.departments) || [];
+    grid.innerHTML = departmentsData.length
+      ? departmentsData.map((d, i) => `
+        <div class="dept-card" data-idx="${i}">
+          <div class="name">${esc(d.name)}</div>
+          <div class="summary">${esc(d.summary)}</div>
+          <div class="leader">${esc(d.leader)}</div>
+          <span class="link" style="color:var(--gold-300); font-size:13px;">소식 보기 →</span>
+        </div>`).join('')
+      : `<p class="empty-state">등록된 부서가 없습니다.</p>`;
+    grid.querySelectorAll('.dept-card').forEach(card => {
+      card.addEventListener('click', () => openDeptDetail(Number(card.dataset.idx)));
+    });
+  }
+
+  function openDeptDetail(idx) {
+    const item = departmentsData[idx];
+    if (!item) return;
+    const listView = document.getElementById('dept-list-view');
+    const detailView = document.getElementById('dept-detail-view');
+    if (!listView || !detailView) return;
+    listView.classList.add('hidden');
+    detailView.classList.add('open');
+    document.getElementById('dept-detail-name').textContent = item.name || '';
+    document.getElementById('dept-detail-leader').textContent = item.leader || '';
+    document.getElementById('dept-detail-summary').textContent = item.summary || '';
+    renderUpdatesFeed(document.getElementById('dept-updates-list'), item.updates || []);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeDeptDetail() {
+    document.getElementById('dept-list-view').classList.remove('hidden');
+    document.getElementById('dept-detail-view').classList.remove('open');
+  }
+
+  // 공용: 소식 피드 렌더링 (부서소개, 사역안내에서 공용으로 사용)
+  function renderUpdatesFeed(listEl, updates) {
+    if (!listEl) return;
+    const sorted = (updates || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+    listEl.innerHTML = sorted.length
+      ? sorted.map(u => `
+        <div class="update-item">
+          ${renderUpdatePhotosHtml(getUpdatePhotos(u), u.title)}
+          <div class="update-body">
+            <div class="update-date">${formatDate(u.date)}</div>
+            <div class="update-title">${esc(u.title)}</div>
+            ${u.content ? `<div class="update-content">${esc(u.content)}</div>` : ''}
+          </div>
+        </div>`).join('')
+      : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
+    listEl.querySelectorAll('.update-photo').forEach(img => {
+      img.addEventListener('click', () => openLightbox(img.src));
+    });
   }
 
   // -------------------- 자료실 --------------------
@@ -505,5 +596,6 @@
     renderMinistries();
     renderResources();
     renderWorship();
+    renderDepartmentsPage();
   });
 })();

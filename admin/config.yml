@@ -38,7 +38,7 @@ collections:
           - { label: "유튜브 채널 ID (실시간 예배용)", name: "youtube_channel_id", widget: "string", required: false, hint: "유튜브 채널 → 정보 → '채널 ID'에서 확인 (UC로 시작하는 문자열). 비워두면 실시간 예배 섹션에 준비중 메시지가 표시됩니다." }
           - { label: "100주년 배너 표시 여부", name: "anniversary_enabled", widget: "boolean", default: false }
           - { label: "100주년 표어 이미지", name: "anniversary_image", widget: "image", required: false }
-          - { label: "100주년 배너 캡션 문구", name: "anniversary_caption", widget: "string", required: false }
+          - { label: "100주년 배너 캡션 문구 (Enter로 줄바꿈 가능)", name: "anniversary_caption", widget: "text", required: false }
           - label: "예배 시간표"
             name: "service_times"
             widget: "list"
@@ -97,6 +97,20 @@ collections:
               - { label: "부서 이름", name: "name", widget: "string" }
               - { label: "소개", name: "summary", widget: "text" }
               - { label: "담당자", name: "leader", widget: "string" }
+              - label: "소식 (수시로 추가)"
+                name: "updates"
+                widget: "list"
+                required: false
+                summary: "{{fields.date}} — {{fields.title}}"
+                fields:
+                  - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+                  - { label: "제목", name: "title", widget: "string" }
+                  - { label: "내용", name: "content", widget: "text", required: false }
+                  - label: "사진 (여러 장 가능)"
+                    name: "photos"
+                    widget: "list"
+                    required: false
+                    field: { label: "사진", name: "photo", widget: "image" }
 
   - name: "popup"
     label: "팝업 공지"
@@ -171,6 +185,20 @@ collections:
             fields:
               - { label: "사역 이름", name: "name", widget: "string" }
               - { label: "설명", name: "description", widget: "text" }
+              - label: "소식 (수시로 추가)"
+                name: "updates"
+                widget: "list"
+                required: false
+                summary: "{{fields.date}} — {{fields.title}}"
+                fields:
+                  - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+                  - { label: "제목", name: "title", widget: "string" }
+                  - { label: "내용", name: "content", widget: "text", required: false }
+                  - label: "사진 (여러 장 가능)"
+                    name: "photos"
+                    widget: "list"
+                    required: false
+                    field: { label: "사진", name: "photo", widget: "image" }
 
   - name: "events"
     label: "행사 사진"

@@ -25,6 +25,7 @@
         <div class="dropdown-panel">
           <a href="index.html#intro">교회비전</a>
           <a href="leaders.html">섬기는 사람</a>
+          <a href="departments.html">부서소개</a>
           <a href="ministries.html">사역안내</a>
         </div>
       </div>
@@ -63,11 +64,32 @@
 
 <section>
   <div class="wrap">
-    <div class="ministry-grid" id="ministry-grid">
-      <p class="empty-state">불러오는 중...</p>
+
+    <div id="ministry-list-view">
+      <div class="ministry-grid" id="ministry-grid">
+        <p class="empty-state">불러오는 중...</p>
+      </div>
     </div>
+
+    <div id="ministry-detail-view" class="partner-detail">
+      <span class="album-back" id="ministry-back-btn">← 목록으로</span>
+      <h2 class="section-title" id="ministry-detail-name" style="margin-bottom:16px;">사역 이름</h2>
+      <p id="ministry-detail-desc" style="color:var(--ink-soft); font-size:15px; margin-bottom:40px;"></p>
+
+      <div class="eyebrow">소식 · UPDATES</div>
+      <h3 class="section-title" style="font-size:22px;">이 사역의 소식</h3>
+      <div id="ministry-updates-list">
+        <p class="empty-state">등록된 소식이 없습니다.</p>
+      </div>
+    </div>
+
   </div>
 </section>
+
+<div class="lightbox-overlay" id="lightbox-overlay">
+  <button class="lightbox-close" aria-label="닫기">&times;</button>
+  <img src="" alt="확대 사진">
+</div>
 
 <footer>
   <div class="footer-top">
