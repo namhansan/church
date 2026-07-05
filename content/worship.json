@@ -1,12 +1,36 @@
 {
   "items": [
-    { "name": "주일 1부 예배", "updates": [] },
-    { "name": "주일 2부 예배", "updates": [] },
-    { "name": "주일 3부 예배 (대학청년부)", "updates": [] },
-    { "name": "수요예배", "updates": [] },
-    { "name": "새벽예배", "updates": [] },
-    { "name": "주일학교", "updates": [] },
-    { "name": "청소년부 예배", "updates": [] },
-    { "name": "찬양", "updates": [] }
+    {
+      "name": "주일 1부 예배",
+      "updates": []
+    },
+    {
+      "name": "주일 2부 예배",
+      "updates": []
+    },
+    {
+      "name": "대학청년부 예배",
+      "updates": []
+    },
+    {
+      "name": "수요예배",
+      "updates": []
+    },
+    {
+      "name": "새벽예배",
+      "updates": []
+    },
+    {
+      "name": "주일학교",
+      "updates": []
+    },
+    {
+      "name": "청소년부 예배",
+      "updates": []
+    },
+    {
+      "name": "찬양",
+      "updates": []
+    }
   ]
 }
