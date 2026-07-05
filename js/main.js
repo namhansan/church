@@ -95,6 +95,18 @@ function renderSite(site) {
     img.className = 'logo-img';
     if (mark) mark.replaceWith(img);
   }
+
+  // 100주년 배너
+  const annivSection = document.getElementById('anniversary');
+  if (annivSection) {
+    if (site.anniversary_enabled && site.anniversary_image) {
+      document.getElementById('anniversary-image').src = site.anniversary_image;
+      document.getElementById('anniversary-caption').textContent = site.anniversary_caption || '';
+      annivSection.classList.add('show');
+    } else {
+      annivSection.classList.remove('show');
+    }
+  }
 }
 
 function renderNotices(data) {

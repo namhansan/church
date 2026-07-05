@@ -281,6 +281,32 @@ nav.menu a:hover { color: var(--gold-300); }
 .btn-navy { background: var(--navy-800); color: var(--white); }
 .btn-navy:hover { background: var(--navy-700); }
 
+/* -------------------- 100주년 배너 -------------------- */
+.anniversary-section {
+  background: var(--navy-900);
+  padding: 56px 0;
+  display: none;
+}
+.anniversary-section.show { display: block; }
+.anniversary-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.anniversary-inner img {
+  max-width: 360px;
+  width: 100%;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+  margin-bottom: 22px;
+}
+.anniversary-caption {
+  color: var(--gold-300);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
 /* -------------------- Intro / greeting -------------------- */
 .intro-grid {
   display: grid;

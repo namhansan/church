@@ -34,6 +34,9 @@ collections:
           - { label: "유튜브 채널 링크", name: "sns_youtube", widget: "string", required: false }
           - { label: "인스타그램 링크", name: "sns_instagram", widget: "string", required: false }
           - { label: "유튜브 채널 ID (실시간 예배용)", name: "youtube_channel_id", widget: "string", required: false, hint: "유튜브 채널 → 정보 → '채널 ID'에서 확인 (UC로 시작하는 문자열). 비워두면 실시간 예배 섹션에 준비중 메시지가 표시됩니다." }
+          - { label: "100주년 배너 표시 여부", name: "anniversary_enabled", widget: "boolean", default: false }
+          - { label: "100주년 표어 이미지", name: "anniversary_image", widget: "image", required: false }
+          - { label: "100주년 배너 캡션 문구", name: "anniversary_caption", widget: "string", required: false }
           - label: "예배 시간표"
             name: "service_times"
             widget: "list"
