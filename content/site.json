@@ -1,18 +1,19 @@
 {
   "map_lng": "127.1780",
   "church_name": "남한산성교회",
-  "offering_holder": "남한산성교회",
+  "offering_holder": "대한성결교회남한산성교회 ** 헌금하실 때 (성함+헌금종류)를 써주세요 (예) 김ㅇㅇ십일조/김ㅇㅇ감사",
+  "church_name_en": "Namhansanseong Evangelical Holiness Church",
   "org_name": "기독교대한성결교회",
   "vision": "말씀 위에 굳게 서고, 기도로 하나되며, 이웃을 향해 열린 교회",
   "logo": "",
   "sns_instagram": "https://www.instagram.com",
-  "anniversary_image": "/images/uploads/100th-anniversary-slogan.jpg",
+  "anniversary_image": "",
   "phone": "031-743-6589",
   "tagline": "작지만 강한 믿음, 105년 역사의 산성 속 등대",
-  "anniversary_enabled": false,
+  "anniversary_enabled": true,
   "youtube_channel_id": "https://www.youtube.com/channel/UCHfsu0gSIJZXh0tiTBlMlow",
   "history": "남한산성 성곽 안에 자리 잡은 남한산성교회는 1921년 설립되어 올해 105주년을 맞이했습니다. 일제강점기 암울했던 시절부터 주민들의 정신적 지주이자 희망의 빛이 되어온 유서 깊은 신앙의 터전입니다. 현재 최영준 담임목사가 이끄는 이 교회는 화려함보다 내실 있는 영성을 추구합니다. '작지만 강한 믿음으로 기도하며 이웃을 섬기는 건강한 교회를 지향하며 뜨거운 열정을 품고 있습니다. 105년간 이어진 기도의 뿌리 위에 다음 세대 부서들이 활발히 운영되고 있으며 유초등부와 청소년부, '표현하는 믿음' 그림예배와 100년을 넘게 이어온 전통의 성탄절 새벽송, 매일 끊어지지 않는 5시 새벽에배로 살아있는 영성을 보여줍니다. 무엇보다 매년 이어 온 '산성 BAZZAR'수익 전액 기부, 격년으로 진행하는 '이웃사랑 큰잔치' 등 지속적인 이웃 사랑 실천이 빛을 발합니다. 나아가 100주년 기념으로 베트남의 '바꿈남 교회'를 2025년에 건축하는 등 해외 선교를 실천하고 있습니다. 작지만 강하고 건강한 남한산성교회는 오늘도 기도로 하나님을 섬기고 이웃을 사랑하며 묵묵히 산성을 밝히고 있습니다. ",
-  "offering_account": "123-456-789012",
+  "offering_account": "9002-1507-1386-8",
   "address": "경기도 광주시 남한산성면 남한산성로 752",
   "offering_bank": "새마을금고",
   "pastor_name": "최영준 담임목사",
@@ -28,27 +29,27 @@
     },
     {
       "name": "주일 2부 예배",
-      "time": "오전 11:00",
+      "time": "일요일 오전 11:00",
       "place": "본당 2층"
     },
     {
-      "name": "주일 3부 예배 (대학청년부)",
-      "time": "오후 1:00",
+      "name": "대학청년부 예배",
+      "time": "일요일 오후 1:00",
       "place": "교육관"
     },
     {
       "name": "주일학교 예배",
-      "time": "오전 10:00",
+      "time": "일요일 오전 10:00",
       "place": "교육관"
     },
     {
       "name": "청소년부 예배",
-      "time": "오전 10:00",
+      "time": "일요일 오전 10:00",
       "place": "본당 1층"
     },
     {
       "name": "수요 예배",
-      "time": "오후 7:30",
+      "time": "수요일 오후 7:30",
       "place": "교육관"
     },
     {
