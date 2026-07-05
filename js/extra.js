@@ -243,11 +243,23 @@
       });
     });
 
-    // 해시로 바로 특정 예배 소식으로 진입 (예: worship.html#w3)
+    applyWorshipHash();
+    window.addEventListener('hashchange', applyWorshipHash);
+  }
+
+  function applyWorshipHash() {
     const hashMatch = location.hash.match(/^#w(\d+)$/);
     if (hashMatch) {
       const idx = Number(hashMatch[1]);
-      if (worshipData[idx]) openWorshipDetail(idx);
+      if (worshipData[idx]) {
+        openWorshipDetail(idx);
+        return;
+      }
+    }
+    // 해시가 없거나 유효하지 않으면 목록으로
+    const detailView = document.getElementById('worship-detail-view');
+    if (detailView && detailView.classList.contains('open') && !hashMatch) {
+      closeWorshipDetail();
     }
   }
 
