@@ -284,7 +284,7 @@ nav.menu a:hover { color: var(--gold-300); }
 /* -------------------- 100주년 배너 -------------------- */
 .anniversary-section {
   background: var(--navy-900);
-  padding: 56px 0;
+  padding: 64px 0;
   display: none;
 }
 .anniversary-section.show { display: block; }
@@ -295,16 +295,27 @@ nav.menu a:hover { color: var(--gold-300); }
   text-align: center;
 }
 .anniversary-inner img {
-  max-width: 360px;
+  max-width: 640px;
   width: 100%;
+  height: auto;
   box-shadow: 0 16px 40px rgba(0,0,0,0.35);
-  margin-bottom: 22px;
+  margin-bottom: 28px;
+}
+.anniversary-rule {
+  width: 46px;
+  height: 3px;
+  background: var(--gold-500);
+  margin-bottom: 18px;
 }
 .anniversary-caption {
-  color: var(--gold-300);
-  font-size: 15px;
-  letter-spacing: 0.02em;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(20px, 3vw, 28px);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
   margin: 0;
+  max-width: 640px;
 }
 
 /* -------------------- Intro / greeting -------------------- */
@@ -430,30 +441,86 @@ nav.menu a:hover { color: var(--gold-300); }
 footer {
   background: var(--navy-900);
   color: rgba(255,255,255,0.6);
-  padding: 46px 0 30px;
   font-size: 13.5px;
+}
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  padding: 20px 24px;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.footer-links { display: flex; gap: 22px; flex-wrap: wrap; }
+.footer-links a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 13px; }
+.footer-links a:hover { color: var(--gold-300); }
+.footer-social { display: flex; gap: 10px; }
+.footer-social a {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+.footer-social a:hover { background: var(--gold-500); color: var(--navy-900); }
+
+.footer-bottom {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 30px 24px 26px;
   text-align: center;
 }
-footer .brand-footer {
-  color: var(--white);
-  margin-bottom: 10px;
-}
-footer .brand-footer .org-line {
-  font-size: 12px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.04em;
-  margin-bottom: 2px;
-}
-footer .brand-footer .church-line {
+.footer-bottom .brand-line {
   font-family: var(--font-brand);
-  font-size: 18px;
   font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  margin-bottom: 3px;
 }
-footer .sns { margin: 16px 0; display: flex; gap: 18px; justify-content: center; }
-footer .sns a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 13px; }
-footer .sns a:hover { color: var(--gold-300); }
-footer .admin-link { color: rgba(255,255,255,0.35); font-size: 12px; margin-top: 18px; }
-footer .admin-link a { color: rgba(255,255,255,0.45); }
+.footer-bottom .brand-line-en {
+  font-size: 11.5px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.footer-bottom .addr-line { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 3px; }
+.footer-bottom .addr-line a { color: inherit; text-decoration: none; }
+.footer-bottom .addr-line-en {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 16px;
+}
+.footer-bottom .copy-line { font-size: 12px; color: rgba(255,255,255,0.4); }
+.footer-bottom .admin-link { margin-top: 10px; }
+.footer-bottom .admin-link a { color: rgba(255,255,255,0.35); font-size: 12px; }
+.footer-bottom .admin-link a:hover { color: rgba(255,255,255,0.6); }
+
+.scroll-top-btn {
+  position: fixed;
+  right: 22px; bottom: 22px;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--navy-800);
+  color: var(--gold-300);
+  border: 1px solid rgba(255,255,255,0.18);
+  font-size: 18px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  transition: background 0.2s, color 0.2s;
+}
+.scroll-top-btn.show { display: flex; }
+.scroll-top-btn:hover { background: var(--gold-500); color: var(--navy-900); }
 
 /* -------------------- Utility -------------------- */
 .empty-state {

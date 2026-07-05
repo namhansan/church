@@ -15,6 +15,7 @@ collections:
         fields:
           - { label: "교단명 (작은 글씨, 예: 기독교대한성결교회)", name: "org_name", widget: "string", required: false }
           - { label: "교회 이름 (큰 글씨)", name: "church_name", widget: "string" }
+          - { label: "영문 교회 이름 (하단 푸터용)", name: "church_name_en", widget: "string", required: false }
           - { label: "슬로건 (한 줄 소개)", name: "tagline", widget: "string" }
           - { label: "로고 이미지", name: "logo", widget: "image", required: false, hint: "정사각형 이미지를 권장합니다." }
           - { label: "교회 전경 사진", name: "church_photo", widget: "image", required: false, hint: "메인 화면 상단에 크게 표시됩니다." }
@@ -23,6 +24,7 @@ collections:
           - { label: "교회 연혁", name: "history", widget: "text" }
           - { label: "비전", name: "vision", widget: "string" }
           - { label: "주소", name: "address", widget: "string" }
+          - { label: "영문 주소 (하단 푸터용)", name: "address_en", widget: "string", required: false }
           - { label: "교통 안내", name: "address_detail", widget: "string" }
           - { label: "전화번호", name: "phone", widget: "string" }
           - { label: "이메일", name: "email", widget: "string" }

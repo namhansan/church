@@ -32,12 +32,20 @@ function renderSite(site) {
   document.title = site.church_name || '교회 홈페이지';
   document.querySelectorAll('[data-field="org_name"]').forEach(el => el.textContent = site.org_name || '');
   document.querySelectorAll('[data-field="church_name"]').forEach(el => el.textContent = site.church_name || '');
+  document.querySelectorAll('[data-field="church_name_en"]').forEach(el => {
+    el.textContent = site.church_name_en || '';
+    el.style.display = site.church_name_en ? '' : 'none';
+  });
   document.querySelectorAll('[data-field="tagline"]').forEach(el => el.textContent = site.tagline || '');
   document.querySelectorAll('[data-field="pastor_name"]').forEach(el => el.textContent = site.pastor_name || '');
   document.querySelectorAll('[data-field="greeting"]').forEach(el => el.textContent = site.greeting || '');
   document.querySelectorAll('[data-field="history"]').forEach(el => el.textContent = site.history || '');
   document.querySelectorAll('[data-field="vision"]').forEach(el => el.textContent = site.vision || '');
   document.querySelectorAll('[data-field="address"]').forEach(el => el.textContent = site.address || '');
+  document.querySelectorAll('[data-field="address_en"]').forEach(el => {
+    el.textContent = site.address_en || '';
+    el.style.display = site.address_en ? '' : 'none';
+  });
   document.querySelectorAll('[data-field="address_detail"]').forEach(el => el.textContent = site.address_detail || '');
   document.querySelectorAll('[data-field="phone"]').forEach(el => el.textContent = site.phone || '');
   document.querySelectorAll('[data-field="email"]').forEach(el => el.textContent = site.email || '');
@@ -99,8 +107,14 @@ function renderSite(site) {
   // 100주년 배너
   const annivSection = document.getElementById('anniversary');
   if (annivSection) {
-    if (site.anniversary_enabled && site.anniversary_image) {
-      document.getElementById('anniversary-image').src = site.anniversary_image;
+    const annivImg = document.getElementById('anniversary-image');
+    if (site.anniversary_enabled) {
+      if (site.anniversary_image) {
+        annivImg.src = site.anniversary_image;
+        annivImg.style.display = '';
+      } else {
+        annivImg.style.display = 'none';
+      }
       document.getElementById('anniversary-caption').textContent = site.anniversary_caption || '';
       annivSection.classList.add('show');
     } else {
@@ -163,6 +177,18 @@ function renderDepartments(data) {
     : `<p class="empty-state">등록된 부서가 없습니다.</p>`;
 }
 
+function initScrollTop() {
+  const btn = document.getElementById('scroll-top-btn');
+  if (!btn) return;
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) btn.classList.add('show');
+    else btn.classList.remove('show');
+  });
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 function initNav() {
   const toggle = document.querySelector('.menu-toggle');
   const menu = document.querySelector('nav.menu');
@@ -173,6 +199,7 @@ function initNav() {
 
 async function init() {
   initNav();
+  initScrollTop();
   const [site, notices, sermons, departments] = await Promise.all([
     loadJSON('content/site.json'),
     loadJSON('content/notices.json'),

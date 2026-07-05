@@ -76,6 +76,7 @@
 <section id="anniversary" class="anniversary-section">
   <div class="wrap anniversary-inner">
     <img id="anniversary-image" src="" alt="100주년 표어">
+    <div class="anniversary-rule"></div>
     <p id="anniversary-caption" class="anniversary-caption"></p>
   </div>
 </section>
@@ -176,25 +177,27 @@
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="brand-footer">
-      <div class="org-line" data-field="org_name">기독교대한성결교회</div>
-      <div class="church-line" data-field="church_name">남한산성교회</div>
+  <div class="footer-top">
+    <div class="footer-links">
+      <a href="index.html#location">오시는길</a>
+      <a href="/admin/">관리자 로그인</a>
     </div>
-    <div data-field="address">주소</div>
-    <div>
-      <a data-field="phone_link" href="#"><span data-field="phone">전화번호</span></a>
-      &nbsp;·&nbsp;
-      <a data-field="email_link" href="#"><span data-field="email">이메일</span></a>
+    <div class="footer-social">
+      <a data-field="sns_youtube" href="#" target="_blank" rel="noopener" aria-label="YouTube">▶</a>
+      <a data-field="sns_instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram">◎</a>
     </div>
-    <div class="sns">
-      <a data-field="sns_youtube" href="#" target="_blank" rel="noopener">YouTube</a>
-      <a data-field="sns_instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <div class="footer-bottom">
+    <div class="brand-line" data-field="church_name">남한산성교회</div>
+    <div class="brand-line-en" data-field="church_name_en"></div>
+    <div class="addr-line">
+      <span data-field="address">주소</span> · TEL. <span data-field="phone">전화번호</span> · <a data-field="email_link" href="#"><span data-field="email">이메일</span></a>
     </div>
-    <div>&copy; <span id="year"></span> <span data-field="church_name">남한산성교회</span>. All rights reserved.</div>
-    <div class="admin-link"><a href="/admin/">관리자 로그인</a></div>
+    <div class="addr-line-en" data-field="address_en"></div>
+    <div class="copy-line">&copy; <span id="year"></span> <span data-field="church_name">남한산성교회</span>. All rights reserved.</div>
   </div>
 </footer>
+<button class="scroll-top-btn" id="scroll-top-btn" aria-label="맨 위로">↑</button>
 
 <div class="popup-overlay" id="popup-overlay">
   <div class="popup-box">
