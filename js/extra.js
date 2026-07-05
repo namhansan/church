@@ -239,7 +239,8 @@
       card.addEventListener('click', () => {
         const idx = Number(card.dataset.idx);
         openWorshipDetail(idx);
-        history.replaceState(null, '', `#w${idx}`);
+        const item = worshipData[idx];
+        if (item) history.replaceState(null, '', `#${encodeURIComponent(item.name || '')}`);
       });
     });
 
@@ -247,18 +248,23 @@
     window.addEventListener('hashchange', applyWorshipHash);
   }
 
+  function findWorshipIndexByHash() {
+    if (!location.hash || location.hash.length < 2) return -1;
+    const raw = location.hash.slice(1);
+    let decoded;
+    try { decoded = decodeURIComponent(raw); } catch (e) { decoded = raw; }
+    return worshipData.findIndex(w => (w.name || '').trim() === decoded.trim());
+  }
+
   function applyWorshipHash() {
-    const hashMatch = location.hash.match(/^#w(\d+)$/);
-    if (hashMatch) {
-      const idx = Number(hashMatch[1]);
-      if (worshipData[idx]) {
-        openWorshipDetail(idx);
-        return;
-      }
+    const idx = findWorshipIndexByHash();
+    if (idx >= 0) {
+      openWorshipDetail(idx);
+      return;
     }
-    // 해시가 없거나 유효하지 않으면 목록으로
+    // 해시가 없거나 이름이 일치하지 않으면 목록으로
     const detailView = document.getElementById('worship-detail-view');
-    if (detailView && detailView.classList.contains('open') && !hashMatch) {
+    if (detailView && detailView.classList.contains('open')) {
       closeWorshipDetail();
     }
   }
