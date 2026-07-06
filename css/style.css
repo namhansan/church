@@ -128,7 +128,7 @@ header.site-header {
 .brand-lines .church-line {
   font-family: var(--font-brand);
   font-weight: 700;
-  font-size: 31.2px;
+  font-size: 23px;
   letter-spacing: 0.01em;
 }
 nav.menu { display: flex; gap: 26px; }
@@ -236,7 +236,7 @@ nav.menu a:hover { color: var(--gold-300); }
   display: block;
   font-family: var(--font-brand);
   font-weight: 900;
-  font-size: clamp(45.6px, 8.4vw, 81.6px);
+  font-size: clamp(32px, 5.6vw, 50px);
 }
 .hero p.tagline {
   font-size: 21.6px;
@@ -301,9 +301,9 @@ section.anniversary-section {
   color: var(--white);
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(24px, 3.6vw, 33.6px);
+  font-size: clamp(17px, 2.4vw, 22px);
   letter-spacing: 0.01em;
-  line-height: 1.6;
+  line-height: 1.55;
   white-space: pre-line;
   margin: 0;
   max-width: 640px;
