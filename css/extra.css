@@ -81,8 +81,10 @@
   left: 50%; bottom: -28px;
   transform: translateX(-50%);
   background: var(--white);
-  padding: 20px 36px;
-  max-width: 85%;
+  padding: 20px 40px;
+  max-width: 94%;
+  width: max-content;
+  white-space: pre-line;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 21.6px;

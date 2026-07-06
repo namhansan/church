@@ -324,7 +324,7 @@ section.anniversary-section {
   padding: 26px 28px;
 }
 .pastor-card .name { font-family: var(--font-display); font-weight: 700; font-size: 21.6px; color: var(--navy-900); margin-bottom: 6px;}
-.pastor-card .vision { color: var(--ink-soft); font-size: 19.2px; }
+.pastor-card .vision { color: var(--ink-soft); font-size: 19.2px; white-space: pre-line; }
 
 /* -------------------- Service times -------------------- */
 .service-grid {

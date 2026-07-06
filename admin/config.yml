@@ -22,7 +22,7 @@ collections:
           - { label: "담임목사 이름", name: "pastor_name", widget: "string" }
           - { label: "인사말", name: "greeting", widget: "text" }
           - { label: "교회 연혁", name: "history", widget: "text" }
-          - { label: "비전", name: "vision", widget: "string" }
+          - { label: "비전 (한 줄 권장, Enter로 두 줄도 가능)", name: "vision", widget: "text" }
           - { label: "주소", name: "address", widget: "string" }
           - { label: "영문 주소 (하단 푸터용)", name: "address_en", widget: "string", required: false }
           - { label: "교통 안내", name: "address_detail", widget: "string" }
