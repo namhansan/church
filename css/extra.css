@@ -196,6 +196,107 @@
 }
 .mega-col a:hover { color: var(--gold-300); }
 
+/* -------------------- 캘린더 -------------------- */
+.cal-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.cal-view-toggle { display: flex; gap: 8px; }
+.cal-view-btn {
+  padding: 10px 22px;
+  border: 1px solid var(--rule);
+  background: var(--white);
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  color: var(--navy-800);
+}
+.cal-view-btn.active { background: var(--navy-900); color: var(--white); border-color: var(--navy-900); }
+.cal-nav { display: flex; align-items: center; gap: 18px; }
+.cal-nav button { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--navy-800); }
+.cal-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--navy-900);
+  min-width: 130px;
+  text-align: center;
+}
+.cal-today-btn {
+  padding: 9px 20px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--white);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy-800);
+}
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 700;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  margin-bottom: 8px;
+}
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.cal-day-cell {
+  min-height: 86px;
+  border: 1px solid var(--rule);
+  padding: 8px;
+  cursor: pointer;
+  background: var(--white);
+  transition: background 0.15s;
+}
+.cal-day-cell.empty { background: transparent; border-color: transparent; cursor: default; }
+.cal-day-cell:hover:not(.empty) { background: var(--paper-2); }
+.cal-day-cell.today { border-color: var(--gold-500); border-width: 2px; }
+.cal-day-num { font-weight: 700; font-size: 14.5px; color: var(--navy-900); }
+.cal-day-cell.selected { background: var(--navy-900); }
+.cal-day-cell.selected .cal-day-num { color: var(--white); }
+.cal-event-label {
+  display: block;
+  font-size: 11.5px;
+  color: var(--navy-700);
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cal-day-cell.selected .cal-event-label { color: rgba(255,255,255,0.78); }
+@media (max-width: 600px) {
+  .cal-day-cell { min-height: 52px; padding: 5px; }
+  .cal-event-label { display: none; }
+}
+
+.cal-year-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+.cal-month-card {
+  background: var(--paper-2);
+  padding: 22px;
+  cursor: pointer;
+  border-top: 3px solid var(--navy-800);
+  transition: transform 0.15s;
+}
+.cal-month-card:hover { transform: translateY(-3px); }
+.cal-month-card .m-name { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--navy-900); margin-bottom: 8px; }
+.cal-month-card .m-count { font-size: 13.5px; color: var(--gold-500); font-weight: 700; margin-bottom: 10px; }
+.cal-month-card .m-events { font-size: 13px; color: var(--ink-soft); }
+.cal-month-card .m-events div { margin-bottom: 4px; }
+
+.cal-day-detail { margin-top: 46px; padding-top: 30px; border-top: 1px solid var(--rule); }
+.cal-event-item { background: var(--paper-2); border-left: 3px solid var(--gold-500); padding: 20px 24px; margin-bottom: 14px; }
+.cal-event-item .e-title { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--navy-900); margin-bottom: 6px; }
+.cal-event-item .e-meta { font-size: 13.5px; color: var(--gold-500); font-weight: 600; margin-bottom: 8px; }
+.cal-event-item .e-desc { font-size: 14.5px; color: var(--ink-soft); }
+
 /* -------------------- 드롭다운 메뉴 (교회소개) -------------------- */
 .nav-dropdown { position: relative; }
 .nav-dropdown > a { display: inline-flex; align-items: center; gap: 4px; }

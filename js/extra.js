@@ -28,6 +28,170 @@
     return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, '0')}.${String(d.getDate()).padStart(2, '0')}`;
   }
 
+  // -------------------- 캘린더 --------------------
+  let calEvents = [];
+  let calEventMap = {}; // 'YYYY-MM-DD' -> [events]
+  let calView = 'month';
+  let calToday = new Date();
+  let calYear = calToday.getFullYear();
+  let calMonth = calToday.getMonth() + 1; // 1-12
+  let calSelectedDate = null;
+
+  function ymd(y, m, d) {
+    return `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  }
+
+  function buildCalEventMap(events) {
+    const map = {};
+    events.forEach(ev => {
+      const start = new Date(ev.date);
+      const end = ev.end_date ? new Date(ev.end_date) : start;
+      if (isNaN(start)) return;
+      const cursor = new Date(start);
+      let guard = 0;
+      while (cursor <= end && guard < 60) {
+        const key = ymd(cursor.getFullYear(), cursor.getMonth() + 1, cursor.getDate());
+        if (!map[key]) map[key] = [];
+        map[key].push(ev);
+        cursor.setDate(cursor.getDate() + 1);
+        guard++;
+      }
+    });
+    return map;
+  }
+
+  async function renderCalendarPage() {
+    const grid = document.getElementById('cal-grid');
+    if (!grid) return;
+
+    const data = await loadJSON('content/calendar.json');
+    calEvents = (data && data.events) || [];
+    calEventMap = buildCalEventMap(calEvents);
+
+    // 뷰 전환 버튼
+    const monthBtn = document.getElementById('cal-view-month');
+    const yearBtn = document.getElementById('cal-view-year');
+    if (monthBtn) monthBtn.addEventListener('click', () => setCalView('month'));
+    if (yearBtn) yearBtn.addEventListener('click', () => setCalView('year'));
+
+    // 월간 네비게이션
+    const prevBtn = document.getElementById('cal-prev');
+    const nextBtn = document.getElementById('cal-next');
+    if (prevBtn) prevBtn.addEventListener('click', () => changeMonth(-1));
+    if (nextBtn) nextBtn.addEventListener('click', () => changeMonth(1));
+
+    // 연간 네비게이션
+    const prevYearBtn = document.getElementById('cal-prev-year');
+    const nextYearBtn = document.getElementById('cal-next-year');
+    if (prevYearBtn) prevYearBtn.addEventListener('click', () => { calYear--; renderYearView(); });
+    if (nextYearBtn) nextYearBtn.addEventListener('click', () => { calYear++; renderYearView(); });
+
+    const todayBtn = document.getElementById('cal-today-btn');
+    if (todayBtn) todayBtn.addEventListener('click', () => {
+      calYear = calToday.getFullYear();
+      calMonth = calToday.getMonth() + 1;
+      setCalView('month');
+      showDayDetail(ymd(calToday.getFullYear(), calToday.getMonth() + 1, calToday.getDate()));
+    });
+
+    renderMonthView();
+  }
+
+  function setCalView(view) {
+    calView = view;
+    document.getElementById('cal-view-month').classList.toggle('active', view === 'month');
+    document.getElementById('cal-view-year').classList.toggle('active', view === 'year');
+    document.getElementById('cal-month-view').style.display = view === 'month' ? '' : 'none';
+    document.getElementById('cal-year-view').style.display = view === 'year' ? '' : 'none';
+    document.getElementById('cal-nav-month').style.display = view === 'month' ? '' : 'none';
+    document.getElementById('cal-nav-year').style.display = view === 'year' ? '' : 'none';
+    if (view === 'month') renderMonthView();
+    else renderYearView();
+  }
+
+  function changeMonth(delta) {
+    calMonth += delta;
+    if (calMonth > 12) { calMonth = 1; calYear++; }
+    if (calMonth < 1) { calMonth = 12; calYear--; }
+    renderMonthView();
+  }
+
+  function renderMonthView() {
+    document.getElementById('cal-title').textContent = `${calYear}년 ${calMonth}월`;
+    const firstDay = new Date(calYear, calMonth - 1, 1);
+    const startWeekday = firstDay.getDay(); // 0=Sun
+    const daysInMonth = new Date(calYear, calMonth, 0).getDate();
+    const todayKey = ymd(calToday.getFullYear(), calToday.getMonth() + 1, calToday.getDate());
+
+    const cells = [];
+    for (let i = 0; i < startWeekday; i++) cells.push('<div class="cal-day-cell empty"></div>');
+    for (let d = 1; d <= daysInMonth; d++) {
+      const key = ymd(calYear, calMonth, d);
+      const dayEvents = calEventMap[key] || [];
+      const isToday = key === todayKey;
+      const isSelected = key === calSelectedDate;
+      cells.push(`
+        <div class="cal-day-cell${isToday ? ' today' : ''}${isSelected ? ' selected' : ''}" data-date="${key}">
+          <div class="cal-day-num">${d}</div>
+          ${dayEvents.slice(0, 2).map(e => `<span class="cal-event-label">${esc(e.title)}</span>`).join('')}
+        </div>`);
+    }
+    document.getElementById('cal-grid').innerHTML = cells.join('');
+    document.querySelectorAll('.cal-day-cell:not(.empty)').forEach(cell => {
+      cell.addEventListener('click', () => {
+        calSelectedDate = cell.dataset.date;
+        renderMonthView();
+        showDayDetail(cell.dataset.date);
+      });
+    });
+  }
+
+  function renderYearView() {
+    document.getElementById('cal-year-title').textContent = `${calYear}년`;
+    const monthNames = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+    const cardsHtml = monthNames.map((name, i) => {
+      const m = i + 1;
+      const monthEvents = calEvents.filter(ev => {
+        const d = new Date(ev.date);
+        return d.getFullYear() === calYear && d.getMonth() + 1 === m;
+      }).sort((a, b) => new Date(a.date) - new Date(b.date));
+      return `
+        <div class="cal-month-card" data-month="${m}">
+          <div class="m-name">${name}</div>
+          <div class="m-count">${monthEvents.length ? `행사 ${monthEvents.length}건` : '행사 없음'}</div>
+          <div class="m-events">
+            ${monthEvents.slice(0, 3).map(e => `<div>${new Date(e.date).getDate()}일 · ${esc(e.title)}</div>`).join('')}
+          </div>
+        </div>`;
+    }).join('');
+    document.getElementById('cal-year-grid').innerHTML = cardsHtml;
+    document.querySelectorAll('.cal-month-card').forEach(card => {
+      card.addEventListener('click', () => {
+        calMonth = Number(card.dataset.month);
+        setCalView('month');
+      });
+    });
+  }
+
+  function showDayDetail(dateStr) {
+    const detail = document.getElementById('cal-day-detail');
+    if (!detail) return;
+    const events = calEventMap[dateStr] || [];
+    const d = new Date(dateStr);
+    const label = `${d.getFullYear()}년 ${d.getMonth() + 1}월 ${d.getDate()}일`;
+    document.getElementById('cal-day-title').textContent = label;
+    const eventsEl = document.getElementById('cal-day-events');
+    eventsEl.innerHTML = events.length
+      ? events.map(e => `
+        <div class="cal-event-item">
+          <div class="e-title">${esc(e.title)}</div>
+          <div class="e-meta">${esc(e.time || '')}${e.time && e.location ? ' · ' : ''}${esc(e.location || '')}</div>
+          ${e.description ? `<div class="e-desc">${esc(e.description)}</div>` : ''}
+        </div>`).join('')
+      : `<p class="empty-state">이 날짜에는 등록된 일정이 없습니다.</p>`;
+    detail.style.display = 'block';
+  }
+
   // -------------------- 팝업 공지 --------------------
   async function renderPopup() {
     const overlay = document.getElementById('popup-overlay');
@@ -676,5 +840,6 @@
     renderWorship();
     renderDepartmentsPage();
     renderAboutPage();
+    renderCalendarPage();
   });
 })();
