@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>섬기는 사람 - 남한산성교회</title>
+<title>교회소개 - 남한산성교회</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/extra.css">
 <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -56,66 +56,52 @@
 
 <section class="subhero">
   <div class="wrap">
-    <div class="eyebrow-light" style="color:var(--gold-300); letter-spacing:0.28em; font-size:12.5px; font-weight:700;">OUR PEOPLE</div>
-    <h1>섬기는 사람</h1>
-    <p>남한산성교회를 섬기는 분들을 소개합니다</p>
+    <div class="eyebrow-light" style="color:var(--gold-300); letter-spacing:0.28em; font-size:12.5px; font-weight:700;">ABOUT US</div>
+    <h1>교회소개</h1>
+    <p>남한산성교회를 소개합니다</p>
   </div>
 </section>
 
-<section id="leaders-root">
+<section>
   <div class="wrap">
 
     <div class="pill-nav">
-      <a href="#pastor-sec">담임목사님</a>
-      <a href="#clergy-sec">교역자</a>
-      <a href="#elders-sec">장로</a>
-      <a href="#congregation-sec">성도</a>
+      <a href="#welcome-sec">환영</a>
+      <a href="#vision-sec">비전</a>
+      <a href="#history-sec">교회연혁</a>
     </div>
 
-    <div id="pastor-sec">
-      <div class="eyebrow">담임목사 · SENIOR PASTOR</div>
-      <h2 class="section-title">담임목사님</h2>
+    <!-- 환영: 사진 + 인사말 -->
+    <div id="welcome-sec">
+      <div class="eyebrow">환영 · WELCOME</div>
+      <h2 class="section-title">환영합니다</h2>
       <div class="pastor-profile">
-        <img id="pastor-photo" src="" alt="담임목사">
+        <img id="welcome-photo" src="" alt="담임목사">
         <div>
-          <div class="name" id="pastor-name">담임목사</div>
-          <div class="bio" id="pastor-bio">소개글이 이곳에 표시됩니다.</div>
+          <div class="name" id="welcome-pastor-name">담임목사</div>
+          <div class="bio" id="welcome-greeting" style="white-space:pre-line;"></div>
         </div>
       </div>
     </div>
 
-    <div id="clergy-sec" style="margin-top:60px;">
-      <div class="eyebrow">교역자 · CLERGY</div>
-      <h2 class="section-title">교역자 (전임 목회자)</h2>
-      <p class="people-intro" id="clergy-intro"></p>
-      <div class="people-grid" id="clergy-grid">
+    <!-- 비전: 사진 위 캡션 오버레이 스타일 -->
+    <div id="vision-sec" style="margin-top:70px;">
+      <div class="eyebrow">비전 · VISION</div>
+      <h2 class="section-title">우리의 비전</h2>
+      <div class="vision-photo-wrap">
+        <img id="vision-photo" src="" alt="교회 전경">
+        <div class="vision-caption" id="vision-caption"></div>
+      </div>
+      <p id="history-intro" class="people-intro" style="margin-top:24px; font-size:15px;"></p>
+    </div>
+
+    <!-- 교회연혁: 알약 블록 + 타임라인 -->
+    <div id="history-sec" style="margin-top:70px; margin-bottom:60px;">
+      <div class="eyebrow">교회연혁 · HISTORY</div>
+      <h2 class="section-title">교회 연혁</h2>
+      <div id="history-timeline">
         <p class="empty-state">불러오는 중...</p>
       </div>
-    </div>
-
-    <div id="elders-sec" style="margin-top:20px;">
-      <div class="eyebrow">장로 · ELDERS</div>
-      <h2 class="section-title">장로</h2>
-      <p class="people-intro" id="elders-intro"></p>
-
-      <div class="elder-group">
-        <h3>시무장로</h3>
-        <div class="people-grid" id="elder-acting-grid"></div>
-      </div>
-      <div class="elder-group">
-        <h3>원로장로</h3>
-        <div class="people-grid" id="elder-emeritus-grid"></div>
-      </div>
-      <div class="elder-group">
-        <h3>명예장로</h3>
-        <div class="people-grid" id="elder-honorary-grid"></div>
-      </div>
-    </div>
-
-    <div id="congregation-sec" style="margin-top:20px; margin-bottom:60px;">
-      <div class="eyebrow">성도 · CONGREGATION</div>
-      <h2 class="section-title">성도</h2>
-      <div class="congregation-note" id="congregation-note"></div>
     </div>
 
   </div>

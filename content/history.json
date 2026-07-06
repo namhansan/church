@@ -1,0 +1,28 @@
+{
+  "eras": [
+    {
+      "label": "창립",
+      "years": "1988",
+      "milestones": [
+        { "date": "1988. 3", "description": "여섯 가정이 모여 첫 예배를 드림" },
+        { "date": "1988. 9", "description": "남한산성면 소재지에 예배당 마련" }
+      ]
+    },
+    {
+      "label": "성장",
+      "years": "1995 - 2010",
+      "milestones": [
+        { "date": "1995. 5", "description": "현재 위치로 예배당 이전 및 신축" },
+        { "date": "2003. 11", "description": "교육관 준공" }
+      ]
+    },
+    {
+      "label": "오늘",
+      "years": "2011 - 현재",
+      "milestones": [
+        { "date": "2020. 6", "description": "온라인 예배 시작" },
+        { "date": "2026", "description": "창립 100주년을 향해 나아가는 중" }
+      ]
+    }
+  ]
+}

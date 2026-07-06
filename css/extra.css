@@ -65,6 +65,72 @@
 }
 .popup-hide-today input { cursor: pointer; }
 
+/* -------------------- 비전 사진 + 캡션 오버레이 -------------------- */
+.vision-photo-wrap {
+  position: relative;
+  margin-bottom: 50px;
+}
+.vision-photo-wrap img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+.vision-caption {
+  position: absolute;
+  left: 50%; bottom: -28px;
+  transform: translateX(-50%);
+  background: var(--white);
+  padding: 20px 36px;
+  max-width: 85%;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--navy-900);
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(20,27,51,0.15);
+}
+@media (max-width: 600px) {
+  .vision-photo-wrap img { height: 260px; }
+  .vision-caption { font-size: 15px; padding: 16px 22px; bottom: -20px; }
+}
+
+/* -------------------- 교회연혁 타임라인 -------------------- */
+.history-era {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 0;
+  margin-bottom: 40px;
+}
+@media (max-width: 640px) { .history-era { grid-template-columns: 1fr; } }
+.history-era-badge {
+  background: var(--navy-700);
+  color: var(--white);
+  border-radius: 0 48px 48px 0;
+  padding: 32px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (max-width: 640px) { .history-era-badge { border-radius: 12px; margin-bottom: 12px; } }
+.history-era-badge .label { font-family: var(--font-display); font-weight: 700; font-size: 22px; margin-bottom: 8px; }
+.history-era-badge .years { font-size: 14px; color: rgba(255,255,255,0.75); }
+.history-milestones {
+  padding: 12px 0 12px 32px;
+  border-left: 1px solid var(--rule);
+}
+@media (max-width: 640px) { .history-milestones { border-left: none; padding-left: 4px; } }
+.history-milestone {
+  display: flex;
+  gap: 22px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.history-milestone:last-child { border-bottom: none; }
+.history-milestone .date { color: var(--gold-500); font-weight: 700; font-size: 13.5px; width: 100px; flex-shrink: 0; }
+.history-milestone .desc { color: var(--ink-soft); font-size: 14.5px; }
+
 /* -------------------- 드롭다운 메뉴 (교회소개) -------------------- */
 .nav-dropdown { position: relative; }
 .nav-dropdown > a { display: inline-flex; align-items: center; gap: 4px; }

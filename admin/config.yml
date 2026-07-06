@@ -128,6 +128,28 @@ collections:
           - { label: "게시 시작일 (선택, 비워두면 즉시 시작)", name: "start_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, picker_utc: true }
           - { label: "게시 종료일 (선택, 비워두면 계속 표시)", name: "end_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, picker_utc: true }
 
+  - name: "history"
+    label: "교회연혁"
+    files:
+      - name: "history"
+        label: "교회연혁 수정"
+        file: "content/history.json"
+        fields:
+          - label: "시대 구분 (연혁 타임라인)"
+            name: "eras"
+            widget: "list"
+            summary: "{{fields.label}} ({{fields.years}})"
+            fields:
+              - { label: "구분 이름 (예: 창립, 성장, 오늘)", name: "label", widget: "string" }
+              - { label: "연도 표기 (예: 1988, 1995 - 2010)", name: "years", widget: "string" }
+              - label: "그 시기의 주요 사건"
+                name: "milestones"
+                widget: "list"
+                summary: "{{fields.date}} — {{fields.description}}"
+                fields:
+                  - { label: "날짜/연도", name: "date", widget: "string" }
+                  - { label: "내용", name: "description", widget: "string" }
+
   - name: "leaders"
     label: "섬기는 사람"
     files:

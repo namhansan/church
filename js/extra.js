@@ -585,6 +585,61 @@
     });
   }
 
+  // -------------------- 교회소개 (환영/비전/교회연혁) --------------------
+  async function renderAboutPage() {
+    const root = document.getElementById('welcome-sec');
+    if (!root) return;
+
+    const [site, leadersData, historyData] = await Promise.all([
+      loadJSON('content/site.json'),
+      loadJSON('content/leaders.json'),
+      loadJSON('content/history.json'),
+    ]);
+
+    // 환영
+    if (leadersData && leadersData.pastor) {
+      const p = leadersData.pastor;
+      const photoEl = document.getElementById('welcome-photo');
+      if (photoEl && p.photo) photoEl.src = p.photo;
+      const nameEl = document.getElementById('welcome-pastor-name');
+      if (nameEl) nameEl.textContent = p.name || '';
+    }
+    const greetEl = document.getElementById('welcome-greeting');
+    if (greetEl && site) greetEl.textContent = site.greeting || '';
+
+    // 비전
+    if (site) {
+      const visionPhoto = document.getElementById('vision-photo');
+      if (visionPhoto && site.church_photo) visionPhoto.src = site.church_photo;
+      const visionCaption = document.getElementById('vision-caption');
+      if (visionCaption) visionCaption.textContent = site.vision || '';
+      const historyIntro = document.getElementById('history-intro');
+      if (historyIntro) historyIntro.textContent = site.history || '';
+    }
+
+    // 교회연혁 타임라인
+    const timeline = document.getElementById('history-timeline');
+    if (timeline) {
+      const eras = (historyData && historyData.eras) || [];
+      timeline.innerHTML = eras.length
+        ? eras.map(era => `
+          <div class="history-era">
+            <div class="history-era-badge">
+              <div class="label">${esc(era.label)}</div>
+              <div class="years">${esc(era.years)}</div>
+            </div>
+            <div class="history-milestones">
+              ${(era.milestones || []).map(m => `
+                <div class="history-milestone">
+                  <div class="date">${esc(m.date)}</div>
+                  <div class="desc">${esc(m.description)}</div>
+                </div>`).join('')}
+            </div>
+          </div>`).join('')
+        : `<p class="empty-state">등록된 연혁이 없습니다.</p>`;
+    }
+  }
+
   // -------------------- 자료실 --------------------
   async function renderResources() {
     const list = document.getElementById('resource-list');
@@ -620,5 +675,6 @@
     renderResources();
     renderWorship();
     renderDepartmentsPage();
+    renderAboutPage();
   });
 })();
