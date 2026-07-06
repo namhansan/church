@@ -177,10 +177,12 @@ function initScrollTop() {
 
 function initNav() {
   const toggle = document.querySelector('.menu-toggle');
-  const menu = document.querySelector('nav.menu');
-  if (!toggle || !menu) return;
-  toggle.addEventListener('click', () => menu.classList.toggle('open'));
-  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+  const overlay = document.getElementById('mega-menu-overlay');
+  const closeBtn = document.getElementById('mega-menu-close');
+  if (!toggle || !overlay) return;
+  toggle.addEventListener('click', () => overlay.classList.add('open'));
+  if (closeBtn) closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
+  overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => overlay.classList.remove('open')));
 }
 
 async function init() {
