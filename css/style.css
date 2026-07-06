@@ -131,9 +131,9 @@ header.site-header {
   font-size: 23px;
   letter-spacing: 0.01em;
 }
-nav.menu { display: flex; gap: 17px; }
+nav.menu { display: flex; gap: 26px; }
 nav.menu a {
-  font-size: 15.5px;
+  font-size: 19.8px;
   font-weight: 500;
   text-decoration: none;
   color: rgba(255,255,255,0.85);
