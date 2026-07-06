@@ -35,7 +35,7 @@
   color: var(--white);
   border: none;
   width: 30px; height: 30px;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
   z-index: 2;
 }
@@ -43,13 +43,13 @@
 .popup-body h3 {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 19px;
+  font-size: 28.5px;
   color: var(--navy-900);
   margin: 0 0 12px;
 }
 .popup-body p {
   color: var(--ink-soft);
-  font-size: 14.5px;
+  font-size: 21.8px;
   margin: 0 0 18px;
   white-space: pre-line;
 }
@@ -59,7 +59,7 @@
   gap: 8px;
   padding: 14px 26px;
   border-top: 1px solid var(--rule);
-  font-size: 13px;
+  font-size: 19.5px;
   color: var(--ink-soft);
   cursor: pointer;
 }
@@ -85,14 +85,14 @@
   max-width: 85%;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 27px;
   color: var(--navy-900);
   text-align: center;
   box-shadow: 0 10px 30px rgba(20,27,51,0.15);
 }
 @media (max-width: 600px) {
   .vision-photo-wrap img { height: 260px; }
-  .vision-caption { font-size: 15px; padding: 16px 22px; bottom: -20px; }
+  .vision-caption { font-size: 22.5px; padding: 16px 22px; bottom: -20px; }
 }
 
 /* -------------------- 교회연혁 타임라인 -------------------- */
@@ -114,8 +114,8 @@
   justify-content: center;
 }
 @media (max-width: 640px) { .history-era-badge { border-radius: 12px; margin-bottom: 12px; } }
-.history-era-badge .label { font-family: var(--font-display); font-weight: 700; font-size: 27px; margin-bottom: 10px; }
-.history-era-badge .years { font-size: 16px; color: rgba(255,255,255,0.8); }
+.history-era-badge .label { font-family: var(--font-display); font-weight: 700; font-size: 40.5px; margin-bottom: 10px; }
+.history-era-badge .years { font-size: 24px; color: rgba(255,255,255,0.8); }
 .history-milestones {
   padding: 12px 0 12px 32px;
   border-left: 1px solid var(--rule);
@@ -128,14 +128,16 @@
   border-bottom: 1px solid var(--rule);
 }
 .history-milestone:last-child { border-bottom: none; }
-.history-milestone .date { color: var(--gold-500); font-weight: 700; font-size: 15px; width: 110px; flex-shrink: 0; }
-.history-milestone .desc { color: var(--ink-soft); font-size: 16px; }
+.history-milestone .date { color: var(--gold-500); font-weight: 700; font-size: 22.5px; width: 110px; flex-shrink: 0; }
+.history-milestone .desc { color: var(--ink-soft); font-size: 24px; }
 
 /* -------------------- 전체 메뉴 오버레이 -------------------- */
 .mega-menu-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(15,20,38,0.97);
+  background: rgba(15,20,38,0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 999;
   display: none;
   overflow-y: auto;
@@ -148,7 +150,7 @@
   background: none;
   border: none;
   color: var(--white);
-  font-size: 34px;
+  font-size: 51px;
   cursor: pointer;
   z-index: 1000;
   line-height: 1;
@@ -163,7 +165,7 @@
 }
 .mega-menu-brand .mark { width: 12px; height: 12px; background: var(--gold-500); transform: rotate(45deg); }
 .mega-menu-brand .brand-lines { align-items: center; }
-.mega-menu-brand .church-line { font-size: 24px; }
+.mega-menu-brand .church-line { font-size: 36px; }
 .mega-menu-grid {
   max-width: 1040px;
   margin: 0 auto;
@@ -176,7 +178,7 @@
 .mega-col-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 19px;
+  font-size: 28.5px;
   color: var(--gold-300);
   margin-bottom: 18px;
   text-align: center;
@@ -188,14 +190,14 @@
   color: rgba(255,255,255,0.8);
   text-decoration: none;
   padding: 10px 0;
-  font-size: 15.5px;
+  font-size: 23.2px;
 }
 .mega-col a:hover { color: var(--gold-300); }
 
 /* -------------------- 드롭다운 메뉴 (교회소개) -------------------- */
 .nav-dropdown { position: relative; }
 .nav-dropdown > a { display: inline-flex; align-items: center; gap: 4px; }
-.nav-dropdown > a::after { content: "▾"; font-size: 10px; opacity: 0.7; }
+.nav-dropdown > a::after { content: "▾"; font-size: 15px; opacity: 0.7; }
 .dropdown-panel {
   position: absolute;
   top: 100%; left: 0;
@@ -210,7 +212,7 @@
 .dropdown-panel a {
   display: block;
   padding: 10px 18px;
-  font-size: 15.5px;
+  font-size: 23.2px;
   color: rgba(255,255,255,0.82);
   text-decoration: none;
 }
@@ -237,7 +239,7 @@
   padding: 9px 20px;
   border: 1px solid var(--rule);
   border-radius: 999px;
-  font-size: 13.5px;
+  font-size: 20.2px;
   font-weight: 600;
   color: var(--navy-800);
   text-decoration: none;
@@ -264,11 +266,11 @@
   object-fit: cover;
   border: 1px solid var(--rule);
 }
-.pastor-profile .name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--navy-900); margin-bottom: 10px; }
-.pastor-profile .bio { color: var(--ink-soft); font-size: 15px; }
+.pastor-profile .name { font-family: var(--font-display); font-weight: 700; font-size: 33px; color: var(--navy-900); margin-bottom: 10px; }
+.pastor-profile .bio { color: var(--ink-soft); font-size: 22.5px; }
 
 /* -------------------- 교역자 / 장로 목록 -------------------- */
-.people-intro { color: var(--ink-soft); font-size: 16px; margin-bottom: 18px; }
+.people-intro { color: var(--ink-soft); font-size: 24px; margin-bottom: 18px; }
 .people-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -280,13 +282,13 @@
   border-left: 3px solid var(--gold-500);
   padding: 16px 18px;
 }
-.people-card .name { font-weight: 700; color: var(--navy-900); font-size: 15px; }
-.people-card .role { color: var(--ink-soft); font-size: 14.5px; margin-top: 3px; }
+.people-card .name { font-weight: 700; color: var(--navy-900); font-size: 22.5px; }
+.people-card .role { color: var(--ink-soft); font-size: 21.8px; margin-top: 3px; }
 
 .elder-group { margin-bottom: 30px; }
 .elder-group h3 {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 25.5px;
   color: var(--navy-800);
   border-bottom: 1px solid var(--rule);
   padding-bottom: 8px;
@@ -299,7 +301,7 @@
   border-left: 3px solid var(--sage);
   padding: 24px 26px;
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: 22.5px;
 }
 
 /* -------------------- 사역 안내 -------------------- */
@@ -317,9 +319,9 @@
   transition: transform 0.15s, box-shadow 0.15s;
 }
 .ministry-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(20,27,51,0.1); }
-.ministry-card .name { font-family: var(--font-display); font-weight: 700; color: var(--navy-900); font-size: 18.5px; margin-bottom: 8px; }
-.ministry-card .desc { color: var(--ink-soft); font-size: 15px; margin-bottom: 10px; }
-.ministry-card .link { font-size: 14px; color: var(--gold-500); font-weight: 600; }
+.ministry-card .name { font-family: var(--font-display); font-weight: 700; color: var(--navy-900); font-size: 27.8px; margin-bottom: 8px; }
+.ministry-card .desc { color: var(--ink-soft); font-size: 22.5px; margin-bottom: 10px; }
+.ministry-card .link { font-size: 21px; color: var(--gold-500); font-weight: 600; }
 
 /* -------------------- Sub page hero (갤러리/주보/후원단체 상단) -------------------- */
 .subhero {
@@ -331,19 +333,19 @@
 .subhero h1 {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(28px, 4vw, 42px);
+  font-size: clamp(42px, 6.0vw, 63px);
   margin: 10px 0 8px;
 }
 .subhero p {
   color: rgba(255,255,255,0.7);
-  font-size: 15px;
+  font-size: 22.5px;
 }
 .subhero .back-link {
   display: inline-block;
   margin-top: 18px;
   color: var(--gold-300);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 21px;
 }
 
 /* -------------------- 실시간 예배 (Live) -------------------- */
@@ -369,7 +371,7 @@
   padding: 6px 14px;
   background: var(--navy-900);
   color: var(--gold-300);
-  font-size: 12.5px;
+  font-size: 18.8px;
   letter-spacing: 0.08em;
   margin-bottom: 14px;
 }
@@ -392,9 +394,9 @@
   display: block;
 }
 .album-card .meta { padding: 16px 18px; }
-.album-card .title { font-family: var(--font-display); font-weight: 700; color: var(--navy-900); font-size: 16.5px; margin-bottom: 4px; }
-.album-card .date { color: var(--gold-500); font-size: 14.5px; font-weight: 700; }
-.album-card .count { color: var(--ink-soft); font-size: 14px; margin-top: 4px; }
+.album-card .title { font-family: var(--font-display); font-weight: 700; color: var(--navy-900); font-size: 24.8px; margin-bottom: 4px; }
+.album-card .date { color: var(--gold-500); font-size: 21.8px; font-weight: 700; }
+.album-card .count { color: var(--ink-soft); font-size: 21px; margin-top: 4px; }
 
 .photo-lightbox-grid {
   display: grid;
@@ -415,7 +417,7 @@
   margin-bottom: 18px;
   color: var(--navy-800);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 21px;
   text-decoration: none;
   cursor: pointer;
 }
@@ -433,7 +435,7 @@
 .lightbox-overlay img { max-width: 100%; max-height: 90vh; }
 .lightbox-close {
   position: absolute; top: 24px; right: 30px;
-  color: var(--white); font-size: 30px;
+  color: var(--white); font-size: 45px;
   background: none; border: none; cursor: pointer;
 }
 
@@ -447,7 +449,7 @@
   padding: 20px 4px;
   border-bottom: 1px solid var(--rule);
 }
-.bulletin-item .info .date { color: var(--gold-500); font-weight: 700; font-size: 14.5px; }
+.bulletin-item .info .date { color: var(--gold-500); font-weight: 700; font-size: 21.8px; }
 .bulletin-item .info .title { font-weight: 700; color: var(--navy-900); margin-top: 2px; }
 .bulletin-item .dl {
   flex-shrink: 0;
@@ -455,7 +457,7 @@
   background: var(--navy-900);
   color: var(--white);
   text-decoration: none;
-  font-size: 13.5px;
+  font-size: 20.2px;
   font-weight: 600;
 }
 .bulletin-item .dl:hover { background: var(--navy-700); }
@@ -478,12 +480,12 @@
   gap: 12px;
 }
 .worship-card:hover { background: var(--navy-700); transform: translateY(-2px); }
-.worship-card .name { font-weight: 700; font-size: 16.5px; }
-.worship-card .link { font-size: 14.5px; color: var(--gold-300); flex-shrink: 0; }
+.worship-card .name { font-weight: 700; font-size: 24.8px; }
+.worship-card .link { font-size: 21.8px; color: var(--gold-300); flex-shrink: 0; }
 
 .update-links { display: flex; gap: 14px; margin-top: 10px; flex-wrap: wrap; }
 .update-links .update-link {
-  font-size: 13px;
+  font-size: 19.5px;
   font-weight: 600;
   color: var(--navy-800);
   text-decoration: none;
@@ -508,15 +510,15 @@
 .partner-card .body { padding: 20px 22px; }
 .partner-card .region {
   display: inline-block;
-  font-size: 11.5px;
+  font-size: 17.2px;
   letter-spacing: 0.06em;
   color: var(--gold-500);
   font-weight: 700;
   margin-bottom: 8px;
 }
-.partner-card .name { font-family: var(--font-display); font-weight: 700; color: var(--navy-900); font-size: 17px; margin-bottom: 8px; }
-.partner-card .desc { color: var(--ink-soft); font-size: 15.5px; margin-bottom: 12px; }
-.partner-card .link { font-size: 14.5px; color: var(--navy-800); font-weight: 600; }
+.partner-card .name { font-family: var(--font-display); font-weight: 700; color: var(--navy-900); font-size: 25.5px; margin-bottom: 8px; }
+.partner-card .desc { color: var(--ink-soft); font-size: 23.2px; margin-bottom: 12px; }
+.partner-card .link { font-size: 21.8px; color: var(--navy-800); font-weight: 600; }
 
 .partner-detail { display: none; }
 .partner-detail.open { display: block; }
@@ -546,6 +548,6 @@
   cursor: zoom-in;
   flex-shrink: 0;
 }
-.update-item .update-date { color: var(--gold-500); font-weight: 700; font-size: 14px; }
+.update-item .update-date { color: var(--gold-500); font-weight: 700; font-size: 21px; }
 .update-item .update-title { font-weight: 700; color: var(--navy-900); margin: 4px 0 6px; }
-.update-item .update-content { color: var(--ink-soft); font-size: 15.5px; }
+.update-item .update-content { color: var(--ink-soft); font-size: 23.2px; }
