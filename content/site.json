@@ -1,6 +1,8 @@
 {
-  "map_lng": "127.1780",
+  "map_lng": "127.159345",
+  "live_now": false,
   "church_name": "남한산성교회",
+  "today_sermon_title": "인생이란 무엇인가",
   "offering_holder": "대한성결교회남한산성교회 ** 헌금하실 때 (성함+헌금종류)를 써주세요 (예) 김ㅇㅇ십일조/김ㅇㅇ감사",
   "church_name_en": "Namhansanseong Evangelical Holiness Church",
   "org_name": "기독교대한성결교회",
@@ -21,7 +23,7 @@
   "anniversary_caption": "함께하신 은혜의 100년, 함께가는 소망의 100년. \n말씀을 더 가까이, 찬양을 더 가까이, 기도로 더 가까이, 선교를 더 가까이",
   "greeting": "남한산성교회 홈페이지를 찾아주셔서 감사합니다. 저희 교회는 예배와 말씀, 그리고 이웃과의 나눔을 통해 하나님의 사랑을 전하는 공동체입니다. 처음 오시는 분도, 오랫동안 함께해오신 성도님도 언제나 환영합니다.",
   "church_photo": "images/uploads/namhansanseong-church.jpg",
-  "map_lat": "37.4783",
+  "map_lat": "37.477610",
   "service_times": [
     {
       "name": "주일 1부 예배",
@@ -61,5 +63,6 @@
   ],
   "address_detail": "남한산성 도립공원 인근에 위치해 있습니다",
   "sns_youtube": "https://www.youtube.com/@남한산성교회",
-  "email": "info@church.example"
+  "email": "info@church.example",
+  "today_scripture": "이사야 40장 6절-11절. 말하는 자의 소리여 이르되 외치라 대답하되 내가 무엇이라 외치리이까 ..."
 }
