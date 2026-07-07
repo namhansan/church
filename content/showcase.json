@@ -1,6 +1,21 @@
 {
   "enabled": true,
   "photos": [
-    { "image": "images/uploads/namhansanseong-church.jpg", "caption": "" }
+    {
+      "image": "images/uploads/namhansanseong-church.jpg",
+      "caption": ""
+    },
+    {
+      "image": "/images/uploads/screen-shot-2026-07-04-at-9.41.35-pm.png",
+      "caption": "2026년 여름성경학교 안내"
+    },
+    {
+      "image": "/images/uploads/sheep.jpeg",
+      "caption": "바꿈남교회 양5마리"
+    },
+    {
+      "image": "/images/uploads/sheep2.jpeg",
+      "caption": "바꿈남교회 양5마리"
+    }
   ]
 }
