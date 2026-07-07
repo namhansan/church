@@ -252,19 +252,30 @@
     if (!slot) return;
     const site = await loadJSON('content/site.json');
     const channelId = site && site.youtube_channel_id;
-    if (channelId) {
+    const isLiveNow = !!(site && site.live_now);
+
+    if (isLiveNow && channelId) {
       slot.innerHTML = `
         <div class="live-embed-wrap">
           <iframe src="https://www.youtube.com/embed/live_stream?channel=${encodeURIComponent(channelId)}"
             title="실시간 예배" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>
         </div>`;
-    } else {
-      slot.innerHTML = `
-        <div class="live-offline">
-          <div class="badge">LIVE 준비중</div>
-          <p style="margin:0;">실시간 예배 연결이 아직 설정되지 않았습니다.<br>관리자 페이지의 "교회 기본 정보"에서 유튜브 채널 ID를 등록해 주세요.</p>
-        </div>`;
+      return;
     }
+
+    const youtubeLink = (site && site.sns_youtube) || '#';
+    slot.innerHTML = `
+      <div class="live-compact">
+        <div class="live-compact-icon">▶</div>
+        <div class="live-compact-text">
+          <div class="lc-title">실시간 예배</div>
+          <div class="lc-desc">예배 시간에 맞춰 유튜브 채널에서 실시간으로 함께하실 수 있어요.</div>
+        </div>
+        <div class="live-compact-actions">
+          <a href="#worship" class="lc-btn-outline">예배 시간 보기</a>
+          <a href="${esc(youtubeLink)}" target="_blank" rel="noopener" class="lc-btn-gold">유튜브 채널 바로가기</a>
+        </div>
+      </div>`;
   }
 
   // -------------------- 행사 사진 갤러리 --------------------
