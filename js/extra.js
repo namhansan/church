@@ -192,6 +192,34 @@
     detail.style.display = 'block';
   }
 
+  // -------------------- 포토 스냅 캐러셀 --------------------
+  async function renderShowcase() {
+    const section = document.getElementById('showcase');
+    const track = document.getElementById('showcase-track');
+    if (!section || !track) return;
+
+    const data = await loadJSON('content/showcase.json');
+    const photos = (data && data.enabled && data.photos) || [];
+    if (!photos.length) {
+      section.classList.remove('show');
+      return;
+    }
+
+    track.innerHTML = photos.map(p => `
+      <div class="showcase-item">
+        <img src="${esc(p.image)}" alt="${esc(p.caption || '')}" loading="lazy">
+        ${p.caption ? `<span class="sc-caption">${esc(p.caption)}</span>` : ''}
+      </div>
+    `).join('');
+    section.classList.add('show');
+
+    const prevBtn = document.getElementById('showcase-prev');
+    const nextBtn = document.getElementById('showcase-next');
+    const scrollAmount = () => (track.querySelector('.showcase-item')?.offsetWidth || 320) + 16;
+    if (prevBtn) prevBtn.addEventListener('click', () => track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
+    if (nextBtn) nextBtn.addEventListener('click', () => track.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
+  }
+
   // -------------------- 팝업 공지 --------------------
   async function renderPopup() {
     const overlay = document.getElementById('popup-overlay');
@@ -264,12 +292,18 @@
     }
 
     const youtubeLink = (site && site.sns_youtube) || '#';
+    const sermonTitle = site && site.today_sermon_title;
+    const scripture = site && site.today_scripture;
+    const todayLine = (sermonTitle || scripture)
+      ? `<div class="lc-today">${sermonTitle ? `<strong>${esc(sermonTitle)}</strong>` : ''}${sermonTitle && scripture ? ' · ' : ''}${scripture ? esc(scripture) : ''}</div>`
+      : '';
     slot.innerHTML = `
       <div class="live-compact">
         <div class="live-compact-icon">▶</div>
         <div class="live-compact-text">
           <div class="lc-title">실시간 예배</div>
           <div class="lc-desc">예배 시간에 맞춰 유튜브 채널에서 실시간으로 함께하실 수 있어요.</div>
+          ${todayLine}
         </div>
         <div class="live-compact-actions">
           <a href="#worship" class="lc-btn-outline">예배 시간 보기</a>
@@ -852,5 +886,6 @@
     renderDepartmentsPage();
     renderAboutPage();
     renderCalendarPage();
+    renderShowcase();
   });
 })();

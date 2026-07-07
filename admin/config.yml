@@ -37,6 +37,8 @@ collections:
           - { label: "인스타그램 링크", name: "sns_instagram", widget: "string", required: false }
           - { label: "유튜브 채널 ID (실시간 예배용)", name: "youtube_channel_id", widget: "string", required: false, hint: "유튜브 채널 → 정보 → '채널 ID'에서 확인 (UC로 시작하는 문자열). 비워두면 실시간 예배 섹션에 준비중 메시지가 표시됩니다." }
           - { label: "지금 실시간 방송 중 (예배 시작 전 켜고, 끝나면 꺼주세요)", name: "live_now", widget: "boolean", default: false }
+          - { label: "오늘의 설교 제목", name: "today_sermon_title", widget: "string", required: false }
+          - { label: "오늘의 본문 말씀", name: "today_scripture", widget: "string", required: false }
           - { label: "100주년 배너 표시 여부", name: "anniversary_enabled", widget: "boolean", default: false }
           - { label: "100주년 표어 이미지", name: "anniversary_image", widget: "image", required: false }
           - { label: "100주년 배너 캡션 문구 (Enter로 줄바꿈 가능)", name: "anniversary_caption", widget: "text", required: false }
@@ -128,6 +130,22 @@ collections:
           - { label: "버튼 문구", name: "link_text", widget: "string", required: false }
           - { label: "게시 시작일 (선택, 비워두면 즉시 시작)", name: "start_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, picker_utc: true }
           - { label: "게시 종료일 (선택, 비워두면 계속 표시)", name: "end_date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, required: false, picker_utc: true }
+
+  - name: "showcase"
+    label: "포토 스냅 (배너)"
+    files:
+      - name: "showcase"
+        label: "포토 스냅 수정"
+        file: "content/showcase.json"
+        fields:
+          - { label: "표시 여부", name: "enabled", widget: "boolean", default: false }
+          - label: "사진들 (여러 장, 순서대로 넘어갑니다)"
+            name: "photos"
+            widget: "list"
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "사진", name: "image", widget: "image" }
+              - { label: "짧은 설명 (선택)", name: "caption", widget: "string", required: false }
 
   - name: "calendar"
     label: "캘린더"

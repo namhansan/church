@@ -310,6 +310,58 @@ section.anniversary-section {
   max-width: 640px;
 }
 
+#location, #offering { padding: 40px 0; }
+#location .section-title, #offering .section-title { font-size: 22px; margin-bottom: 20px; }
+#location .eyebrow, #offering .eyebrow { margin-bottom: 8px; }
+
+/* -------------------- 포토 스냅 캐러셀 -------------------- */
+.showcase-section {
+  padding: 50px 0;
+  background: var(--white);
+  display: none;
+}
+.showcase-section.show { display: block; }
+.showcase-inner {
+  position: relative;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 64px;
+}
+.showcase-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.showcase-track::-webkit-scrollbar { display: none; }
+.showcase-item { flex-shrink: 0; width: 320px; scroll-snap-align: start; }
+.showcase-item img { width: 100%; height: 240px; object-fit: cover; display: block; }
+.showcase-item .sc-caption { display: block; margin-top: 8px; font-size: 13px; color: var(--ink-soft); text-align: center; }
+.showcase-nav {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 4px 14px rgba(20,27,51,0.1);
+  color: var(--navy-900);
+}
+.showcase-prev { left: 0; }
+.showcase-next { right: 0; }
+@media (max-width: 640px) {
+  .showcase-inner { padding: 0 40px; }
+  .showcase-item { width: 200px; }
+  .showcase-item img { height: 160px; }
+  .showcase-nav { width: 36px; height: 36px; font-size: 18px; }
+}
+
 /* -------------------- Intro / greeting -------------------- */
 .intro-grid {
   display: grid;
@@ -326,6 +378,21 @@ section.anniversary-section {
 }
 .pastor-card .name { font-family: var(--font-display); font-weight: 700; font-size: 21.6px; color: var(--navy-900); margin-bottom: 6px;}
 .pastor-card .vision { color: var(--ink-soft); font-size: 19.2px; white-space: pre-line; }
+.pastor-card-photo {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 18px;
+}
+.pastor-card-more {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy-800);
+  text-decoration: none;
+}
+.pastor-card-more:hover { color: var(--gold-500); }
 
 /* -------------------- Service times -------------------- */
 .service-grid {

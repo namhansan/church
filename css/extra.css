@@ -492,6 +492,12 @@
   font-size: 14.5px;
   color: rgba(255,255,255,0.7);
 }
+.live-compact-text .lc-today {
+  margin-top: 8px;
+  font-size: 14.5px;
+  color: var(--gold-300);
+}
+.live-compact-text .lc-today strong { font-weight: 700; }
 .live-compact-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .live-compact-actions a {
   padding: 10px 18px;

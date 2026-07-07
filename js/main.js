@@ -188,14 +188,23 @@ function initNav() {
 async function init() {
   initNav();
   initScrollTop();
-  const [site, notices, sermons] = await Promise.all([
+  const [site, notices, sermons, leaders] = await Promise.all([
     loadJSON('content/site.json'),
     loadJSON('content/notices.json'),
     loadJSON('content/sermons.json'),
+    loadJSON('content/leaders.json'),
   ]);
   renderSite(site);
   renderNotices(notices);
   renderSermons(sermons);
+
+  const homePastorPhoto = document.getElementById('home-pastor-photo');
+  if (homePastorPhoto && leaders && leaders.pastor && leaders.pastor.photo) {
+    homePastorPhoto.src = leaders.pastor.photo;
+    homePastorPhoto.alt = `${leaders.pastor.name || ''} 사진`;
+    homePastorPhoto.style.display = '';
+  }
+
   document.getElementById('year').textContent = new Date().getFullYear();
 }
 
