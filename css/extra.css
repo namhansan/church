@@ -370,10 +370,10 @@
   border: 1px solid var(--rule);
 }
 .pastor-profile .name { font-family: var(--font-display); font-weight: 700; font-size: 26.4px; color: var(--navy-900); margin-bottom: 10px; }
-.pastor-profile .bio { color: var(--ink-soft); font-size: 18px; }
+.pastor-profile .bio { color: var(--ink-soft); font-size: 18px; max-width: 640px; }
 
 /* -------------------- 교역자 / 장로 목록 -------------------- */
-.people-intro { color: var(--ink-soft); font-size: 19.2px; margin-bottom: 18px; }
+.people-intro { color: var(--ink-soft); font-size: 19.2px; margin-bottom: 18px; max-width: 640px; }
 .people-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -405,6 +405,7 @@
   padding: 24px 26px;
   color: var(--ink-soft);
   font-size: 18px;
+  max-width: 700px;
 }
 
 /* -------------------- 사역 안내 -------------------- */

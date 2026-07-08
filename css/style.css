@@ -27,7 +27,7 @@
   --font-brand: 'Pretendard', -apple-system, sans-serif;
   --font-body: 'Pretendard', -apple-system, sans-serif;
 
-  --max-w: 1100px;
+  --max-w: 1440px;
 }
 
 * { box-sizing: border-box; }
@@ -370,7 +370,7 @@ section.anniversary-section {
   align-items: start;
 }
 @media (max-width: 780px) { .intro-grid { grid-template-columns: 1fr; } }
-.intro-grid p { color: var(--ink-soft); font-size: 19.2px; }
+.intro-grid p { color: var(--ink-soft); font-size: 19.2px; max-width: 640px; }
 .pastor-card {
   background: var(--paper-2);
   border-left: 3px solid var(--gold-500);
