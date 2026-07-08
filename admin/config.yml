@@ -21,7 +21,8 @@ collections:
           - { label: "교회 전경 사진", name: "church_photo", widget: "image", required: false, hint: "메인 화면 상단에 크게 표시됩니다." }
           - { label: "담임목사 이름", name: "pastor_name", widget: "string" }
           - { label: "인사말", name: "greeting", widget: "text" }
-          - { label: "교회 연혁", name: "history", widget: "text" }
+          - { label: "교회 연혁 (비전 페이지 왼쪽 칸)", name: "history", widget: "text" }
+          - { label: "비전 추가 설명 (비전 페이지 오른쪽 칸, 선택)", name: "vision_right", widget: "text", required: false }
           - { label: "비전 (한 줄 권장, Enter로 두 줄도 가능)", name: "vision", widget: "text" }
           - { label: "주소", name: "address", widget: "string" }
           - { label: "영문 주소 (하단 푸터용)", name: "address_en", widget: "string", required: false }
@@ -186,7 +187,7 @@ collections:
                 summary: "{{fields.date}} — {{fields.description}}"
                 fields:
                   - { label: "날짜/연도", name: "date", widget: "string" }
-                  - { label: "내용", name: "description", widget: "string" }
+                  - { label: "내용 (길게 쓰셔도 됩니다)", name: "description", widget: "text" }
 
   - name: "leaders"
     label: "섬기는 사람"
@@ -225,6 +226,13 @@ collections:
               - { label: "이름", name: "name", widget: "string" }
           - label: "명예장로"
             name: "elders_honorary"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "이름", name: "name", widget: "string" }
+          - { label: "안수집사 소개 문구", name: "deacons_intro", widget: "text", required: false }
+          - label: "안수집사"
+            name: "deacons"
             widget: "list"
             summary: "{{fields.name}}"
             fields:

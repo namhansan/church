@@ -355,8 +355,8 @@
     photoGrid.innerHTML = photos.length
       ? photos.map(p => `<img src="${esc(p)}" alt="${esc(album.title)}" loading="lazy">`).join('')
       : `<p class="empty-state">이 앨범에는 아직 사진이 등록되지 않았습니다.</p>`;
-    photoGrid.querySelectorAll('img').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img.src));
+    photoGrid.querySelectorAll('img').forEach((img, idx) => {
+      img.addEventListener('click', () => openLightbox(photos, idx));
     });
   }
 
@@ -365,11 +365,46 @@
     document.getElementById('album-detail-view').classList.remove('open');
   }
 
-  function openLightbox(src) {
+  // 소식 피드 안의 사진들(.update-photo-grid)을 그룹별로 묶어서
+  // 라이트박스에서 같은 소식의 사진끼리 화살표로 넘겨볼 수 있게 합니다
+  function bindLightboxGroups(root) {
+    if (!root) return;
+    root.querySelectorAll('.update-photo-grid').forEach(grid => {
+      const imgs = Array.from(grid.querySelectorAll('img'));
+      const srcs = imgs.map(i => i.src);
+      imgs.forEach((img, idx) => {
+        img.addEventListener('click', () => openLightbox(srcs, idx));
+      });
+    });
+  }
+
+  let lightboxList = [];
+  let lightboxIndex = 0;
+
+  function openLightbox(list, index) {
     const overlay = document.getElementById('lightbox-overlay');
     if (!overlay) return;
-    overlay.querySelector('img').src = src;
+    lightboxList = Array.isArray(list) ? list : [list];
+    lightboxIndex = index || 0;
+    updateLightboxImage();
     overlay.classList.add('open');
+  }
+
+  function updateLightboxImage() {
+    const overlay = document.getElementById('lightbox-overlay');
+    if (!overlay || !lightboxList.length) return;
+    overlay.querySelector('img').src = lightboxList[lightboxIndex];
+    const prevBtn = document.getElementById('lightbox-prev');
+    const nextBtn = document.getElementById('lightbox-next');
+    const multi = lightboxList.length > 1;
+    if (prevBtn) prevBtn.style.display = multi ? '' : 'none';
+    if (nextBtn) nextBtn.style.display = multi ? '' : 'none';
+  }
+
+  function lightboxStep(delta) {
+    if (!lightboxList.length) return;
+    lightboxIndex = (lightboxIndex + delta + lightboxList.length) % lightboxList.length;
+    updateLightboxImage();
   }
 
   function initGalleryInteractions() {
@@ -385,8 +420,23 @@
     if (deptBackBtn) deptBackBtn.addEventListener('click', closeDeptDetail);
     const overlay = document.getElementById('lightbox-overlay');
     if (overlay) {
-      overlay.addEventListener('click', () => overlay.classList.remove('open'));
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('open');
+      });
+      const closeBtn = overlay.querySelector('.lightbox-close');
+      if (closeBtn) closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
     }
+    const lbPrev = document.getElementById('lightbox-prev');
+    const lbNext = document.getElementById('lightbox-next');
+    if (lbPrev) lbPrev.addEventListener('click', (e) => { e.stopPropagation(); lightboxStep(-1); });
+    if (lbNext) lbNext.addEventListener('click', (e) => { e.stopPropagation(); lightboxStep(1); });
+    document.addEventListener('keydown', (e) => {
+      const ov = document.getElementById('lightbox-overlay');
+      if (!ov || !ov.classList.contains('open')) return;
+      if (e.key === 'ArrowLeft') lightboxStep(-1);
+      if (e.key === 'ArrowRight') lightboxStep(1);
+      if (e.key === 'Escape') ov.classList.remove('open');
+    });
   }
 
   // -------------------- 주보 --------------------
@@ -511,9 +561,7 @@
         </div>`).join('')
       : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
 
-    updatesList.querySelectorAll('.update-photo').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img.src));
-    });
+    bindLightboxGroups(updatesList);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -627,9 +675,7 @@
         </div>`).join('')
       : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
 
-    updatesList.querySelectorAll('.update-photo').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img.src));
-    });
+    bindLightboxGroups(updatesList);
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -677,6 +723,11 @@
     renderElderGroup('elder-acting-grid', data.elders_acting);
     renderElderGroup('elder-emeritus-grid', data.elders_emeritus);
     renderElderGroup('elder-honorary-grid', data.elders_honorary);
+
+    // 안수집사
+    const deaconsIntro = document.getElementById('deacons-intro');
+    if (deaconsIntro) deaconsIntro.textContent = data.deacons_intro || '';
+    renderElderGroup('deacons-grid', data.deacons);
 
     // 성도
     const note = document.getElementById('congregation-note');
@@ -789,9 +840,7 @@
           </div>
         </div>`).join('')
       : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
-    listEl.querySelectorAll('.update-photo').forEach(img => {
-      img.addEventListener('click', () => openLightbox(img.src));
-    });
+    bindLightboxGroups(listEl);
   }
 
   // -------------------- 교회소개 (환영/비전/교회연혁) --------------------
@@ -824,6 +873,8 @@
       if (visionCaption) visionCaption.textContent = site.vision || '';
       const historyIntro = document.getElementById('history-intro');
       if (historyIntro) historyIntro.textContent = site.history || '';
+      const visionRight = document.getElementById('vision-right');
+      if (visionRight) visionRight.textContent = site.vision_right || '';
     }
 
     // 교회연혁 타임라인
