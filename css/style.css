@@ -565,6 +565,7 @@ footer {
   margin-bottom: 18px;
 }
 .footer-bottom .copy-line { font-size: 15.6px; color: rgba(255,255,255,0.45); }
+.footer-bottom .copy-line .upper-text { text-transform: uppercase; }
 .footer-bottom .admin-link { margin-top: 10px; }
 .footer-bottom .admin-link a { color: rgba(255,255,255,0.35); font-size: 14.4px; }
 .footer-bottom .admin-link a:hover { color: rgba(255,255,255,0.6); }
