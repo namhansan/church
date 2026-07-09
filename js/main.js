@@ -10,6 +10,13 @@ function pickLang(obj, field) {
   return obj[field] || '';
 }
 
+function applyStaticI18n() {
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (!el.dataset.ko) el.dataset.ko = el.textContent;
+    el.textContent = window.siteLang === 'en' ? el.dataset.en : el.dataset.ko;
+  });
+}
+
 function initLangToggle() {
   const btn = document.getElementById('lang-toggle');
   if (!btn) return;
@@ -50,11 +57,11 @@ function formatDate(dateStr) {
 function renderSite(site) {
   if (!site) return;
   document.title = site.church_name || '교회 홈페이지';
-  document.querySelectorAll('[data-field="org_name"]').forEach(el => el.textContent = site.org_name || '');
-  document.querySelectorAll('[data-field="church_name"]').forEach(el => el.textContent = site.church_name || '');
+  document.querySelectorAll('[data-field="org_name"]').forEach(el => el.textContent = pickLang(site, 'org_name'));
+  document.querySelectorAll('[data-field="church_name"]').forEach(el => el.textContent = pickLang(site, 'church_name'));
   document.querySelectorAll('[data-field="church_name_en"]').forEach(el => {
     el.textContent = site.church_name_en || '';
-    el.style.display = site.church_name_en ? '' : 'none';
+    el.style.display = (site.church_name_en && window.siteLang !== 'en') ? '' : 'none';
   });
   document.querySelectorAll('[data-field="tagline"]').forEach(el => el.textContent = pickLang(site, 'tagline'));
   document.querySelectorAll('[data-field="pastor_name"]').forEach(el => el.textContent = pickLang(site, 'pastor_name'));
@@ -232,6 +239,7 @@ async function init() {
   initNav();
   initScrollTop();
   initLangToggle();
+  applyStaticI18n();
   const [site, notices, sermons, leaders] = await Promise.all([
     loadJSON('content/site.json'),
     loadJSON('content/notices.json'),

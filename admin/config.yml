@@ -14,6 +14,7 @@ collections:
         file: "content/site.json"
         fields:
           - { label: "교단명 (작은 글씨, 예: 기독교대한성결교회)", name: "org_name", widget: "string", required: false }
+          - { label: "Denomination (영문, 선택)", name: "org_name_en", widget: "string", required: false }
           - { label: "교회 이름 (큰 글씨)", name: "church_name", widget: "string" }
           - { label: "영문 교회 이름 (하단 푸터용)", name: "church_name_en", widget: "string", required: false }
           - { label: "슬로건 (한 줄 소개)", name: "tagline", widget: "string" }
