@@ -1,6 +1,26 @@
 // 은혜교회 홈페이지 — content/*.json 파일을 불러와 화면에 그립니다.
 // 관리자 페이지(/admin)에서 내용을 수정하면 이 파일들이 자동으로 바뀝니다.
 
+// 언어 상태 (ko/en) — extra.js에서도 window.siteLang으로 같이 사용합니다
+window.siteLang = localStorage.getItem('siteLang') || 'ko';
+
+function pickLang(obj, field) {
+  if (!obj) return '';
+  if (window.siteLang === 'en' && obj[field + '_en']) return obj[field + '_en'];
+  return obj[field] || '';
+}
+
+function initLangToggle() {
+  const btn = document.getElementById('lang-toggle');
+  if (!btn) return;
+  btn.textContent = window.siteLang === 'ko' ? 'EN' : '한국어';
+  btn.addEventListener('click', () => {
+    window.siteLang = window.siteLang === 'ko' ? 'en' : 'ko';
+    localStorage.setItem('siteLang', window.siteLang);
+    location.reload();
+  });
+}
+
 const CACHE_BUST = `?v=${Date.now()}`;
 
 async function loadJSON(path) {
@@ -36,11 +56,11 @@ function renderSite(site) {
     el.textContent = site.church_name_en || '';
     el.style.display = site.church_name_en ? '' : 'none';
   });
-  document.querySelectorAll('[data-field="tagline"]').forEach(el => el.textContent = site.tagline || '');
+  document.querySelectorAll('[data-field="tagline"]').forEach(el => el.textContent = pickLang(site, 'tagline'));
   document.querySelectorAll('[data-field="pastor_name"]').forEach(el => el.textContent = site.pastor_name || '');
-  document.querySelectorAll('[data-field="greeting"]').forEach(el => el.textContent = site.greeting || '');
-  document.querySelectorAll('[data-field="history"]').forEach(el => el.textContent = site.history || '');
-  document.querySelectorAll('[data-field="vision"]').forEach(el => el.textContent = site.vision || '');
+  document.querySelectorAll('[data-field="greeting"]').forEach(el => el.textContent = pickLang(site, 'greeting'));
+  document.querySelectorAll('[data-field="history"]').forEach(el => el.textContent = pickLang(site, 'history'));
+  document.querySelectorAll('[data-field="vision"]').forEach(el => el.textContent = pickLang(site, 'vision'));
   document.querySelectorAll('[data-field="address"]').forEach(el => el.textContent = site.address || '');
   document.querySelectorAll('[data-field="address_en"]').forEach(el => {
     el.textContent = site.address_en || '';
@@ -57,6 +77,29 @@ function renderSite(site) {
   if (ytLink && site.sns_youtube) ytLink.href = site.sns_youtube;
   const igLink = document.querySelector('[data-field="sns_instagram"]');
   if (igLink && site.sns_instagram) igLink.href = site.sns_instagram;
+
+  const socialContainer = document.querySelector('.footer-social');
+  if (socialContainer && Array.isArray(site.social_links)) {
+    const iconMap = {
+      '페이스북': 'f',
+      '카카오톡채널': 'K',
+      '네이버블로그': 'N',
+      'X(트위터)': 'X',
+      '쓰레드': '@',
+      '밴드': 'B',
+      '기타': '●',
+    };
+    site.social_links.forEach(link => {
+      if (!link.url) return;
+      const a = document.createElement('a');
+      a.href = link.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.setAttribute('aria-label', link.platform || '소셜 링크');
+      a.textContent = iconMap[link.platform] || '●';
+      socialContainer.appendChild(a);
+    });
+  }
 
   const phoneLink = document.querySelector('[data-field="phone_link"]');
   if (phoneLink && site.phone) phoneLink.href = `tel:${site.phone.replace(/[^0-9]/g, '')}`;
@@ -188,6 +231,7 @@ function initNav() {
 async function init() {
   initNav();
   initScrollTop();
+  initLangToggle();
   const [site, notices, sermons, leaders] = await Promise.all([
     loadJSON('content/site.json'),
     loadJSON('content/notices.json'),

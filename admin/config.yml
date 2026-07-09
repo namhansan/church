@@ -17,13 +17,18 @@ collections:
           - { label: "교회 이름 (큰 글씨)", name: "church_name", widget: "string" }
           - { label: "영문 교회 이름 (하단 푸터용)", name: "church_name_en", widget: "string", required: false }
           - { label: "슬로건 (한 줄 소개)", name: "tagline", widget: "string" }
+          - { label: "Slogan (영문, 선택)", name: "tagline_en", widget: "string", required: false }
           - { label: "로고 이미지", name: "logo", widget: "image", required: false, hint: "정사각형 이미지를 권장합니다." }
           - { label: "교회 전경 사진", name: "church_photo", widget: "image", required: false, hint: "메인 화면 상단에 크게 표시됩니다." }
           - { label: "담임목사 이름", name: "pastor_name", widget: "string" }
           - { label: "인사말", name: "greeting", widget: "text" }
+          - { label: "Greeting (영문, 선택)", name: "greeting_en", widget: "text", required: false }
           - { label: "교회 연혁 (비전 페이지 왼쪽 칸)", name: "history", widget: "text" }
+          - { label: "History (영문, 선택)", name: "history_en", widget: "text", required: false }
           - { label: "비전 추가 설명 (비전 페이지 오른쪽 칸, 선택)", name: "vision_right", widget: "text", required: false }
+          - { label: "Vision 추가 설명 (영문, 선택)", name: "vision_right_en", widget: "text", required: false }
           - { label: "비전 (한 줄 권장, Enter로 두 줄도 가능)", name: "vision", widget: "text" }
+          - { label: "Vision (영문, 선택)", name: "vision_en", widget: "text", required: false }
           - { label: "주소", name: "address", widget: "string" }
           - { label: "영문 주소 (하단 푸터용)", name: "address_en", widget: "string", required: false }
           - { label: "교통 안내", name: "address_detail", widget: "string" }
@@ -36,6 +41,17 @@ collections:
           - { label: "예금주", name: "offering_holder", widget: "string" }
           - { label: "유튜브 채널 링크", name: "sns_youtube", widget: "string", required: false }
           - { label: "인스타그램 링크", name: "sns_instagram", widget: "string", required: false }
+          - label: "다른 소셜 미디어 (자유롭게 추가)"
+            name: "social_links"
+            widget: "list"
+            required: false
+            summary: "{{fields.platform}}"
+            fields:
+              - label: "플랫폼"
+                name: "platform"
+                widget: "select"
+                options: ["페이스북", "카카오톡채널", "네이버블로그", "X(트위터)", "쓰레드", "밴드", "기타"]
+              - { label: "링크 주소", name: "url", widget: "string" }
           - { label: "유튜브 채널 ID (실시간 예배용)", name: "youtube_channel_id", widget: "string", required: false, hint: "유튜브 채널 → 정보 → '채널 ID'에서 확인 (UC로 시작하는 문자열). 비워두면 실시간 예배 섹션에 준비중 메시지가 표시됩니다." }
           - { label: "지금 실시간 방송 중 (예배 시작 전 켜고, 끝나면 꺼주세요)", name: "live_now", widget: "boolean", default: false }
           - { label: "오늘의 설교 제목", name: "today_sermon_title", widget: "string", required: false }
@@ -203,6 +219,7 @@ collections:
               - { label: "이름", name: "name", widget: "string" }
               - { label: "사진", name: "photo", widget: "image", required: false }
               - { label: "소개글", name: "bio", widget: "text" }
+              - { label: "Bio (영문, 선택)", name: "bio_en", widget: "text", required: false }
           - { label: "교역자 소개 문구", name: "clergy_intro", widget: "text", required: false }
           - label: "교역자 (전임 목회자)"
             name: "clergy"
@@ -317,6 +334,7 @@ collections:
             summary: "{{fields.name}}"
             fields:
               - { label: "예배 이름", name: "name", widget: "string" }
+              - { label: "Name (영문, 선택)", name: "name_en", widget: "string", required: false }
               - label: "소식 (수시로 추가)"
                 name: "updates"
                 widget: "list"
@@ -363,9 +381,11 @@ collections:
             summary: "{{fields.name}}"
             fields:
               - { label: "단체/교회 이름", name: "name", widget: "string" }
+              - { label: "Name (영문, 선택)", name: "name_en", widget: "string", required: false }
               - { label: "구분 (예: 국내, 해외)", name: "region", widget: "string", required: false }
               - { label: "대표 사진 (목록에 표시)", name: "cover", widget: "image", required: false }
               - { label: "소개", name: "description", widget: "text" }
+              - { label: "Description (영문, 선택)", name: "description_en", widget: "text", required: false }
               - { label: "외부 홈페이지 링크 (있는 경우만)", name: "link", widget: "string", required: false, hint: "이 단체의 자체 홈페이지 주소가 있을 때만 입력하세요. 없으면 비워두세요." }
               - label: "소식 (수시로 추가)"
                 name: "updates"

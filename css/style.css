@@ -15,12 +15,12 @@
   --navy-700: #2A3D6B;
   --gold-500: #C9A227;
   --gold-300: #E4C766;
-  --paper: #F4F2EA;
-  --paper-2: #EAE7DA;
+  --paper: #FFFFFF;
+  --paper-2: #F1F2F5;
   --ink: #20242C;
   --ink-soft: #565A63;
   --sage: #6B8068;
-  --rule: #D8D3C2;
+  --rule: #E3E5E9;
   --white: #FFFDF8;
 
   --font-display: 'Pretendard', -apple-system, sans-serif;
@@ -141,6 +141,21 @@ nav.menu a {
   white-space: nowrap;
 }
 nav.menu a:hover { color: var(--gold-300); }
+.lang-toggle {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 7px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  margin-left: 16px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lang-toggle:hover { border-color: var(--gold-300); color: var(--gold-300); }
+
 .menu-toggle {
   display: flex;
   align-items: center;

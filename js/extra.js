@@ -490,7 +490,7 @@
     }
     grid.innerHTML = worshipData.map((w, i) => `
       <div class="worship-card" data-idx="${i}">
-        <div class="name">${esc(w.name)}</div>
+        <div class="name">${esc(pickLang(w, 'name'))}</div>
         <span class="link">소식 보기 →</span>
       </div>
     `).join('');
@@ -541,7 +541,7 @@
     if (!listView || !detailView) return;
     listView.classList.add('hidden');
     detailView.classList.add('open');
-    document.getElementById('worship-detail-name').textContent = item.name || '';
+    document.getElementById('worship-detail-name').textContent = pickLang(item, 'name');
 
     const updatesList = document.getElementById('worship-updates-list');
     const updates = (item.updates || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -630,8 +630,8 @@
         ${p.cover ? `<img src="${esc(p.cover)}" alt="${esc(p.name)}" loading="lazy">` : ''}
         <div class="body">
           ${p.region ? `<span class="region">${esc(p.region)}</span>` : ''}
-          <div class="name">${esc(p.name)}</div>
-          <div class="desc">${esc(p.description)}</div>
+          <div class="name">${esc(pickLang(p, 'name'))}</div>
+          <div class="desc">${esc(pickLang(p, 'description'))}</div>
           <span class="link">소식 보기 →</span>
         </div>
       </div>`;
@@ -650,8 +650,8 @@
 
     document.getElementById('partner-detail-cover').src = partner.cover || '';
     document.getElementById('partner-detail-region').textContent = partner.region || '';
-    document.getElementById('partner-detail-name').textContent = partner.name || '';
-    document.getElementById('partner-detail-desc').textContent = partner.description || '';
+    document.getElementById('partner-detail-name').textContent = pickLang(partner, 'name');
+    document.getElementById('partner-detail-desc').textContent = pickLang(partner, 'description');
 
     const linkBtn = document.getElementById('partner-detail-link');
     if (partner.link) {
@@ -699,7 +699,7 @@
     if (data.pastor) {
       if (pastorImg && data.pastor.photo) pastorImg.src = data.pastor.photo;
       if (pastorName) pastorName.textContent = data.pastor.name || '';
-      if (pastorBio) pastorBio.textContent = data.pastor.bio || '';
+      if (pastorBio) pastorBio.textContent = pickLang(data.pastor, 'bio');
     }
 
     // 교역자 (전임 목회자)
@@ -863,18 +863,18 @@
       if (nameEl) nameEl.textContent = p.name || '';
     }
     const greetEl = document.getElementById('welcome-greeting');
-    if (greetEl && site) greetEl.textContent = site.greeting || '';
+    if (greetEl && site) greetEl.textContent = pickLang(site, 'greeting');
 
     // 비전
     if (site) {
       const visionPhoto = document.getElementById('vision-photo');
       if (visionPhoto && site.church_photo) visionPhoto.src = site.church_photo;
       const visionCaption = document.getElementById('vision-caption');
-      if (visionCaption) visionCaption.textContent = site.vision || '';
+      if (visionCaption) visionCaption.textContent = pickLang(site, 'vision');
       const historyIntro = document.getElementById('history-intro');
-      if (historyIntro) historyIntro.textContent = site.history || '';
+      if (historyIntro) historyIntro.textContent = pickLang(site, 'history');
       const visionRight = document.getElementById('vision-right');
-      if (visionRight) visionRight.textContent = site.vision_right || '';
+      if (visionRight) visionRight.textContent = pickLang(site, 'vision_right');
     }
 
     // 교회연혁 타임라인
