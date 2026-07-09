@@ -4,6 +4,10 @@
 (function () {
   const CACHE_BUST = `?v=${Date.now()}`;
 
+  function t(ko, en) {
+    return window.siteLang === 'en' ? en : ko;
+  }
+
   async function loadJSON(path) {
     try {
       const res = await fetch(path + CACHE_BUST);
@@ -319,7 +323,7 @@
     const data = await loadJSON('content/events.json');
     const albums = (data && data.albums) || [];
     if (!albums.length) {
-      grid.innerHTML = `<p class="empty-state">등록된 행사 사진이 없습니다.</p>`;
+      grid.innerHTML = `<p class="empty-state">${t('등록된 행사 사진이 없습니다.', 'No event photos yet.')}</p>`;
       return;
     }
     const sorted = albums
@@ -446,7 +450,7 @@
     const data = await loadJSON('content/bulletins.json');
     const items = (data && data.items) || [];
     if (!items.length) {
-      list.innerHTML = `<p class="empty-state">등록된 주보가 없습니다.</p>`;
+      list.innerHTML = `<p class="empty-state">${t('등록된 주보가 없습니다.', 'No bulletins yet.')}</p>`;
       return;
     }
     const sorted = [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -456,7 +460,7 @@
           <div class="date">${formatDate(b.date)}</div>
           <div class="title">${esc(b.title)}</div>
         </div>
-        ${b.file ? `<a class="dl" href="${esc(b.file)}" target="_blank" rel="noopener">PDF 보기</a>` : `<span class="dl" style="opacity:0.4; cursor:default;">파일 없음</span>`}
+        ${b.file ? `<a class="dl" href="${esc(b.file)}" target="_blank" rel="noopener">${t('PDF 보기', 'View PDF')}</a>` : `<span class="dl" style="opacity:0.4; cursor:default;">${t('파일 없음', 'No file')}</span>`}
       </div>
     `).join('');
   }
@@ -485,13 +489,13 @@
     const data = await loadJSON('content/worship.json');
     worshipData = (data && data.items) || [];
     if (!worshipData.length) {
-      grid.innerHTML = `<p class="empty-state">등록된 예배 항목이 없습니다.</p>`;
+      grid.innerHTML = `<p class="empty-state">${t('등록된 예배 항목이 없습니다.', 'No worship categories yet.')}</p>`;
       return;
     }
     grid.innerHTML = worshipData.map((w, i) => `
       <div class="worship-card" data-idx="${i}">
         <div class="name">${esc(pickLang(w, 'name'))}</div>
-        <span class="link">소식 보기 →</span>
+        <span class="link">${t('소식 보기 →', 'See updates →')}</span>
       </div>
     `).join('');
     grid.querySelectorAll('.worship-card').forEach(card => {
@@ -559,7 +563,7 @@
             </div>
           </div>
         </div>`).join('')
-      : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
+      : `<p class="empty-state">${t('등록된 소식이 없습니다.', 'No updates yet.')}</p>`;
 
     bindLightboxGroups(updatesList);
 
@@ -580,7 +584,7 @@
     const data = await loadJSON('content/partners.json');
     partnersData = (data && data.items) || [];
     if (!partnersData.length) {
-      grid.innerHTML = `<p class="empty-state">등록된 선교 단체가 없습니다.</p>`;
+      grid.innerHTML = `<p class="empty-state">${t('등록된 선교 단체가 없습니다.', 'No mission partners yet.')}</p>`;
       return;
     }
 
@@ -632,7 +636,7 @@
           ${p.region ? `<span class="region">${esc(p.region)}</span>` : ''}
           <div class="name">${esc(pickLang(p, 'name'))}</div>
           <div class="desc">${esc(pickLang(p, 'description'))}</div>
-          <span class="link">소식 보기 →</span>
+          <span class="link">${t('소식 보기 →', 'See updates →')}</span>
         </div>
       </div>`;
     }).join('');
@@ -673,7 +677,7 @@
             <div class="update-content">${esc(u.content)}</div>
           </div>
         </div>`).join('')
-      : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
+      : `<p class="empty-state">${t('등록된 소식이 없습니다.', 'No updates yet.')}</p>`;
 
     bindLightboxGroups(updatesList);
 
@@ -714,7 +718,7 @@
             <div class="name">${esc(p.name)}</div>
             <div class="role">${esc(p.role)}</div>
           </div>`).join('')
-        : `<p class="empty-state">등록된 교역자가 없습니다.</p>`;
+        : `<p class="empty-state">${t('등록된 교역자가 없습니다.', 'No clergy listed yet.')}</p>`;
     }
 
     // 장로 (시무 / 원로 / 명예)
@@ -740,7 +744,7 @@
     const items = list || [];
     el.innerHTML = items.length
       ? items.map(p => `<div class="people-card"><div class="name">${esc(p.name)}</div></div>`).join('')
-      : `<p class="empty-state">등록된 분이 없습니다.</p>`;
+      : `<p class="empty-state">${t('등록된 분이 없습니다.', 'None listed yet.')}</p>`;
   }
 
   // -------------------- 사역 안내 --------------------
@@ -756,9 +760,9 @@
         <div class="ministry-card" data-idx="${i}">
           <div class="name">${esc(m.name)}</div>
           <div class="desc">${esc(m.description)}</div>
-          <span class="link">소식 보기 →</span>
+          <span class="link">${t('소식 보기 →', 'See updates →')}</span>
         </div>`).join('')
-      : `<p class="empty-state">등록된 사역이 없습니다.</p>`;
+      : `<p class="empty-state">${t('등록된 사역이 없습니다.', 'No ministries yet.')}</p>`;
     grid.querySelectorAll('.ministry-card').forEach(card => {
       card.addEventListener('click', () => openMinistryDetail(Number(card.dataset.idx)));
     });
@@ -797,9 +801,9 @@
           <div class="name">${esc(d.name)}</div>
           <div class="summary">${esc(d.summary)}</div>
           <div class="leader">${esc(d.leader)}</div>
-          <span class="link" style="color:var(--gold-300); font-size:14px;">소식 보기 →</span>
+          <span class="link" style="color:var(--gold-300); font-size:14px;">${t('소식 보기 →', 'See updates →')}</span>
         </div>`).join('')
-      : `<p class="empty-state">등록된 부서가 없습니다.</p>`;
+      : `<p class="empty-state">${t('등록된 부서가 없습니다.', 'No departments yet.')}</p>`;
     grid.querySelectorAll('.dept-card').forEach(card => {
       card.addEventListener('click', () => openDeptDetail(Number(card.dataset.idx)));
     });
@@ -839,7 +843,7 @@
             ${u.content ? `<div class="update-content">${esc(u.content)}</div>` : ''}
           </div>
         </div>`).join('')
-      : `<p class="empty-state">등록된 소식이 없습니다.</p>`;
+      : `<p class="empty-state">${t('등록된 소식이 없습니다.', 'No updates yet.')}</p>`;
     bindLightboxGroups(listEl);
   }
 
@@ -896,7 +900,7 @@
                 </div>`).join('')}
             </div>
           </div>`).join('')
-        : `<p class="empty-state">등록된 연혁이 없습니다.</p>`;
+        : `<p class="empty-state">${t('등록된 연혁이 없습니다.', 'No history entries yet.')}</p>`;
     }
   }
 
@@ -907,7 +911,7 @@
     const data = await loadJSON('content/resources.json');
     const items = (data && data.items) || [];
     if (!items.length) {
-      list.innerHTML = `<p class="empty-state">등록된 자료가 없습니다.</p>`;
+      list.innerHTML = `<p class="empty-state">${t('등록된 자료가 없습니다.', 'No resources yet.')}</p>`;
       return;
     }
     const sorted = [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -918,7 +922,7 @@
           <div class="title">${esc(r.title)}</div>
           ${r.description ? `<div class="update-content" style="margin-top:4px;">${esc(r.description)}</div>` : ''}
         </div>
-        ${r.file ? `<a class="dl" href="${esc(r.file)}" target="_blank" rel="noopener">다운로드</a>` : `<span class="dl" style="opacity:0.4; cursor:default;">파일 없음</span>`}
+        ${r.file ? `<a class="dl" href="${esc(r.file)}" target="_blank" rel="noopener">${t('다운로드', 'Download')}</a>` : `<span class="dl" style="opacity:0.4; cursor:default;">${t('파일 없음', 'No file')}</span>`}
       </div>
     `).join('');
   }
