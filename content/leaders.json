@@ -2,7 +2,9 @@
   "pastor": {
     "name": "최영준 담임목사",
     "photo": "images/uploads/namhansanseong-church.jpg",
-    "bio": "말씀과 기도로 성도를 섬기며, 다음세대와 지역사회를 향한 하나님의 부르심을 따라 목회하고 있습니다."
+    "bio": "말씀과 기도로 성도를 섬기며, 다음세대와 지역사회를 향한 하나님의 부르심을 따라 목회하고 있습니다.",
+    "name_en": "Rev. Choi Yeong-jun",
+    "bio_en": "Serving the congregation through the Word and prayer, and shepherding this church in response to God's calling for the next generation and our local community."
   },
   "clergy_intro": "담임목사님과 함께 각 사역 영역을 섬기는 전임 목회자들입니다.",
   "clergy": [
