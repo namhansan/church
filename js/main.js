@@ -57,7 +57,7 @@ function renderSite(site) {
     el.style.display = site.church_name_en ? '' : 'none';
   });
   document.querySelectorAll('[data-field="tagline"]').forEach(el => el.textContent = pickLang(site, 'tagline'));
-  document.querySelectorAll('[data-field="pastor_name"]').forEach(el => el.textContent = site.pastor_name || '');
+  document.querySelectorAll('[data-field="pastor_name"]').forEach(el => el.textContent = pickLang(site, 'pastor_name'));
   document.querySelectorAll('[data-field="greeting"]').forEach(el => el.textContent = pickLang(site, 'greeting'));
   document.querySelectorAll('[data-field="history"]').forEach(el => el.textContent = pickLang(site, 'history'));
   document.querySelectorAll('[data-field="vision"]').forEach(el => el.textContent = pickLang(site, 'vision'));
@@ -158,7 +158,7 @@ function renderSite(site) {
       } else {
         annivImg.style.display = 'none';
       }
-      document.getElementById('anniversary-caption').textContent = site.anniversary_caption || '';
+      document.getElementById('anniversary-caption').textContent = pickLang(site, 'anniversary_caption');
       annivSection.classList.add('show');
     } else {
       annivSection.classList.remove('show');

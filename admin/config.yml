@@ -21,6 +21,7 @@ collections:
           - { label: "로고 이미지", name: "logo", widget: "image", required: false, hint: "정사각형 이미지를 권장합니다." }
           - { label: "교회 전경 사진", name: "church_photo", widget: "image", required: false, hint: "메인 화면 상단에 크게 표시됩니다." }
           - { label: "담임목사 이름", name: "pastor_name", widget: "string" }
+          - { label: "Senior Pastor Name (영문, 선택)", name: "pastor_name_en", widget: "string", required: false }
           - { label: "인사말", name: "greeting", widget: "text" }
           - { label: "Greeting (영문, 선택)", name: "greeting_en", widget: "text", required: false }
           - { label: "교회 연혁 (비전 페이지 왼쪽 칸)", name: "history", widget: "text" }
@@ -59,6 +60,7 @@ collections:
           - { label: "100주년 배너 표시 여부", name: "anniversary_enabled", widget: "boolean", default: false }
           - { label: "100주년 표어 이미지", name: "anniversary_image", widget: "image", required: false }
           - { label: "100주년 배너 캡션 문구 (Enter로 줄바꿈 가능)", name: "anniversary_caption", widget: "text", required: false }
+          - { label: "Anniversary Caption (영문, 선택)", name: "anniversary_caption_en", widget: "text", required: false }
           - label: "예배 시간표"
             name: "service_times"
             widget: "list"
@@ -217,6 +219,7 @@ collections:
             widget: "object"
             fields:
               - { label: "이름", name: "name", widget: "string" }
+              - { label: "Name (영문, 선택)", name: "name_en", widget: "string", required: false }
               - { label: "사진", name: "photo", widget: "image", required: false }
               - { label: "소개글", name: "bio", widget: "text" }
               - { label: "Bio (영문, 선택)", name: "bio_en", widget: "text", required: false }

@@ -698,7 +698,7 @@
     const pastorBio = document.getElementById('pastor-bio');
     if (data.pastor) {
       if (pastorImg && data.pastor.photo) pastorImg.src = data.pastor.photo;
-      if (pastorName) pastorName.textContent = data.pastor.name || '';
+      if (pastorName) pastorName.textContent = pickLang(data.pastor, 'name');
       if (pastorBio) pastorBio.textContent = pickLang(data.pastor, 'bio');
     }
 
@@ -860,7 +860,7 @@
       const photoEl = document.getElementById('welcome-photo');
       if (photoEl && p.photo) photoEl.src = p.photo;
       const nameEl = document.getElementById('welcome-pastor-name');
-      if (nameEl) nameEl.textContent = p.name || '';
+      if (nameEl) nameEl.textContent = pickLang(p, 'name');
     }
     const greetEl = document.getElementById('welcome-greeting');
     if (greetEl && site) greetEl.textContent = pickLang(site, 'greeting');
