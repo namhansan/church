@@ -431,7 +431,7 @@
 .subhero {
   background: var(--navy-900);
   color: var(--white);
-  padding: 54px 0 38px;
+  padding: 42px 0 30px;
   text-align: center;
 }
 .subhero h1 {

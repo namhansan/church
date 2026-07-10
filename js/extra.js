@@ -758,8 +758,8 @@
     grid.innerHTML = ministriesData.length
       ? ministriesData.map((m, i) => `
         <div class="ministry-card" data-idx="${i}">
-          <div class="name">${esc(m.name)}</div>
-          <div class="desc">${esc(m.description)}</div>
+          <div class="name">${esc(pickLang(m, 'name'))}</div>
+          <div class="desc">${esc(pickLang(m, 'description'))}</div>
           <span class="link">${t('소식 보기 →', 'See updates →')}</span>
         </div>`).join('')
       : `<p class="empty-state">${t('등록된 사역이 없습니다.', 'No ministries yet.')}</p>`;
@@ -776,8 +776,8 @@
     if (!listView || !detailView) return;
     listView.classList.add('hidden');
     detailView.classList.add('open');
-    document.getElementById('ministry-detail-name').textContent = item.name || '';
-    document.getElementById('ministry-detail-desc').textContent = item.description || '';
+    document.getElementById('ministry-detail-name').textContent = pickLang(item, 'name');
+    document.getElementById('ministry-detail-desc').textContent = pickLang(item, 'description');
     renderUpdatesFeed(document.getElementById('ministry-updates-list'), item.updates || []);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -798,9 +798,9 @@
     grid.innerHTML = departmentsData.length
       ? departmentsData.map((d, i) => `
         <div class="dept-card" data-idx="${i}">
-          <div class="name">${esc(d.name)}</div>
-          <div class="summary">${esc(d.summary)}</div>
-          <div class="leader">${esc(d.leader)}</div>
+          <div class="name">${esc(pickLang(d, 'name'))}</div>
+          <div class="summary">${esc(pickLang(d, 'summary'))}</div>
+          <div class="leader">${esc(pickLang(d, 'leader'))}</div>
           <span class="link" style="color:var(--gold-300); font-size:14px;">${t('소식 보기 →', 'See updates →')}</span>
         </div>`).join('')
       : `<p class="empty-state">${t('등록된 부서가 없습니다.', 'No departments yet.')}</p>`;
@@ -817,9 +817,9 @@
     if (!listView || !detailView) return;
     listView.classList.add('hidden');
     detailView.classList.add('open');
-    document.getElementById('dept-detail-name').textContent = item.name || '';
-    document.getElementById('dept-detail-leader').textContent = item.leader || '';
-    document.getElementById('dept-detail-summary').textContent = item.summary || '';
+    document.getElementById('dept-detail-name').textContent = pickLang(item, 'name');
+    document.getElementById('dept-detail-leader').textContent = pickLang(item, 'leader');
+    document.getElementById('dept-detail-summary').textContent = pickLang(item, 'summary');
     renderUpdatesFeed(document.getElementById('dept-updates-list'), item.updates || []);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }

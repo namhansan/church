@@ -123,8 +123,11 @@ collections:
             summary: "{{fields.name}}"
             fields:
               - { label: "부서 이름", name: "name", widget: "string" }
+              - { label: "Name (영문, 선택)", name: "name_en", widget: "string", required: false }
               - { label: "소개", name: "summary", widget: "text" }
+              - { label: "Summary (영문, 선택)", name: "summary_en", widget: "text", required: false }
               - { label: "담당자", name: "leader", widget: "string" }
+              - { label: "Leader (영문, 선택)", name: "leader_en", widget: "string", required: false }
               - label: "소식 (수시로 추가)"
                 name: "updates"
                 widget: "list"
@@ -278,7 +281,9 @@ collections:
             summary: "{{fields.name}}"
             fields:
               - { label: "사역 이름", name: "name", widget: "string" }
+              - { label: "Name (영문, 선택)", name: "name_en", widget: "string", required: false }
               - { label: "설명", name: "description", widget: "text" }
+              - { label: "Description (영문, 선택)", name: "description_en", widget: "text", required: false }
               - label: "소식 (수시로 추가)"
                 name: "updates"
                 widget: "list"
