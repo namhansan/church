@@ -431,14 +431,20 @@
 .subhero {
   background: var(--navy-900);
   color: var(--white);
-  padding: 70px 0 46px;
+  padding: 54px 0 38px;
   text-align: center;
 }
 .subhero h1 {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(33.6px, 4.8vw, 50.4px);
-  margin: 10px 0 8px;
+  margin: 10px 0 14px;
+}
+.subhero-rule {
+  width: 44px;
+  height: 3px;
+  background: var(--gold-500);
+  margin: 0 auto 16px;
 }
 .subhero p {
   color: rgba(255,255,255,0.7);
