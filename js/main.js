@@ -197,11 +197,16 @@ function renderSermons(data) {
   const list = document.getElementById('sermon-list');
   if (!list) return;
   const items = (data && data.items) || [];
-  if (!items.length) {
+  // 최근 설교(홈페이지)는 영상이 있는 주일예배·수요예배만 보여줍니다
+  const featured = items.filter(s => {
+    const type = s.service_type || '주일예배';
+    return (type === '주일예배' || type === '수요예배') && s.youtube_url;
+  });
+  if (!featured.length) {
     list.innerHTML = `<p class="empty-state">등록된 설교가 없습니다.</p>`;
     return;
   }
-  const sorted = [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sorted = [...featured].sort((a, b) => new Date(b.date) - new Date(a.date));
   list.innerHTML = sorted.slice(0, 6).map(s => `
     <a class="sermon-item" href="${esc(s.youtube_url || '#')}" target="_blank" rel="noopener">
       <div>

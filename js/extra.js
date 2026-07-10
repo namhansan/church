@@ -904,6 +904,43 @@
     }
   }
 
+  // -------------------- 설교 (주일/수요/새벽) --------------------
+  async function renderSermonTabs() {
+    const sundayList = document.getElementById('sunday-sermon-list');
+    if (!sundayList) return; // sermons.html이 아니면 건너뜀
+    const data = await loadJSON('content/sermons.json');
+    const items = (data && data.items) || [];
+
+    const byType = (type, defaultType) => items
+      .filter(s => (s.service_type || defaultType) === type)
+      .slice()
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    renderSermonGroup('sunday-sermon-list', byType('주일예배', '주일예배'), true);
+    renderSermonGroup('wed-sermon-list', byType('수요예배', '주일예배'), true);
+    renderSermonGroup('dawn-sermon-list', byType('새벽예배', '주일예배'), false);
+  }
+
+  function renderSermonGroup(elId, list, withVideo) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    if (!list.length) {
+      el.innerHTML = `<p class="empty-state">${t('등록된 설교가 없습니다.', 'No sermons yet.')}</p>`;
+      return;
+    }
+    el.innerHTML = list.map(s => {
+      const inner = `
+        <div>
+          <div class="title">${esc(s.title)}</div>
+          <div class="meta">${formatDate(s.date)} · ${esc(s.preacher)} · ${esc(s.scripture)}</div>
+        </div>
+        ${withVideo && s.youtube_url ? '<span class="play">▶</span>' : ''}`;
+      return (withVideo && s.youtube_url)
+        ? `<a class="sermon-item" href="${esc(s.youtube_url)}" target="_blank" rel="noopener">${inner}</a>`
+        : `<div class="sermon-item" style="cursor:default;">${inner}</div>`;
+    }).join('');
+  }
+
   // -------------------- 자료실 --------------------
   async function renderResources() {
     const list = document.getElementById('resource-list');
@@ -942,5 +979,6 @@
     renderAboutPage();
     renderCalendarPage();
     renderShowcase();
+    renderSermonTabs();
   });
 })();
