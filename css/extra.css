@@ -196,10 +196,10 @@
 .mega-menu-brand .brand-lines { align-items: center; }
 .mega-menu-brand .church-line { font-size: 28.8px; }
 .mega-menu-grid {
-  max-width: 1040px;
+  max-width: 900px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
 }
 @media (max-width: 900px) { .mega-menu-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; } }

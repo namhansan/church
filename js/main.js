@@ -211,7 +211,7 @@ function renderSermons(data) {
   // 최근 설교(홈페이지)는 영상이 있는 주일예배·수요예배만 보여줍니다
   const featured = items.filter(s => {
     const type = s.service_type || '주일예배';
-    return (type === '주일예배' || type === '수요예배') && s.youtube_url;
+    return (type === '주일예배' || type === '수요예배' || type === '특별예배') && s.youtube_url;
   });
   if (!featured.length) {
     list.innerHTML = `<p class="empty-state">등록된 설교가 없습니다.</p>`;

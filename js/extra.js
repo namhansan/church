@@ -986,7 +986,7 @@
 
     renderSermonGroup('sunday-sermon-list', byType('주일예배', '주일예배'), true);
     renderSermonGroup('wed-sermon-list', byType('수요예배', '주일예배'), true);
-    renderSermonGroup('dawn-sermon-list', byType('새벽예배', '주일예배'), false);
+    renderSermonGroup('special-sermon-list', byType('특별예배', '주일예배'), true);
   }
 
   function renderSermonGroup(elId, list, withVideo) {

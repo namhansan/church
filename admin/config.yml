@@ -106,11 +106,11 @@ collections:
               - label: "예배 구분"
                 name: "service_type"
                 widget: "select"
-                options: ["주일예배", "수요예배", "새벽예배"]
+                options: ["주일예배", "수요예배", "특별예배"]
                 default: "주일예배"
               - { label: "설교자", name: "preacher", widget: "string" }
               - { label: "본문 말씀", name: "scripture", widget: "string" }
-              - { label: "유튜브 링크 (새벽예배는 비워두셔도 됩니다)", name: "youtube_url", widget: "string", required: false }
+              - { label: "유튜브 링크", name: "youtube_url", widget: "string", required: false }
 
   - name: "departments"
     label: "부서 소개"
