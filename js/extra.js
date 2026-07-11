@@ -841,6 +841,22 @@
       </a>`).join('');
   }
 
+  // -------------------- 메가메뉴 나눔 썸네일 --------------------
+  async function renderMegaSharing() {
+    const list = document.getElementById('mega-sharing-list');
+    if (!list) return;
+    const data = await loadJSON('content/sharing.json');
+    const items = (data && data.items) || [];
+    if (!items.length) return;
+    list.innerHTML = items.map(p => `
+      <a href="partners.html#${encodeURIComponent(p.name || '')}" style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+        ${p.cover
+          ? `<img src="${esc(p.cover)}" alt="${esc(p.name)}" style="width:42px; height:42px; object-fit:cover; border-radius:6px; flex-shrink:0;">`
+          : `<span style="width:42px; height:42px; border-radius:6px; flex-shrink:0; background:rgba(255,255,255,0.08);"></span>`}
+        <span>${esc(pickLang(p, 'name'))}</span>
+      </a>`).join('');
+  }
+
   // -------------------- 섬기는 사람 --------------------
   async function renderLeaders() {
     const root = document.getElementById('leaders-root');
@@ -1183,6 +1199,7 @@
     renderPartners();
     renderSharingEvents();
     renderSharingPromo();
+    renderMegaSharing();
     renderLeaders();
     renderMinistries();
     renderResources();
