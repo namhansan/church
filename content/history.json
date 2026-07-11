@@ -1,27 +1,57 @@
 {
   "eras": [
     {
-      "label": "창립",
-      "years": "1988",
+      "label": "창립과 개척기",
+      "years": "1921 - 1949",
       "milestones": [
-        { "date": "1988. 3", "description": "여섯 가정이 모여 첫 예배를 드림" },
-        { "date": "1988. 9", "description": "남한산성면 소재지에 예배당 마련" }
+        { "date": "1921.05", "description": "박제상 전도사 부임 — 남한산성교회 창립" },
+        { "date": "1922.12", "description": "정달성 전도사 부임" },
+        { "date": "1924.08", "description": "노희진 전도사 부임" },
+        { "date": "1928.08", "description": "박정훈 전도사 부임" },
+        { "date": "1929.04", "description": "조정현 전도사 부임" },
+        { "date": "1930.04", "description": "김정호 전도사 부임" },
+        { "date": "1931.05", "description": "함석진 전도사 부임" },
+        { "date": "1936.02", "description": "윤상현 전도사 부임" },
+        { "date": "1939.10", "description": "이성수 전도사 부임" },
+        { "date": "1941.02", "description": "최창도 전도사 부임 — 일제강점기의 어려움 속에서도 신앙의 터전을 지켜옴" },
+        { "date": "1943.10", "description": "노창월 전도사 부임" },
+        { "date": "1945.08", "description": "김병열 전도사 부임 — 광복" },
+        { "date": "1946.08", "description": "신보현 전도사 부임" },
+        { "date": "1948.04", "description": "박정신 전도사 부임" }
       ]
     },
     {
-      "label": "성장",
-      "years": "1995 - 2010",
+      "label": "목회 기틀을 다진 시기",
+      "years": "1949 - 1959",
       "milestones": [
-        { "date": "1995. 5", "description": "현재 위치로 예배당 이전 및 신축" },
-        { "date": "2003. 11", "description": "교육관 준공" }
+        { "date": "1949.02", "description": "노찬호 목사 부임 — 첫 '목사' 체제 시작" },
+        { "date": "1953.04", "description": "정규일 목사 부임" },
+        { "date": "1955.04", "description": "김종희 목사 부임" },
+        { "date": "1957.02", "description": "허복부 목사 부임" }
       ]
     },
     {
-      "label": "오늘",
-      "years": "2011 - 현재",
+      "label": "부흥과 안정의 시기",
+      "years": "1959 - 1977",
       "milestones": [
-        { "date": "2020. 6", "description": "온라인 예배 시작" },
-        { "date": "2026", "description": "창립 100주년을 향해 나아가는 중" }
+        { "date": "1959.01", "description": "최화종 목사 부임 — 18년 2개월간 시무하며 교회의 기반을 다짐" }
+      ]
+    },
+    {
+      "label": "성장과 도약의 시기",
+      "years": "1977 - 2009",
+      "milestones": [
+        { "date": "1977.03", "description": "최봉일 목사 부임" },
+        { "date": "1977.11", "description": "권언수 목사 부임" },
+        { "date": "1980.12", "description": "한원택 목사 부임 — 28년 9개월간 시무하며 교회의 큰 성장을 이끔" }
+      ]
+    },
+    {
+      "label": "오늘의 남한산성교회",
+      "years": "2009 - 현재",
+      "milestones": [
+        { "date": "2009.09", "description": "최영준 목사 부임 — 현재까지 담임목회 중" },
+        { "date": "2026", "description": "창립 105주년을 맞이함" }
       ]
     }
   ]
