@@ -617,6 +617,29 @@
     }
 
     drawPartnerGrid();
+    applyPartnerHash();
+    window.addEventListener('hashchange', applyPartnerHash);
+  }
+
+  function findPartnerIndexByHash() {
+    if (!location.hash || location.hash.length < 2) return -1;
+    const raw = location.hash.slice(1);
+    let decoded;
+    try { decoded = decodeURIComponent(raw); } catch (e) { decoded = raw; }
+    const target = normalizeName(decoded);
+    return partnersData.findIndex(p => normalizeName(p.name) === target);
+  }
+
+  function applyPartnerHash() {
+    const idx = findPartnerIndexByHash();
+    if (idx >= 0) {
+      openPartnerDetail(partnersData[idx]);
+      return;
+    }
+    const detailView = document.getElementById('partner-detail-view');
+    if (detailView && detailView.classList.contains('open')) {
+      closePartnerDetail();
+    }
   }
 
   function drawPartnerGrid() {
@@ -645,7 +668,11 @@
       </div>`;
     }).join('');
     grid.querySelectorAll('.partner-card').forEach(card => {
-      card.addEventListener('click', () => openPartnerDetail(partnersData[Number(card.dataset.idx)]));
+      card.addEventListener('click', () => {
+        const partner = partnersData[Number(card.dataset.idx)];
+        openPartnerDetail(partner);
+        if (partner) history.replaceState(null, '', `#${encodeURIComponent(partner.name || '')}`);
+      });
     });
   }
 
@@ -691,6 +718,7 @@
   function closePartnerDetail() {
     document.getElementById('partner-list-view').classList.remove('hidden');
     document.getElementById('partner-detail-view').classList.remove('open');
+    history.replaceState(null, '', location.pathname);
   }
 
   // -------------------- 섬기는 사람 --------------------

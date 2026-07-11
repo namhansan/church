@@ -454,7 +454,7 @@ section.anniversary-section {
   transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
   cursor: pointer;
 }
-.service-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,27,51,0.12); background: #E5E7EC; }
+.service-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(20,27,51,0.12); background: #E2DEC9; }
 .service-card .name { font-weight: 700; color: var(--navy-900); margin-bottom: 8px; font-size: 20.4px; }
 .service-card .time { font-family: var(--font-display); font-size: 26.4px; color: var(--gold-500); font-weight: 700; }
 .service-card .place { color: var(--ink-soft); font-size: 18px; margin-top: 4px; }
@@ -472,7 +472,7 @@ section.anniversary-section {
   color: var(--ink);
   transition: background 0.2s;
 }
-.sermon-item:hover { background: #E5E7EC; }
+.sermon-item:hover { background: #E2DEC9; }
 .sermon-item .meta { color: var(--ink-soft); font-size: 18px; margin-top: 4px; }
 .sermon-item .title { font-family: var(--font-display); font-weight: 700; font-size: 20.4px; color: var(--navy-900); }
 .sermon-item .play {
