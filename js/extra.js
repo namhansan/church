@@ -739,14 +739,11 @@
     }
 
     // 교역자 (전임 목회자) — 등록된 인원이 없으면 섹션 자체를 숨깁니다
-    const clergySec = document.getElementById('clergy-sec');
-    const clergyPill = document.querySelector('.pill-nav a[href="#clergy-sec"]');
     const clergyIntro = document.getElementById('clergy-intro');
     if (clergyIntro) clergyIntro.textContent = data.clergy_intro || '';
     const clergyGrid = document.getElementById('clergy-grid');
     const clergyList = data.clergy || [];
-    if (clergySec) clergySec.style.display = clergyList.length ? '' : 'none';
-    if (clergyPill) clergyPill.style.display = clergyList.length ? '' : 'none';
+    setSectionVisible('clergy-sec', clergyList.length > 0);
     if (clergyGrid) {
       clergyGrid.innerHTML = clergyList.length
         ? clergyList.map(p => `
@@ -757,30 +754,48 @@
         : '';
     }
 
-    // 장로 (시무 / 원로 / 명예)
+    // 장로 (시무 / 원로 / 명예) — 하위 그룹별로, 그리고 전체 섹션도 비어있으면 숨깁니다
     const eldersIntro = document.getElementById('elders-intro');
     if (eldersIntro) eldersIntro.textContent = data.elders_intro || '';
-    renderElderGroup('elder-acting-grid', data.elders_acting);
-    renderElderGroup('elder-emeritus-grid', data.elders_emeritus);
-    renderElderGroup('elder-honorary-grid', data.elders_honorary);
+    const actingCount = renderElderGroup('elder-acting-group', 'elder-acting-grid', data.elders_acting);
+    const emeritusCount = renderElderGroup('elder-emeritus-group', 'elder-emeritus-grid', data.elders_emeritus);
+    const honoraryCount = renderElderGroup('elder-honorary-group', 'elder-honorary-grid', data.elders_honorary);
+    setSectionVisible('elders-sec', (actingCount + emeritusCount + honoraryCount) > 0);
 
-    // 안수집사
+    // 안수집사 — 등록된 인원이 없으면 섹션 자체를 숨깁니다
     const deaconsIntro = document.getElementById('deacons-intro');
     if (deaconsIntro) deaconsIntro.textContent = data.deacons_intro || '';
-    renderElderGroup('deacons-grid', data.deacons);
+    const deaconsCount = renderElderGroup(null, 'deacons-grid', data.deacons);
+    setSectionVisible('deacons-sec', deaconsCount > 0);
 
-    // 성도
+    // 성도 — 소개 문구가 없으면 섹션 자체를 숨깁니다
     const note = document.getElementById('congregation-note');
     if (note) note.textContent = data.congregation_note || '';
+    setSectionVisible('congregation-sec', !!(data.congregation_note && data.congregation_note.trim()));
   }
 
-  function renderElderGroup(elId, list) {
-    const el = document.getElementById(elId);
-    if (!el) return;
+  // 섹션과 그에 연결된 pill-nav 링크를 함께 보이거나 숨깁니다
+  function setSectionVisible(sectionId, visible) {
+    const sec = document.getElementById(sectionId);
+    if (sec) sec.style.display = visible ? '' : 'none';
+    const pill = document.querySelector(`.pill-nav a[href="#${sectionId}"]`);
+    if (pill) pill.style.display = visible ? '' : 'none';
+  }
+
+  // groupElId(있으면 하위 그룹 div도 함께 숨김) 기준으로 명단을 그리고, 인원 수를 반환합니다
+  function renderElderGroup(groupElId, gridElId, list) {
+    const el = document.getElementById(gridElId);
     const items = list || [];
-    el.innerHTML = items.length
-      ? items.map(p => `<div class="people-card"><div class="name">${esc(p.name)}</div></div>`).join('')
-      : `<p class="empty-state">${t('등록된 분이 없습니다.', 'None listed yet.')}</p>`;
+    if (el) {
+      el.innerHTML = items.length
+        ? items.map(p => `<div class="people-card"><div class="name">${esc(p.name)}</div></div>`).join('')
+        : '';
+    }
+    if (groupElId) {
+      const group = document.getElementById(groupElId);
+      if (group) group.style.display = items.length ? '' : 'none';
+    }
+    return items.length;
   }
 
   // -------------------- 사역 안내 --------------------
