@@ -209,12 +209,16 @@
       return;
     }
 
-    track.innerHTML = photos.map(p => `
-      <div class="showcase-item">
+    track.innerHTML = photos.map(p => {
+      const inner = `
         <img src="${esc(p.image)}" alt="${esc(p.caption || '')}" loading="lazy">
         ${p.caption ? `<span class="sc-caption">${esc(p.caption)}</span>` : ''}
-      </div>
-    `).join('');
+        ${p.link ? `<span class="sc-hover-overlay">${t('소식 더보기 →', 'See more →')}</span>` : ''}
+      `;
+      return p.link
+        ? `<a class="showcase-item has-link" href="${esc(p.link)}">${inner}</a>`
+        : `<div class="showcase-item">${inner}</div>`;
+    }).join('');
     section.classList.add('show');
 
     const prevBtn = document.getElementById('showcase-prev');
@@ -706,19 +710,23 @@
       if (pastorBio) pastorBio.textContent = pickLang(data.pastor, 'bio');
     }
 
-    // 교역자 (전임 목회자)
+    // 교역자 (전임 목회자) — 등록된 인원이 없으면 섹션 자체를 숨깁니다
+    const clergySec = document.getElementById('clergy-sec');
+    const clergyPill = document.querySelector('.pill-nav a[href="#clergy-sec"]');
     const clergyIntro = document.getElementById('clergy-intro');
     if (clergyIntro) clergyIntro.textContent = data.clergy_intro || '';
     const clergyGrid = document.getElementById('clergy-grid');
+    const clergyList = data.clergy || [];
+    if (clergySec) clergySec.style.display = clergyList.length ? '' : 'none';
+    if (clergyPill) clergyPill.style.display = clergyList.length ? '' : 'none';
     if (clergyGrid) {
-      const list = data.clergy || [];
-      clergyGrid.innerHTML = list.length
-        ? list.map(p => `
+      clergyGrid.innerHTML = clergyList.length
+        ? clergyList.map(p => `
           <div class="people-card">
             <div class="name">${esc(p.name)}</div>
             <div class="role">${esc(p.role)}</div>
           </div>`).join('')
-        : `<p class="empty-state">${t('등록된 교역자가 없습니다.', 'No clergy listed yet.')}</p>`;
+        : '';
     }
 
     // 장로 (시무 / 원로 / 명예)

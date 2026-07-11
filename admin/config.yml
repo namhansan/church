@@ -176,6 +176,7 @@ collections:
             fields:
               - { label: "사진", name: "image", widget: "image" }
               - { label: "짧은 설명 (선택)", name: "caption", widget: "string", required: false }
+              - { label: "연결할 소식 링크 (선택 — 넣으면 마우스를 올렸을 때 '소식 더보기'가 뜨고 클릭 가능해져요)", name: "link", widget: "string", required: false }
 
   - name: "calendar"
     label: "캘린더"
