@@ -100,7 +100,7 @@
 /* -------------------- 교회연혁 타임라인 -------------------- */
 .history-era {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 0;
   margin-bottom: 40px;
 }
@@ -116,8 +116,8 @@
   justify-content: center;
 }
 @media (max-width: 640px) { .history-era-badge { border-radius: 12px; margin-bottom: 12px; } }
-.history-era-badge .label { font-family: var(--font-display); font-weight: 700; font-size: 32.4px; margin-bottom: 10px; }
-.history-era-badge .years { font-size: 19.2px; color: rgba(255,255,255,0.8); }
+.history-era-badge .label { font-family: var(--font-display); font-weight: 700; font-size: 23px; margin-bottom: 8px; line-height: 1.3; }
+.history-era-badge .years { font-size: 15px; color: rgba(255,255,255,0.8); }
 .history-milestones {
   padding: 12px 0 12px 32px;
   border-left: 1px solid var(--rule);
