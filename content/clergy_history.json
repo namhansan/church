@@ -1,0 +1,27 @@
+{
+  "items": [
+    { "order": "1", "name": "박제상", "title": "전도사", "period": "1921.05 ~ 1922.12", "duration": "1년 8개월" },
+    { "order": "2", "name": "정달성", "title": "전도사", "period": "1922.12 ~ 1924.08", "duration": "1년 9개월" },
+    { "order": "3", "name": "노희진", "title": "전도사", "period": "1924.08 ~ 1928.08", "duration": "4년" },
+    { "order": "4", "name": "박정훈", "title": "전도사", "period": "1928.08 ~ 1929.04", "duration": "8개월" },
+    { "order": "5", "name": "조정현", "title": "전도사", "period": "1929.04 ~ 1930.04", "duration": "1년" },
+    { "order": "6", "name": "김정호", "title": "전도사", "period": "1930.04 ~ 1931.05", "duration": "1년 1개월" },
+    { "order": "7", "name": "함석진", "title": "전도사", "period": "1931.05 ~ 1936.02", "duration": "4년 9개월" },
+    { "order": "8", "name": "윤상현", "title": "전도사", "period": "1936.02 ~ 1939.10", "duration": "2년 8개월" },
+    { "order": "9", "name": "이성수", "title": "전도사", "period": "1939.10 ~ 1941.02", "duration": "1년 3개월" },
+    { "order": "10", "name": "최창도", "title": "전도사", "period": "1941.02 ~ 1943.10", "duration": "2년 8개월" },
+    { "order": "11", "name": "노창월", "title": "전도사", "period": "1943.10 ~ 1945.08", "duration": "1년 10개월" },
+    { "order": "12", "name": "김병열", "title": "전도사", "period": "1945.08 ~ 1946.08", "duration": "1년" },
+    { "order": "13", "name": "신보현", "title": "전도사", "period": "1946.08 ~ 1948.04", "duration": "2년" },
+    { "order": "14", "name": "박정신", "title": "전도사", "period": "1948.04 ~ 1949.02", "duration": "10개월" },
+    { "order": "15", "name": "노찬호", "title": "목사", "period": "1949.02 ~ 1953.04", "duration": "4년 2개월" },
+    { "order": "16", "name": "정규일", "title": "목사", "period": "1953.04 ~ 1955.04", "duration": "2년" },
+    { "order": "17", "name": "김종희", "title": "목사", "period": "1955.04 ~ 1957.02", "duration": "1년 10개월" },
+    { "order": "18", "name": "허복부", "title": "목사", "period": "1957.02 ~ 1959.01", "duration": "11개월" },
+    { "order": "19", "name": "최화종", "title": "목사", "period": "1959.01 ~ 1977.03", "duration": "18년 2개월" },
+    { "order": "20", "name": "최봉일", "title": "목사", "period": "1977.03 ~ 1977.11", "duration": "8개월" },
+    { "order": "21", "name": "권언수", "title": "목사", "period": "1977.11 ~ 1980.12", "duration": "3년 1개월" },
+    { "order": "22", "name": "한원택", "title": "목사", "period": "1980.12 ~ 2009.09", "duration": "28년 9개월" },
+    { "order": "23", "name": "최영준", "title": "목사", "period": "2009.09 ~ 현재", "duration": "17년 ~" }
+  ]
+}

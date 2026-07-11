@@ -62,6 +62,8 @@ collections:
           - { label: "100주년 표어 이미지", name: "anniversary_image", widget: "image", required: false }
           - { label: "100주년 배너 캡션 문구 (Enter로 줄바꿈 가능)", name: "anniversary_caption", widget: "text", required: false }
           - { label: "Anniversary Caption (영문, 선택)", name: "anniversary_caption_en", widget: "text", required: false }
+          - { label: "배너 '더 알아보기' 링크 (선택)", name: "anniversary_link", widget: "string", required: false, hint: "이 배너와 관련된 공지사항, 행사 사진, 캘린더 일정 등의 페이지 주소를 넣으면 버튼이 생겨요. 예: gallery.html, calendar.html#2026-07-24, index.html#notices" }
+          - { label: "배너 버튼 문구 (선택)", name: "anniversary_link_text", widget: "string", required: false }
           - label: "예배 시간표"
             name: "service_times"
             widget: "list"
@@ -193,6 +195,24 @@ collections:
               - { label: "시간", name: "time", widget: "string", required: false }
               - { label: "장소", name: "location", widget: "string", required: false }
               - { label: "내용", name: "description", widget: "text", required: false }
+
+  - name: "clergy_history"
+    label: "역대 교역자"
+    files:
+      - name: "clergy_history"
+        label: "역대 교역자 명단 수정"
+        file: "content/clergy_history.json"
+        fields:
+          - label: "명단 (대수 순서대로)"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.order}}대 — {{fields.name}} {{fields.title}}"
+            fields:
+              - { label: "대수", name: "order", widget: "string" }
+              - { label: "이름", name: "name", widget: "string" }
+              - { label: "직분 (전도사/목사 등)", name: "title", widget: "string" }
+              - { label: "재임기간 (예: 1921.05 ~ 1922.12)", name: "period", widget: "string" }
+              - { label: "기간 (예: 1년 8개월)", name: "duration", widget: "string" }
 
   - name: "history"
     label: "교회연혁"

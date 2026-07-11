@@ -131,6 +131,14 @@ header.site-header {
   font-size: 23px;
   letter-spacing: 0.01em;
 }
+body.lang-en .brand-lines .church-line {
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+body.lang-en .brand-lines .org-line {
+  font-size: 9.5px;
+}
 nav.menu { display: flex; gap: 32px; }
 nav.menu a {
   font-size: 19.8px;
@@ -254,6 +262,9 @@ nav.menu a:hover { color: var(--gold-300); }
   font-family: var(--font-brand);
   font-weight: 900;
   font-size: clamp(32px, 5.6vw, 50px);
+}
+body.lang-en .hero h1 .church-line {
+  font-size: clamp(24px, 4.2vw, 38px);
 }
 .hero p.tagline {
   font-size: 21.6px;
@@ -566,6 +577,7 @@ footer {
   color: var(--white);
   margin-bottom: 4px;
 }
+body.lang-en .footer-bottom .brand-line { font-size: 17px; }
 .footer-bottom .brand-line-en {
   font-size: 12.5px;
   letter-spacing: 0.06em;

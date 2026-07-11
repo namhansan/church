@@ -11,6 +11,7 @@ function pickLang(obj, field) {
 }
 
 function applyStaticI18n() {
+  document.body.classList.toggle('lang-en', window.siteLang === 'en');
   document.querySelectorAll('[data-en]').forEach(el => {
     if (!el.dataset.ko) el.dataset.ko = el.textContent;
     el.textContent = window.siteLang === 'en' ? el.dataset.en : el.dataset.ko;
@@ -166,6 +167,16 @@ function renderSite(site) {
         annivImg.style.display = 'none';
       }
       document.getElementById('anniversary-caption').textContent = pickLang(site, 'anniversary_caption');
+      const annivLink = document.getElementById('anniversary-link');
+      if (annivLink) {
+        if (site.anniversary_link) {
+          annivLink.href = site.anniversary_link;
+          annivLink.textContent = site.anniversary_link_text || (window.siteLang === 'en' ? 'Learn more' : '자세히 보기');
+          annivLink.style.display = 'inline-block';
+        } else {
+          annivLink.style.display = 'none';
+        }
+      }
       annivSection.classList.add('show');
     } else {
       annivSection.classList.remove('show');

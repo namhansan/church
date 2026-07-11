@@ -852,10 +852,11 @@
     const root = document.getElementById('welcome-sec');
     if (!root) return;
 
-    const [site, leadersData, historyData] = await Promise.all([
+    const [site, leadersData, historyData, clergyHistoryData] = await Promise.all([
       loadJSON('content/site.json'),
       loadJSON('content/leaders.json'),
       loadJSON('content/history.json'),
+      loadJSON('content/clergy_history.json'),
     ]);
 
     // 환영
@@ -901,6 +902,22 @@
             </div>
           </div>`).join('')
         : `<p class="empty-state">${t('등록된 연혁이 없습니다.', 'No history entries yet.')}</p>`;
+    }
+
+    // 역대 교역자 명단
+    const clergyTbody = document.querySelector('#clergy-history-table tbody');
+    if (clergyTbody) {
+      const list = (clergyHistoryData && clergyHistoryData.items) || [];
+      clergyTbody.innerHTML = list.length
+        ? list.map(c => `
+          <tr>
+            <td>${esc(c.order)}</td>
+            <td>${esc(c.name)}</td>
+            <td>${esc(c.title)}</td>
+            <td>${esc(c.period)}</td>
+            <td>${esc(c.duration)}</td>
+          </tr>`).join('')
+        : `<tr><td colspan="5" class="empty-state">${t('등록된 명단이 없습니다.', 'No records yet.')}</td></tr>`;
     }
   }
 

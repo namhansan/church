@@ -133,6 +133,33 @@
 .history-milestone .date { color: var(--gold-500); font-weight: 700; font-size: 18px; width: 110px; flex-shrink: 0; }
 .history-milestone .desc { color: var(--ink-soft); font-size: 19.2px; white-space: pre-line; }
 
+/* -------------------- 역대 교역자 표 -------------------- */
+.clergy-table-wrap { overflow-x: auto; }
+.clergy-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.clergy-table th, .clergy-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+.clergy-table th {
+  color: var(--navy-900);
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid var(--navy-900);
+}
+.clergy-table td:first-child, .clergy-table th:first-child { color: var(--gold-500); font-weight: 700; }
+.clergy-table tr:hover td { background: var(--paper-2); }
+@media (max-width: 640px) {
+  .clergy-table { font-size: 13px; }
+  .clergy-table th, .clergy-table td { padding: 9px 10px; }
+}
+
 /* -------------------- 전체 메뉴 오버레이 -------------------- */
 .mega-menu-overlay {
   position: fixed;
