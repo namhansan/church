@@ -989,6 +989,9 @@
     renderSermonGroup('special-sermon-list', byType('특별예배', '주일예배'), true);
   }
 
+  const sermonShownCount = {};
+  const SERMON_PAGE_SIZE = 8;
+
   function renderSermonGroup(elId, list, withVideo) {
     const el = document.getElementById(elId);
     if (!el) return;
@@ -996,7 +999,11 @@
       el.innerHTML = `<p class="empty-state">${t('등록된 설교가 없습니다.', 'No sermons yet.')}</p>`;
       return;
     }
-    el.innerHTML = list.map(s => {
+    if (!(elId in sermonShownCount)) sermonShownCount[elId] = SERMON_PAGE_SIZE;
+    const shown = Math.min(sermonShownCount[elId], list.length);
+    const visible = list.slice(0, shown);
+
+    const itemsHtml = visible.map(s => {
       const inner = `
         <div>
           <div class="title">${esc(s.title)}</div>
@@ -1007,6 +1014,21 @@
         ? `<a class="sermon-item" href="${esc(s.youtube_url)}" target="_blank" rel="noopener">${inner}</a>`
         : `<div class="sermon-item" style="cursor:default;">${inner}</div>`;
     }).join('');
+
+    const hasMore = shown < list.length;
+    const moreBtn = hasMore
+      ? `<button type="button" class="sermon-load-more" data-target="${elId}">${t(`더보기 (${list.length - shown}개 더)`, `Show more (${list.length - shown})`)}</button>`
+      : '';
+
+    el.innerHTML = itemsHtml + moreBtn;
+
+    const btn = el.querySelector('.sermon-load-more');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        sermonShownCount[elId] += SERMON_PAGE_SIZE;
+        renderSermonGroup(elId, list, withVideo);
+      });
+    }
   }
 
   // -------------------- 자료실 --------------------

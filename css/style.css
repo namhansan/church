@@ -139,7 +139,7 @@ body.lang-en .brand-lines .church-line {
 body.lang-en .brand-lines .org-line {
   font-size: 9.5px;
 }
-nav.menu { display: flex; gap: 32px; }
+nav.menu { display: flex; gap: 46px; }
 nav.menu a {
   font-size: 19.8px;
   font-weight: 500;
@@ -184,7 +184,7 @@ nav.menu a:hover { color: var(--gold-300); }
   background: var(--navy-900);
   color: var(--white);
   text-align: left;
-  min-height: 46vh;
+  min-height: 65vh;
   display: flex;
   align-items: center;
   padding-top: 0;
@@ -223,7 +223,7 @@ nav.menu a:hover { color: var(--gold-300); }
   text-shadow: 0 2px 12px rgba(0,0,0,0.45);
 }
 @media (max-width: 780px) {
-  .hero { text-align: center; min-height: 46vh; align-items: center; padding-top: 0; }
+  .hero { text-align: center; min-height: 58vh; align-items: center; padding-top: 0; }
   .hero-content {
     margin: 0 auto;
     width: auto;
@@ -461,6 +461,20 @@ section.anniversary-section {
 
 /* -------------------- Sermons -------------------- */
 .sermon-list { display: grid; gap: 14px; }
+.sermon-load-more {
+  justify-self: center;
+  margin-top: 8px;
+  padding: 11px 26px;
+  border: 1px solid var(--rule);
+  background: var(--white);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy-800);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.sermon-load-more:hover { border-color: var(--gold-500); color: var(--gold-500); }
 .sermon-item {
   display: flex;
   justify-content: space-between;
