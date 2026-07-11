@@ -420,6 +420,8 @@
     if (backBtn) backBtn.addEventListener('click', closeAlbum);
     const partnerBackBtn = document.getElementById('partner-back-btn');
     if (partnerBackBtn) partnerBackBtn.addEventListener('click', closePartnerDetail);
+    const sharingBackBtn = document.getElementById('sharing-back-btn');
+    if (sharingBackBtn) sharingBackBtn.addEventListener('click', closeSharingDetail);
     const worshipBackBtn = document.getElementById('worship-back-btn');
     if (worshipBackBtn) worshipBackBtn.addEventListener('click', closeWorshipDetail);
     const ministryBackBtn = document.getElementById('ministry-back-btn');
@@ -719,6 +721,124 @@
     document.getElementById('partner-list-view').classList.remove('hidden');
     document.getElementById('partner-detail-view').classList.remove('open');
     history.replaceState(null, '', location.pathname);
+  }
+
+  // -------------------- 나눔 행사 --------------------
+  let sharingData = [];
+
+  async function renderSharingEvents() {
+    const grid = document.getElementById('sharing-grid');
+    if (!grid) return;
+    const data = await loadJSON('content/sharing.json');
+    sharingData = (data && data.items) || [];
+    if (!sharingData.length) {
+      grid.innerHTML = `<p class="empty-state">${t('등록된 나눔 행사가 없습니다.', 'No sharing events yet.')}</p>`;
+      return;
+    }
+    drawSharingGrid();
+    applySharingHash();
+    window.addEventListener('hashchange', applySharingHash);
+  }
+
+  function findSharingIndexByHash() {
+    if (!location.hash || location.hash.length < 2) return -1;
+    const raw = location.hash.slice(1);
+    let decoded;
+    try { decoded = decodeURIComponent(raw); } catch (e) { decoded = raw; }
+    const target = normalizeName(decoded);
+    return sharingData.findIndex(p => normalizeName(p.name) === target);
+  }
+
+  function applySharingHash() {
+    const idx = findSharingIndexByHash();
+    if (idx >= 0) {
+      openSharingDetail(sharingData[idx]);
+      return;
+    }
+    const detailView = document.getElementById('sharing-detail-view');
+    if (detailView && detailView.classList.contains('open')) {
+      closeSharingDetail();
+    }
+  }
+
+  function drawSharingGrid() {
+    const grid = document.getElementById('sharing-grid');
+    if (!grid) return;
+    grid.innerHTML = sharingData.map((p, idx) => `
+      <div class="partner-card" data-idx="${idx}">
+        ${p.cover ? `<img src="${esc(p.cover)}" alt="${esc(p.name)}" loading="lazy">` : ''}
+        <div class="body">
+          ${p.tag ? `<span class="region">${esc(p.tag)}</span>` : ''}
+          <div class="name">${esc(pickLang(p, 'name'))}</div>
+          <div class="desc">${esc(pickLang(p, 'description'))}</div>
+          <span class="link">${t('자세히 보기 →', 'Learn more →')}</span>
+        </div>
+      </div>`).join('');
+    grid.querySelectorAll('.partner-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const item = sharingData[Number(card.dataset.idx)];
+        openSharingDetail(item);
+        if (item) history.replaceState(null, '', `#${encodeURIComponent(item.name || '')}`);
+      });
+    });
+  }
+
+  function openSharingDetail(item) {
+    const listView = document.getElementById('sharing-list-view');
+    const detailView = document.getElementById('sharing-detail-view');
+    if (!listView || !detailView) return;
+    listView.classList.add('hidden');
+    detailView.classList.add('open');
+
+    document.getElementById('sharing-detail-cover').src = item.cover || '';
+    document.getElementById('sharing-detail-tag').textContent = item.tag || '';
+    document.getElementById('sharing-detail-name').textContent = pickLang(item, 'name');
+    document.getElementById('sharing-detail-desc').textContent = pickLang(item, 'description');
+
+    const updatesList = document.getElementById('sharing-updates-list');
+    const updates = (item.updates || []).slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+    updatesList.innerHTML = updates.length
+      ? updates.map(u => `
+        <div class="update-item">
+          ${renderUpdatePhotosHtml(getUpdatePhotos(u), u.title)}
+          <div class="update-body">
+            <div class="update-date">${formatDate(u.date)}</div>
+            <div class="update-title">${esc(u.title)}</div>
+            <div class="update-content">${esc(u.content)}</div>
+          </div>
+        </div>`).join('')
+      : `<p class="empty-state">${t('등록된 소식이 없습니다.', 'No updates yet.')}</p>`;
+
+    bindLightboxGroups(updatesList);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function closeSharingDetail() {
+    document.getElementById('sharing-list-view').classList.remove('hidden');
+    document.getElementById('sharing-detail-view').classList.remove('open');
+    history.replaceState(null, '', location.pathname);
+  }
+
+  // -------------------- 메인페이지 나눔 행사 홍보 --------------------
+  async function renderSharingPromo() {
+    const grid = document.getElementById('sharing-promo-grid');
+    if (!grid) return;
+    const data = await loadJSON('content/sharing.json');
+    const items = (data && data.items) || [];
+    if (!items.length) {
+      grid.innerHTML = `<p class="empty-state">${t('등록된 나눔 행사가 없습니다.', 'No sharing events yet.')}</p>`;
+      return;
+    }
+    grid.innerHTML = items.map(p => `
+      <a class="partner-card" href="partners.html#${encodeURIComponent(p.name || '')}">
+        ${p.cover ? `<img src="${esc(p.cover)}" alt="${esc(p.name)}" loading="lazy">` : ''}
+        <div class="body">
+          ${p.tag ? `<span class="region">${esc(p.tag)}</span>` : ''}
+          <div class="name">${esc(pickLang(p, 'name'))}</div>
+          <div class="desc">${esc(pickLang(p, 'description'))}</div>
+          <span class="link">${t('자세히 보기 →', 'Learn more →')}</span>
+        </div>
+      </a>`).join('');
   }
 
   // -------------------- 섬기는 사람 --------------------
@@ -1061,6 +1181,8 @@
     renderGallery();
     renderBulletins();
     renderPartners();
+    renderSharingEvents();
+    renderSharingPromo();
     renderLeaders();
     renderMinistries();
     renderResources();

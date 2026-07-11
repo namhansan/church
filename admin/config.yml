@@ -435,3 +435,35 @@ collections:
                     widget: "list"
                     required: false
                     field: { label: "사진", name: "photo", widget: "image" }
+
+  - name: "sharing"
+    label: "나눔 행사"
+    files:
+      - name: "sharing"
+        label: "나눔 행사 목록 수정"
+        file: "content/sharing.json"
+        fields:
+          - label: "나눔 행사"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "행사 이름", name: "name", widget: "string" }
+              - { label: "Name (영문, 선택)", name: "name_en", widget: "string", required: false }
+              - { label: "구분 (예: 전도행사, 나눔사역)", name: "tag", widget: "string", required: false }
+              - { label: "대표 사진 (목록에 표시)", name: "cover", widget: "image", required: false }
+              - { label: "소개", name: "description", widget: "text" }
+              - { label: "Description (영문, 선택)", name: "description_en", widget: "text", required: false }
+              - label: "소식 (수시로 추가)"
+                name: "updates"
+                widget: "list"
+                summary: "{{fields.date}} — {{fields.title}}"
+                fields:
+                  - { label: "날짜", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+                  - { label: "제목", name: "title", widget: "string" }
+                  - { label: "내용", name: "content", widget: "text" }
+                  - label: "사진 (여러 장 가능)"
+                    name: "photos"
+                    widget: "list"
+                    required: false
+                    field: { label: "사진", name: "photo", widget: "image" }
