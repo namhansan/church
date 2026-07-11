@@ -3,19 +3,18 @@
   "photos": [
     {
       "image": "images/uploads/namhansanseong-church.jpg",
-      "caption": ""
-    },
-    {
-      "image": "/images/uploads/screen-shot-2026-07-04-at-9.41.35-pm.png",
-      "caption": "2026년 여름성경학교 안내"
+      "caption": "",
+      "link": "partners.html#은혜동산 (경기 광주시)"
     },
     {
       "image": "/images/uploads/sheep.jpeg",
-      "caption": "바꿈남교회 양5마리"
+      "caption": "바꿈남교회 양5마리",
+      "link": "partners.html#창립 100주년 기념교회 (베트남 바꿈남성결 교회)"
     },
     {
       "image": "/images/uploads/sheep2.jpeg",
-      "caption": "바꿈남교회 양5마리"
+      "caption": "바꿈남교회 양5마리",
+      "link": "partners.html#창립 100주년 기념교회 (베트남 바꿈남성결 교회)"
     }
   ]
 }
