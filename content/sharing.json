@@ -3,7 +3,7 @@
     {
       "name": "이웃초청 큰잔치",
       "tag": "전도행사",
-      "cover": "",
+      "cover": "images/sharing-sample-welcome.svg",
       "logo": "images/sharing-logo-welcome.svg",
       "description": "지역 이웃들을 초청하여 함께 먹고 즐기며 은혜를 나누는 전도 행사입니다. 주변 이웃들이 편안한 마음으로 교회를 찾아와 따뜻한 환대와 말씀의 은혜를 경험할 수 있도록 매년 준비하고 있습니다.",
       "updates": []
@@ -11,7 +11,7 @@
     {
       "name": "산성 BAZZAR",
       "tag": "나눔사역",
-      "cover": "",
+      "cover": "images/sharing-sample-bazaar.svg",
       "logo": "images/sharing-logo-bazaar.svg",
       "description": "성도님들이 기부해 주신 물품과 나눔 물품을 판매하여 마련한 수익금 전체를 장애인 요양보호시설인 은혜동산에 기부하는 나눔 행사입니다.",
       "updates": []
