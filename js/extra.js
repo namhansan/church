@@ -830,13 +830,15 @@
       return;
     }
     grid.innerHTML = items.map(p => `
-      <a class="partner-card" href="partners.html#${encodeURIComponent(p.name || '')}">
-        ${p.cover ? `<img src="${esc(p.cover)}" alt="${esc(p.name)}" loading="lazy">` : ''}
-        <div class="body">
-          ${p.tag ? `<span class="region">${esc(p.tag)}</span>` : ''}
+      <a class="sharing-promo-card" href="partners.html#${encodeURIComponent(p.name || '')}">
+        ${p.cover ? `<img class="cover-img" src="${esc(p.cover)}" alt="${esc(p.name)}" loading="lazy">` : ''}
+        <div class="tint"></div>
+        ${p.logo ? `<span class="logo-badge"><img src="${esc(p.logo)}" alt=""></span>` : ''}
+        <div class="card-body">
+          ${p.tag ? `<span class="tag">${esc(p.tag)}</span>` : ''}
           <div class="name">${esc(pickLang(p, 'name'))}</div>
           <div class="desc">${esc(pickLang(p, 'description'))}</div>
-          <span class="link">${t('자세히 보기 →', 'Learn more →')}</span>
+          <span class="more-link">${t('자세히 보기 →', 'Learn more →')}</span>
         </div>
       </a>`).join('');
   }

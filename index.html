@@ -191,10 +191,27 @@
 </section>
 
 <section id="sharing-promo">
+  <style>
+    .sharing-promo-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:26px; margin-top:8px; }
+    .sharing-promo-card { position:relative; display:block; border-radius:16px; overflow:hidden; text-decoration:none; aspect-ratio:4/3; background:#e7e2d8; box-shadow:0 6px 18px rgba(20,27,51,0.14); transition:transform .35s ease, box-shadow .35s ease; }
+    .sharing-promo-card:hover { transform:translateY(-8px); box-shadow:0 20px 40px rgba(20,27,51,0.32); }
+    .sharing-promo-card .cover-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transform:scale(1.02); transition:transform .6s ease; }
+    .sharing-promo-card:hover .cover-img { transform:scale(1.12); }
+    .sharing-promo-card .tint { position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,27,51,0.05) 30%, rgba(20,27,51,0.7) 100%); transition:background .4s ease; }
+    .sharing-promo-card:hover .tint { background:linear-gradient(180deg, rgba(20,27,51,0.35) 0%, rgba(20,27,51,0.92) 100%); }
+    .sharing-promo-card .logo-badge { position:absolute; top:16px; left:16px; width:44px; height:44px; border-radius:50%; background:#fff; box-shadow:0 3px 10px rgba(0,0,0,0.2); padding:7px; box-sizing:border-box; z-index:2; }
+    .sharing-promo-card .logo-badge img { width:100%; height:100%; object-fit:contain; display:block; }
+    .sharing-promo-card .card-body { position:absolute; left:0; right:0; bottom:0; padding:20px; color:#fff; z-index:2; }
+    .sharing-promo-card .tag { display:inline-block; font-size:11.5px; letter-spacing:.06em; font-weight:700; color:#F4D58D; margin-bottom:6px; }
+    .sharing-promo-card .name { font-size:19px; font-weight:700; margin-bottom:6px; }
+    .sharing-promo-card .desc { font-size:13px; line-height:1.5; opacity:0; max-height:0; overflow:hidden; transition:opacity .35s ease, max-height .35s ease; }
+    .sharing-promo-card:hover .desc { opacity:.9; max-height:90px; }
+    .sharing-promo-card .more-link { display:inline-block; margin-top:8px; font-size:12.5px; font-weight:600; color:#fff; text-decoration:underline; text-underline-offset:3px; }
+  </style>
   <div class="wrap">
     <div class="eyebrow" data-en="Sharing">나눔 · SHARING</div>
     <h2 class="section-title" data-en="Sharing Events">우리 교회가 나누는 행사</h2>
-    <div class="partner-grid" id="sharing-promo-grid">
+    <div class="sharing-promo-grid" id="sharing-promo-grid">
       <p class="empty-state">불러오는 중...</p>
     </div>
     <a href="partners.html#sharing-sec" class="pastor-card-more" data-en="View all sharing events →" style="display:inline-block; margin-top:18px;">나눔 행사 더보기 →</a>

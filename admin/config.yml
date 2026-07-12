@@ -452,6 +452,7 @@ collections:
               - { label: "Name (영문, 선택)", name: "name_en", widget: "string", required: false }
               - { label: "구분 (예: 전도행사, 나눔사역)", name: "tag", widget: "string", required: false }
               - { label: "대표 사진 (목록에 표시)", name: "cover", widget: "image", required: false }
+              - { label: "작은 로고 (메인페이지 카드에 표시, 비워두면 로고 없이 표시됨)", name: "logo", widget: "image", required: false }
               - { label: "소개", name: "description", widget: "text" }
               - { label: "Description (영문, 선택)", name: "description_en", widget: "text", required: false }
               - label: "소식 (수시로 추가)"
