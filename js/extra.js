@@ -1088,6 +1088,7 @@
       const subEl = document.getElementById('anniversary-sec-subcaption');
       if (sloganEl) sloganEl.textContent = sloganLine || '';
       if (subEl) subEl.textContent = restLines.join(' ').trim();
+    }
 
     // 교회연혁 타임라인
     const timeline = document.getElementById('history-timeline');
