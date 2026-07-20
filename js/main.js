@@ -167,7 +167,10 @@ function renderSite(site) {
       } else {
         annivImg.style.display = 'none';
       }
-      document.getElementById('anniversary-caption').textContent = pickLang(site, 'anniversary_caption');
+      const fullCaption = pickLang(site, 'anniversary_caption') || '';
+      const [sloganLine, ...restLines] = fullCaption.split('\n');
+      document.getElementById('anniversary-slogan').textContent = sloganLine || '';
+      document.getElementById('anniversary-subcaption').textContent = restLines.join(' ').trim();
       const annivLink = document.getElementById('anniversary-link');
       if (annivLink) {
         if (site.anniversary_link) {
@@ -309,6 +312,15 @@ async function init() {
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // 다른 페이지에서 #notices, #worship 같은 앵커로 넘어온 경우,
+  // 콘텐츠가 비동기로 채워지며 위치가 밀리는 문제를 다시 보정합니다.
+  if (window.location.hash) {
+    setTimeout(() => {
+      const target = document.querySelector(window.location.hash);
+      if (target) target.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }, 60);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);

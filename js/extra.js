@@ -1071,6 +1071,24 @@
       if (visionRight) visionRight.textContent = pickLang(site, 'vision_right');
     }
 
+    // 100주년 기념
+    if (site && site.anniversary_enabled && (site.anniversary_image || site.anniversary_caption)) {
+      const emptyEl = document.getElementById('anniversary-sec-empty');
+      const contentEl = document.getElementById('anniversary-sec-content');
+      if (emptyEl) emptyEl.style.display = 'none';
+      if (contentEl) contentEl.style.display = '';
+      const imgEl = document.getElementById('anniversary-sec-image');
+      if (imgEl) {
+        if (site.anniversary_image) { imgEl.src = site.anniversary_image; imgEl.style.display = ''; }
+        else imgEl.style.display = 'none';
+      }
+      const fullCaption = pickLang(site, 'anniversary_caption') || '';
+      const [sloganLine, ...restLines] = fullCaption.split('\n');
+      const sloganEl = document.getElementById('anniversary-sec-slogan');
+      const subEl = document.getElementById('anniversary-sec-subcaption');
+      if (sloganEl) sloganEl.textContent = sloganLine || '';
+      if (subEl) subEl.textContent = restLines.join(' ').trim();
+
     // 교회연혁 타임라인
     const timeline = document.getElementById('history-timeline');
     if (timeline) {
