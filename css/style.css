@@ -505,77 +505,130 @@ section.anniversary-section {
 .service-card .place { color: var(--gold-500); font-size: 13px; margin-top: 6px; font-weight: 600; }
 
 /* -------------------- Sermons -------------------- */
-.sermon-list { display: grid; gap: 12px; }
-.sermon-load-more {
-  justify-self: center;
-  margin-top: 8px;
-  padding: 11px 26px;
-  border: 1px solid var(--rule);
-  background: var(--white);
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--navy-800);
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s;
-}
-.sermon-load-more:hover { border-color: var(--gold-500); color: var(--gold-500); }
-.sermon-item {
+.sermon-carousel { position: relative; margin-top: 28px; }
+.sermon-track {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.sermon-track::-webkit-scrollbar { display: none; }
+.sermon-card {
+  flex-shrink: 0;
+  width: 280px;
+  scroll-snap-align: start;
   background: var(--white);
   border: 1px solid var(--rule);
   border-radius: 8px;
+  overflow: hidden;
   text-decoration: none;
   color: var(--ink);
+  display: block;
   transition: box-shadow 0.2s, transform 0.15s;
 }
-.sermon-item:hover { box-shadow: 0 8px 20px rgba(43,42,36,0.08); transform: translateY(-2px); }
-.sermon-item .tag {
+.sermon-card:hover { box-shadow: 0 8px 20px rgba(43,42,36,0.1); transform: translateY(-2px); }
+.sermon-thumb {
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--paper-2);
+}
+.sermon-thumb-placeholder {
+  background-image: linear-gradient(150deg, #E4E9DD, #CFD8BE);
+}
+.sermon-card-body { padding: 16px 18px 20px; }
+.sermon-card .tag {
   font-size: 11.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
   color: var(--gold-500);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
-.sermon-item .meta { color: var(--ink-soft); font-size: 14px; margin-top: 4px; }
-.sermon-item .title { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--navy-900); }
-.sermon-item .play {
-  flex-shrink: 0;
-  width: 38px; height: 38px;
+.sermon-card .title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--navy-900); margin-bottom: 8px; line-height: 1.4; }
+.sermon-card .meta { color: var(--ink-soft); font-size: 12.5px; }
+.sermon-nav {
+  position: absolute;
+  top: 65px;
+  transform: translateY(-50%);
+  width: 40px; height: 40px;
   border-radius: 50%;
-  background: var(--navy-900);
-  color: var(--gold-300);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 14px;
+  background: var(--white);
+  border: 1px solid var(--rule);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 0 4px 14px rgba(43,42,36,0.1);
+  color: var(--navy-900);
+}
+.sermon-nav-prev { left: -20px; }
+.sermon-nav-next { right: -20px; }
+@media (max-width: 700px) {
+  .sermon-nav { display: none; }
 }
 
-/* -------------------- Notices -------------------- */
-.notice-list { display: grid; gap: 0; border-top: 1px solid var(--rule); }
-.notice-item {
-  padding: 18px 4px;
-  border-bottom: 1px solid var(--rule);
+/* -------------------- Section header row (title + right-side link) -------------------- */
+.section-head {
   display: flex;
   align-items: baseline;
-  gap: 18px;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
 }
-.notice-item .date {
-  flex-shrink: 0;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--gold-500);
-  background: var(--paper-2);
-  padding: 5px 12px;
-  border-radius: 999px;
+.section-head .section-title { margin-bottom: 0; }
+.section-more-link {
+  background: none;
+  border: none;
+  cursor: pointer;
   white-space: nowrap;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-decoration: none;
+  font-family: var(--font-body);
 }
-.notice-item .title { font-weight: 500; color: var(--navy-900); font-size: 16px; }
-.notice-item .body { display: none; }
+.section-more-link:hover { color: var(--gold-500); }
+
+/* -------------------- Notices -------------------- */
+.notice-list { display: block; border-top: 1px solid var(--rule); margin-top: 28px; }
+.notice-item { border-bottom: 1px solid var(--rule); }
+.notice-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+}
+.notice-tag {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-soft);
+}
+.notice-tag.is-new { background: var(--gold-500); color: var(--white); }
+.notice-title { flex: 1; font-size: 15px; font-weight: 500; color: var(--navy-900); }
+.notice-date { flex-shrink: 0; font-size: 13px; color: var(--ink-soft); }
+.notice-body {
+  display: none;
+  padding: 0 4px 20px 85px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  white-space: pre-line;
+  line-height: 1.85;
+}
+.notice-item.open .notice-body { display: block; }
 @media (max-width: 600px) {
-  .notice-item { flex-wrap: wrap; gap: 8px; }
+  .notice-body { padding-left: 4px; }
 }
 
 /* -------------------- Departments -------------------- */
