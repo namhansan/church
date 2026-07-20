@@ -487,12 +487,26 @@
 
 /* -------------------- Sub page hero (갤러리/주보/후원단체 상단) -------------------- */
 .subhero {
-  background: var(--paper-2);
+  position: relative;
+  background: linear-gradient(160deg, #F5F0E4 0%, #EDE5D2 100%);
   color: var(--ink);
-  padding: 42px 0 30px;
+  padding: 46px 0 34px;
   text-align: center;
   border-bottom: 1px solid var(--rule);
+  overflow: hidden;
 }
+.subhero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 46px;
+  opacity: 0.5;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpolygon points='0,60 0,40 40,40 40,32 55,32 55,40 90,40 90,26 100,26 100,18 110,26 110,40 160,40 160,34 180,34 180,40 240,40 240,20 250,20 250,12 260,20 260,40 320,40 320,30 350,30 350,40 400,40 400,23 415,23 415,15 430,23 430,40 490,40 490,32 520,32 520,40 580,40 580,17 595,17 595,10 610,17 610,40 670,40 670,30 700,30 700,40 760,40 760,20 775,20 775,12 790,20 790,40 850,40 850,32 880,32 880,40 940,40 940,17 955,17 955,10 970,17 970,40 1030,40 1030,30 1060,30 1060,40 1120,40 1120,23 1135,23 1135,15 1150,23 1150,40 1200,40 1200,60' fill='%233F5C74' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+.subhero > * { position: relative; z-index: 1; }
 .subhero h1 {
   font-family: var(--font-display);
   font-weight: 800;

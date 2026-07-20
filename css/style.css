@@ -41,6 +41,14 @@ body {
   color: var(--ink);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  animation: page-fade-in 0.25s ease;
+}
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
 }
 
 img { max-width: 100%; display: block; }
@@ -81,6 +89,7 @@ a { color: inherit; }
 
 section { padding: 84px 0; background: var(--paper); scroll-margin-top: 90px; }
 section:nth-of-type(even) { background: var(--paper-2); }
+.subhero + section { background: var(--paper) !important; }
 
 /* -------------------- Header -------------------- */
 header.site-header {
