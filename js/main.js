@@ -194,15 +194,37 @@ function renderNotices(data) {
     return;
   }
   const sorted = [...items].sort((a, b) => new Date(b.date) - new Date(a.date));
+  const isNew = (d) => (Date.now() - new Date(d).getTime()) < 1000 * 60 * 60 * 24 * 7;
   list.innerHTML = sorted.map(n => `
     <div class="notice-item">
-      <div class="date">${formatDate(n.date)}</div>
-      <div>
-        <div class="title">${esc(n.title)}</div>
-        <div class="body">${esc(n.body)}</div>
-      </div>
+      <button type="button" class="notice-row">
+        <span class="notice-tag${isNew(n.date) ? ' is-new' : ''}">${isNew(n.date) ? 'NEW' : '공지'}</span>
+        <span class="notice-title">${esc(n.title)}</span>
+        <span class="notice-date">${formatDate(n.date)}</span>
+      </button>
+      <div class="notice-body">${esc(n.body)}</div>
     </div>
   `).join('');
+  list.querySelectorAll('.notice-row').forEach(btn => {
+    btn.addEventListener('click', () => btn.closest('.notice-item').classList.toggle('open'));
+  });
+
+  const toggleAllBtn = document.getElementById('notices-toggle-all');
+  if (toggleAllBtn) {
+    toggleAllBtn.onclick = () => {
+      const allItems = list.querySelectorAll('.notice-item');
+      const expanding = toggleAllBtn.dataset.state !== 'open';
+      allItems.forEach(el => el.classList.toggle('open', expanding));
+      toggleAllBtn.dataset.state = expanding ? 'open' : 'closed';
+      toggleAllBtn.textContent = expanding ? '접기 ←' : '전체보기 →';
+    };
+  }
+}
+
+function ytThumb(url) {
+  if (!url) return null;
+  const m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
+  return m ? `https://img.youtube.com/vi/${m[1]}/hqdefault.jpg` : null;
 }
 
 function renderSermons(data) {
@@ -219,16 +241,27 @@ function renderSermons(data) {
     return;
   }
   const sorted = [...featured].sort((a, b) => new Date(b.date) - new Date(a.date));
-  list.innerHTML = sorted.slice(0, 6).map(s => `
-    <a class="sermon-item" href="${esc(s.youtube_url || '#')}" target="_blank" rel="noopener">
-      <div>
+  list.innerHTML = sorted.slice(0, 8).map(s => {
+    const thumb = ytThumb(s.youtube_url);
+    const thumbHtml = thumb
+      ? `<div class="sermon-thumb" style="background-image:url('${thumb}')"></div>`
+      : `<div class="sermon-thumb sermon-thumb-placeholder"></div>`;
+    return `
+    <a class="sermon-card" href="${esc(s.youtube_url || '#')}" target="_blank" rel="noopener">
+      ${thumbHtml}
+      <div class="sermon-card-body">
         <div class="tag">${esc(s.service_type || '주일예배')}</div>
         <div class="title">${esc(s.title)}</div>
         <div class="meta">${formatDate(s.date)} · ${esc(s.preacher)} · ${esc(s.scripture)}</div>
       </div>
-      <span class="play">▶</span>
-    </a>
-  `).join('');
+    </a>`;
+  }).join('');
+
+  const prevBtn = document.getElementById('sermon-prev');
+  const nextBtn = document.getElementById('sermon-next');
+  const scrollAmount = () => (list.querySelector('.sermon-card')?.offsetWidth || 280) + 16;
+  if (prevBtn) prevBtn.onclick = () => list.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+  if (nextBtn) nextBtn.onclick = () => list.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
 }
 
 function initScrollTop() {
