@@ -137,6 +137,7 @@ function renderSite(site) {
   // 교회 전경 사진 (히어로 배경)
   const photo = document.getElementById('hero-photo');
   if (photo && site.church_photo) {
+    photo.onload = () => photo.classList.add('loaded');
     photo.src = site.church_photo;
     photo.alt = `${site.church_name || ''} 전경`;
     photo.style.display = '';
@@ -221,6 +222,7 @@ function renderSermons(data) {
   list.innerHTML = sorted.slice(0, 6).map(s => `
     <a class="sermon-item" href="${esc(s.youtube_url || '#')}" target="_blank" rel="noopener">
       <div>
+        <div class="tag">${esc(s.service_type || '주일예배')}</div>
         <div class="title">${esc(s.title)}</div>
         <div class="meta">${formatDate(s.date)} · ${esc(s.preacher)} · ${esc(s.scripture)}</div>
       </div>
