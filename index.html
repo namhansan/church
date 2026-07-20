@@ -198,12 +198,20 @@
 
 <section id="sermons">
   <div class="wrap">
-    <div class="eyebrow" data-en="Sermons">말씀 · SERMONS</div>
-    <h2 class="section-title" data-en="Recent Sermons">최근 설교</h2>
-    <div class="sermon-list" id="sermon-list">
-      <p class="empty-state">불러오는 중...</p>
+    <div class="section-head">
+      <div>
+        <div class="eyebrow" data-en="Sermons">말씀 · SERMONS</div>
+        <h2 class="section-title" data-en="Recent Sermons">최근 설교</h2>
+      </div>
+      <a href="sermons.html" class="section-more-link" data-en="View all sermons →">전체 설교 보기 →</a>
     </div>
-    <a href="sermons.html" class="pastor-card-more" data-en="View all sermons →" style="display:inline-block; margin-top:18px;">전체 설교 보기 →</a>
+    <div class="sermon-carousel">
+      <button type="button" class="sermon-nav sermon-nav-prev" id="sermon-prev" aria-label="이전 설교">‹</button>
+      <div class="sermon-track" id="sermon-list">
+        <p class="empty-state">불러오는 중...</p>
+      </div>
+      <button type="button" class="sermon-nav sermon-nav-next" id="sermon-next" aria-label="다음 설교">›</button>
+    </div>
   </div>
 </section>
 
@@ -245,8 +253,13 @@
 
 <section id="notices">
   <div class="wrap">
-    <div class="eyebrow" data-en="Notices">소식 · NOTICES</div>
-    <h2 class="section-title" data-en="Notices">공지사항</h2>
+    <div class="section-head">
+      <div>
+        <div class="eyebrow" data-en="Notices">소식 · NOTICES</div>
+        <h2 class="section-title" data-en="Notices">공지사항</h2>
+      </div>
+      <button type="button" class="section-more-link" id="notices-toggle-all" data-en="View all →">전체보기 →</button>
+    </div>
     <div class="notice-list" id="notice-list">
       <p class="empty-state">불러오는 중...</p>
     </div>
