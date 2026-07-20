@@ -359,6 +359,12 @@
   .nav-dropdown > a::after { display: none; }
 }
 
+.pill-nav-bar {
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+  padding: 22px 0;
+}
+.pill-nav-bar .pill-nav { margin-bottom: 0; }
 /* -------------------- 페이지 내 탭(핑크빛 필) 네비게이션 -------------------- */
 .pill-nav {
   display: flex;
@@ -409,8 +415,10 @@
   margin-bottom: 40px;
 }
 .people-card {
-  background: var(--paper-2);
+  background: var(--white);
+  border: 1px solid var(--rule);
   border-left: 3px solid var(--gold-500);
+  border-radius: 6px;
   padding: 16px 18px;
 }
 .people-card .name { font-weight: 700; color: var(--navy-900); font-size: 18px; }
@@ -428,8 +436,10 @@
 .elder-group .people-grid { margin-bottom: 0; }
 
 .congregation-note {
-  background: var(--paper-2);
+  background: var(--white);
+  border: 1px solid var(--rule);
   border-left: 3px solid var(--sage);
+  border-radius: 6px;
   padding: 24px 26px;
   color: var(--ink-soft);
   font-size: 18px;

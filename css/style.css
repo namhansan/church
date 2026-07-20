@@ -460,8 +460,10 @@ section.anniversary-section {
 @media (max-width: 780px) { .intro-grid { grid-template-columns: 1fr; } }
 .intro-grid p { color: var(--ink-soft); font-size: 19.2px; max-width: 640px; }
 .pastor-card {
-  background: var(--paper-2);
+  background: var(--white);
+  border: 1px solid var(--rule);
   border-left: 3px solid var(--gold-500);
+  border-radius: 6px;
   padding: 26px 28px;
 }
 .pastor-card .name { font-family: var(--font-display); font-weight: 700; font-size: 21.6px; color: var(--navy-900); margin-bottom: 6px;}
@@ -668,9 +670,11 @@ section.anniversary-section {
   filter: grayscale(20%);
 }
 .offering-box {
-  background: var(--paper-2);
-  padding: 24px 26px;
+  background: var(--white);
+  border: 1px solid var(--rule);
   border-left: 3px solid var(--sage);
+  border-radius: 6px;
+  padding: 24px 26px;
 }
 .offering-box .account { font-family: var(--font-display); font-size: 24px; font-weight: 700; color: var(--navy-900); }
 
