@@ -536,7 +536,9 @@
   position: relative;
   width: 100%;
   padding-top: 56.25%; /* 16:9 */
-  background: #000;
+  background: var(--navy-900);
+  border-radius: 12px;
+  overflow: hidden;
   border: 1px solid var(--rule);
 }
 .live-embed-wrap iframe {
@@ -547,16 +549,17 @@
   display: flex;
   align-items: center;
   gap: 22px;
-  background: var(--navy-900);
-  color: var(--white);
+  background: var(--paper-2);
+  color: var(--navy-900);
   padding: 28px 32px;
+  border-radius: 12px;
   flex-wrap: wrap;
 }
 .live-compact-icon {
   width: 52px; height: 52px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  color: var(--gold-300);
+  background: rgba(181,132,63,0.14);
+  color: var(--gold-500);
   display: flex; align-items: center; justify-content: center;
   font-size: 20px;
   flex-shrink: 0;
@@ -567,15 +570,16 @@
   font-weight: 700;
   font-size: 19px;
   margin-bottom: 4px;
+  color: var(--navy-900);
 }
 .live-compact-text .lc-desc {
   font-size: 14.5px;
-  color: rgba(255,255,255,0.7);
+  color: var(--ink-soft);
 }
 .live-compact-text .lc-today {
   margin-top: 8px;
   font-size: 14.5px;
-  color: var(--gold-300);
+  color: var(--gold-500);
 }
 .live-compact-text .lc-today strong { font-weight: 700; }
 .live-compact-actions { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -588,15 +592,15 @@
   white-space: nowrap;
 }
 .live-compact-actions .lc-btn-outline {
-  border: 1px solid rgba(255,255,255,0.4);
-  color: var(--white);
-}
-.live-compact-actions .lc-btn-outline:hover { border-color: var(--gold-300); color: var(--gold-300); }
-.live-compact-actions .lc-btn-gold {
-  background: var(--gold-500);
+  border: 1px solid var(--rule);
   color: var(--navy-900);
 }
-.live-compact-actions .lc-btn-gold:hover { background: var(--gold-300); }
+.live-compact-actions .lc-btn-outline:hover { border-color: var(--gold-500); color: var(--gold-500); }
+.live-compact-actions .lc-btn-gold {
+  background: var(--gold-500);
+  color: var(--white);
+}
+.live-compact-actions .lc-btn-gold:hover { background: var(--navy-900); }
 @media (max-width: 560px) {
   .live-compact { padding: 22px; }
 }
