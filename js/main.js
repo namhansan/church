@@ -28,7 +28,7 @@ function initHeroSlideshow(wrap, urls, alt) {
   if (imgs.length < 2) return;
 
   let current = 0;
-  const INTERVAL_MS = 6000; // 각 사진이 화면에 머무는 시간
+  const INTERVAL_MS = 4000; // 각 사진이 화면에 머무는 시간
   setInterval(() => {
     const next = (current + 1) % imgs.length;
     imgs[next].classList.add('active');
@@ -167,17 +167,19 @@ function renderSite(site) {
     // CMS에 등록된 사진(church_photo, 추후 hero_gallery 배열도 지원)이 있으면 그걸 쓰고,
     // 아직 없으면 느낌을 볼 수 있도록 샘플 이미지를 임시로 넣어둡니다.
     let photos = [];
+    const samples = [
+      'https://picsum.photos/id/1015/1600/900',
+      'https://picsum.photos/id/1043/1600/900',
+      'https://picsum.photos/id/1074/1600/900',
+      'https://picsum.photos/id/1050/1600/900'
+    ];
     if (Array.isArray(site.hero_gallery) && site.hero_gallery.length) {
       photos = site.hero_gallery;
     } else if (site.church_photo) {
-      photos = [site.church_photo];
+      // 실제 등록된 사진 1장 + 샘플 사진들을 같이 보여줘서 여러 장 전환 느낌을 미리 확인할 수 있게 함
+      photos = [site.church_photo, ...samples];
     } else {
-      photos = [
-        'https://picsum.photos/seed/church-exterior/1600/900',
-        'https://picsum.photos/seed/worship-service/1600/900',
-        'https://picsum.photos/seed/congregation/1600/900',
-        'https://picsum.photos/seed/church-interior/1600/900'
-      ];
+      photos = samples;
     }
     initHeroSlideshow(slideWrap, photos, `${site.church_name || ''} 전경`);
   }
