@@ -10,6 +10,33 @@ function pickLang(obj, field) {
   return obj[field] || '';
 }
 
+// 히어로 배경 슬라이드쇼: 이미지 여러 장을 순서대로 부드럽게 크로스페이드합니다.
+function initHeroSlideshow(wrap, urls, alt) {
+  wrap.innerHTML = '';
+  if (!urls || !urls.length) return;
+
+  const imgs = urls.map((url, i) => {
+    const img = document.createElement('img');
+    img.className = 'hero-slide';
+    img.src = url;
+    img.alt = alt || '';
+    if (i === 0) img.classList.add('active');
+    wrap.appendChild(img);
+    return img;
+  });
+
+  if (imgs.length < 2) return;
+
+  let current = 0;
+  const INTERVAL_MS = 6000; // 각 사진이 화면에 머무는 시간
+  setInterval(() => {
+    const next = (current + 1) % imgs.length;
+    imgs[next].classList.add('active');
+    imgs[current].classList.remove('active');
+    current = next;
+  }, INTERVAL_MS);
+}
+
 function applyStaticI18n() {
   document.body.classList.toggle('lang-en', window.siteLang === 'en');
   document.querySelectorAll('[data-en]').forEach(el => {
@@ -134,15 +161,25 @@ function renderSite(site) {
     mapFrame.src = `https://maps.google.com/maps?q=${site.map_lat},${site.map_lng}&z=16&output=embed`;
   }
 
-  // 교회 전경 사진 (히어로 배경)
-  const photo = document.getElementById('hero-photo');
-  if (photo && site.church_photo) {
-    photo.onload = () => photo.classList.add('loaded');
-    photo.src = site.church_photo;
-    photo.alt = `${site.church_name || ''} 전경`;
-    photo.style.display = '';
-  } else if (photo) {
-    photo.style.display = 'none';
+  // 교회 전경 사진 (히어로 배경) — 여러 장을 부드럽게 크로스페이드
+  const slideWrap = document.getElementById('hero-slides');
+  if (slideWrap) {
+    // CMS에 등록된 사진(church_photo, 추후 hero_gallery 배열도 지원)이 있으면 그걸 쓰고,
+    // 아직 없으면 느낌을 볼 수 있도록 샘플 이미지를 임시로 넣어둡니다.
+    let photos = [];
+    if (Array.isArray(site.hero_gallery) && site.hero_gallery.length) {
+      photos = site.hero_gallery;
+    } else if (site.church_photo) {
+      photos = [site.church_photo];
+    } else {
+      photos = [
+        'https://picsum.photos/seed/church-exterior/1600/900',
+        'https://picsum.photos/seed/worship-service/1600/900',
+        'https://picsum.photos/seed/congregation/1600/900',
+        'https://picsum.photos/seed/church-interior/1600/900'
+      ];
+    }
+    initHeroSlideshow(slideWrap, photos, `${site.church_name || ''} 전경`);
   }
 
   // 로고 (등록되어 있으면 배지 대신 표시)
