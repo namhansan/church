@@ -28,7 +28,7 @@ function initHeroSlideshow(wrap, urls, alt) {
   if (imgs.length < 2) return;
 
   let current = 0;
-  const INTERVAL_MS = 4000; // 각 사진이 화면에 머무는 시간
+  const INTERVAL_MS = 6000; // 각 사진이 화면에 머무는 시간 (일반적으로 5~7초가 자연스러움)
   setInterval(() => {
     const next = (current + 1) % imgs.length;
     imgs[next].classList.add('active');
@@ -173,10 +173,13 @@ function renderSite(site) {
       'https://picsum.photos/id/1074/1600/900',
       'https://picsum.photos/id/1050/1600/900'
     ];
-    if (Array.isArray(site.hero_gallery) && site.hero_gallery.length) {
-      photos = site.hero_gallery;
+    const gallery = Array.isArray(site.hero_gallery)
+      ? site.hero_gallery.map(item => (typeof item === 'string' ? item : item.image)).filter(Boolean)
+      : [];
+    if (gallery.length) {
+      photos = gallery;
     } else if (site.church_photo) {
-      // 실제 등록된 사진 1장 + 샘플 사진들을 같이 보여줘서 여러 장 전환 느낌을 미리 확인할 수 있게 함
+      // 갤러리가 아직 비어 있으면 대표 사진 1장 + 샘플 사진으로 미리보기
       photos = [site.church_photo, ...samples];
     } else {
       photos = samples;
