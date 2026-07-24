@@ -20,7 +20,13 @@ collections:
           - { label: "슬로건 (한 줄 소개)", name: "tagline", widget: "string" }
           - { label: "Slogan (영문, 선택)", name: "tagline_en", widget: "string", required: false }
           - { label: "로고 이미지", name: "logo", widget: "image", required: false, hint: "정사각형 이미지를 권장합니다." }
-          - { label: "교회 전경 사진", name: "church_photo", widget: "image", required: false, hint: "메인 화면 상단에 크게 표시됩니다." }
+          - { label: "교회 전경 사진 (대표 1장, 갤러리 미등록 시 사용)", name: "church_photo", widget: "image", required: false, hint: "메인 화면 상단에 크게 표시됩니다." }
+          - label: "메인 화면 슬라이드 사진 (여러 장, 자동 전환)"
+            name: "hero_gallery"
+            widget: "list"
+            required: false
+            hint: "여기에 사진을 여러 장 등록하면 메인 화면에서 순서대로 서서히 전환되며 보여줍니다. 2장 이상 권장, 가로로 긴 사진(16:9)이 잘 어울립니다."
+            field: { label: "사진", name: "image", widget: "image" }
           - { label: "담임목사 이름", name: "pastor_name", widget: "string" }
           - { label: "Senior Pastor Name (영문, 선택)", name: "pastor_name_en", widget: "string", required: false }
           - { label: "인사말", name: "greeting", widget: "text" }
